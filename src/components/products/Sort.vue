@@ -21,7 +21,7 @@ import { ref } from 'vue'
 const isOpen = ref(false)
 const name = ref('全部')
 
-function changeSort (newName:any) {
+function changeSort (newName:string) {
   name.value = newName
   isOpen.value = false
 }
