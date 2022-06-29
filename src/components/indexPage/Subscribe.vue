@@ -12,7 +12,7 @@
     </div>
     <section class="absolute flex-col top-[25%] md:top-[35%] flex-center">
       <span class="text-3xl text-white">訂閱最新優惠內容</span>
-      <form class="inline-block w-[150%] md:w-[200%] lg:w-[400%] flex-center text-center my-4">
+      <form class="inline-block w-full md:w-[200%] lg:w-[400%] flex-center text-center my-4">
         <input type="text" placeholder="Enter email for news updates" name="subscript" />
         <button class="btn" type="submit">SING UP!</button>
       </form>

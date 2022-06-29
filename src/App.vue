@@ -3,7 +3,7 @@
 
   <GoTop />
   <main class="w-full h-full pt-12 md:pt-20">
-    <div class="flex flex-col justify-center mt-1">
+    <div class="flex-col justify-center mt-1">
       <router-view></router-view>
     </div>
   </main>
