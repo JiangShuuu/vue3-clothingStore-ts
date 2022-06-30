@@ -4,7 +4,7 @@
       <span>{{ name }}</span>
       <i class="w-2.5 h-2.5 fa-solid fa-chevron-down"></i>
     </button>
-    <div class="absolute hidden w-40 h-auto p-2 space-y-1 bg-white border shadow-md right-2 top-7"
+    <div class="absolute z-10 hidden w-40 h-auto p-2 space-y-1 bg-white border shadow-md right-2 top-7"
       :class="{ open: isOpen }">
       <button @click="changeSort('全部')" class="item">全部</button>
       <button @click="changeSort('上架時間: 由新到舊')" class="item">上架時間: 由新到舊</button>
