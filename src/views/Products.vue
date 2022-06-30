@@ -9,6 +9,9 @@
         <span class="text-xl">全部商品</span>
         <Sort />
       </div>
+      <div>
+        <Cards />
+      </div>
     </section>
   </main>
 </template>
@@ -17,4 +20,5 @@
 import NavTab from '../components/Global/NavTab.vue'
 import Categroy from '../components/Products/Categroy.vue'
 import Sort from '../components/Products/Sort.vue'
+import Cards from '../components/Products/Cards.vue'
 </script>

@@ -39,6 +39,10 @@ module.exports = {
         wiggle: 'wiggle 3s ease-in-out infinite',
         lift: 'lift 2s ease-in-out infinite'
       }
+    },
+    aspectRatio: {
+      '16/5': '16 / 5',
+      '3/4': '3 / 4'
     }
   },
   plugins: []
