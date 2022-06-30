@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import NavTab from '../components/global/NavTab.vue'
-import Categroy from '../components/products/Categroy.vue'
-import Sort from '../components/products/Sort.vue'
+import NavTab from '../components/Global/NavTab.vue'
+import Categroy from '../components/Products/Categroy.vue'
+import Sort from '../components/Products/Sort.vue'
 </script>
