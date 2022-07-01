@@ -1,5 +1,7 @@
 <template>
-  <main class="relative">
+  <main class="relative justify-between flex-center">
+
+    <span class="text-xl">{{ title }}</span>
     <button @mouseenter="isOpen = !isOpen" class="space-x-2 text-sm flex-center">
       <span>{{ name }}</span>
       <i class="w-2.5 h-2.5 fa-solid fa-chevron-down"></i>
@@ -17,6 +19,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
+defineProps({
+  title: {
+    type: String,
+    required: true
+  }
+})
 
 const isOpen = ref(false)
 const name = ref('全部')

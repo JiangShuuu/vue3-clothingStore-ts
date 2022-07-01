@@ -11,7 +11,20 @@ const router = createRouter({
     {
       path: '/products',
       name: 'Products',
-      component: () => import('../views/Products.vue')
+      component: () => import('../views/Products.vue'),
+      redirect: '/products/all',
+      children: [
+        {
+          path: '/products/all',
+          name: 'all',
+          component: () => import('../views/Products.vue')
+        },
+        {
+          path: '/products/hot-product',
+          name: 'hot-product',
+          component: () => import('../views/Products.vue')
+        }
+      ]
     },
     {
       path: '/:pathMatch(.*)*',

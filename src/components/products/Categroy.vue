@@ -30,9 +30,10 @@
         </swiper-slide>
       </swiper>
     </section>
-    <section class="hidden p-2 my-2 border rounded-lg md:justify-around md:flex-center lg:flex-col lg:border-none lg:space-y-4">
+    <section
+      class="hidden p-2 my-2 border rounded-lg md:justify-around md:flex-center lg:flex-col lg:border-none lg:space-y-4">
       <div class="item">全部商品</div>
-      <div class="item">熱賣商品</div>
+      <router-link :to="{name: 'hot-product'}" class="item">熱賣商品</router-link>
       <div class="item">新上市</div>
       <div class="item">熱銷上衣</div>
       <div class="item">精選外套</div>

@@ -5,13 +5,8 @@
       <Categroy />
     </section>
     <section class="flex-1">
-      <div class="justify-between flex-center">
-        <span class="text-xl">全部商品</span>
-        <Sort />
-      </div>
-      <div>
-        <Cards />
-      </div>
+      <Sort v-if="$route.name === 'hot-product'" :title="'熱賣商品'"/>
+      <Cards />
     </section>
   </main>
 </template>
