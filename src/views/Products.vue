@@ -5,7 +5,7 @@
       <Categroy />
     </section>
     <section class="flex-1">
-      <Sort v-if="$route.name === 'hot-product'" :title="'熱賣商品'"/>
+      <Sort />
       <Cards />
     </section>
   </main>

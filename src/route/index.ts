@@ -23,6 +23,31 @@ const router = createRouter({
           path: '/products/hot-product',
           name: 'hot-product',
           component: () => import('../views/Products.vue')
+        },
+        {
+          path: '/products/new-product',
+          name: 'new-product',
+          component: () => import('../views/Products.vue')
+        },
+        {
+          path: '/products/clothes',
+          name: 'clothes',
+          component: () => import('../views/Products.vue')
+        },
+        {
+          path: '/products/coat',
+          name: 'coat',
+          component: () => import('../views/Products.vue')
+        },
+        {
+          path: '/products/pants',
+          name: 'pants',
+          component: () => import('../views/Products.vue')
+        },
+        {
+          path: '/products/specials',
+          name: 'specials',
+          component: () => import('../views/Products.vue')
         }
       ]
     },

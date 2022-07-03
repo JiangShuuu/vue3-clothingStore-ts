@@ -18,12 +18,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-defineProps({
-  title: {
-    type: String,
-    required: true
+const route = useRoute()
+const title = ref('全部商品')
+
+watch(route, (newRoute) => {
+  switch (newRoute.name) {
+    case 'all': {
+      title.value = '全部商品'
+      break
+    }
+    case 'hot-product': {
+      title.value = '熱門商品'
+      break
+    }
+    case 'new-product': {
+      title.value = '新上市'
+      break
+    }
+    case 'clothes': {
+      title.value = '熱銷上衣'
+      break
+    }
+    case 'coat': {
+      title.value = '精選外套'
+      break
+    }
+    case 'pants': {
+      title.value = '經典褲款'
+      break
+    }
+    case 'specials': {
+      title.value = '特價商品'
+      break
+    }
   }
 })
 
