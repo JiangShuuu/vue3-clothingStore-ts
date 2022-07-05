@@ -15,7 +15,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#004ea6'
+        primary: '#004ea6',
+        secondary: '#90a7d1'
       },
       keyframes: {
         wiggle: {
