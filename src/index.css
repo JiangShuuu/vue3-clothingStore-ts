@@ -6,4 +6,29 @@
   .flex-center {
     @apply flex items-center justify-center
   }
+
+  /* line-clamp */
+  .line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-1 {
+    -webkit-line-clamp: 1;
+  }
+  .line-clamp-2 {
+    -webkit-line-clamp: 2;
+  }
+  .line-clamp-3 {
+    -webkit-line-clamp: 3;
+  }
+  .line-clamp-4 {
+    -webkit-line-clamp: 4;
+  }
+  .line-clamp-6 {
+    -webkit-line-clamp: 6;
+  }
+  .line-clamp-8 {
+    -webkit-line-clamp: 8;
+  }
 }
