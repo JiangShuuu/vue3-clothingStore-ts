@@ -48,9 +48,9 @@
           <li class="text_title">追蹤Life Style</li>
           <li class="text_item">+886 0912697801</li>
           <div class="space-x-2 flex-center">
-            <li class="icon"><i class="fab fa-facebook"></i></li>
-            <li class="icon"><i class="fab fa-instagram"></i></li>
-            <li class="icon"><i class="fab fa-medium"></i></li>
+            <Icon icon="akar-icons:facebook-fill" />
+            <Icon icon="akar-icons:instagram-fill" />
+            <Icon icon="bxl:medium-old" />
           </div>
         </ul>
       </div>

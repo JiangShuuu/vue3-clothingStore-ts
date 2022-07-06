@@ -33,17 +33,17 @@
       </div>
       <div class="absolute right-4 top-3.5">
         <ul class="flex-center">
-          <router-link to="/signIn" class="">
-            <i class="text-gray-400 w-7 h-7 active:text-primary far fa-user-circle"></i>
+          <router-link to="/signIn" class="pt-1 md:pt-0">
+            <Icon icon="carbon:user-avatar" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </router-link>
           <li class="hidden mx-2 md:block">
-            <i class="text-gray-400 w-7 h-7 active:text-primary fas fa-shopping-bag"></i>
+            <Icon icon="eva:shopping-cart-outline" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </li>
           <li class="hidden mr-2 md:block">
-            <i class="text-gray-400 w-7 h-7 active:text-primary far fa-heart"></i>
+            <Icon icon="clarity:heart-line" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </li>
           <li class="hidden md:block">
-            <i class="text-gray-400 w-7 h-7 active:text-primary fas fa-search"></i>
+            <Icon icon="fa-solid:search" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </li>
         </ul>
       </div>
