@@ -2,19 +2,19 @@
   <div class="fixed bottom-0 w-full h-16 bg-white md:hidden">
     <ul class="justify-around h-full flex-center">
       <router-link to="/" class="flex-center" :class="['icon', { active: $route.path === '/' }]">
-        <i class="w-5 h-5 my-1 fas fa-home i"></i>
+        <Icon icon="ant-design:home-outlined" class="w-6 h-6 my-1"/>
         <span>首頁</span>
       </router-link>
       <router-link to="/search" class="flex-center" :class="['icon', { active: $route.path === '/search' }]">
-        <i class="w-5 h-5 my-1 fas fa-search "></i>
+        <Icon icon="fe:search" class="w-6 h-6 my-1" />
         <span>搜尋商品</span>
       </router-link>
       <router-link to="/favorite" class="flex-center" :class="['icon', { active: $route.path === '/favorite' }]">
-        <i class="w-5 h-5 my-1 far fa-heart "></i>
+        <Icon icon="clarity:heart-line" class="w-5 h-5 my-1" />
         <span>我的收藏</span>
       </router-link>
       <router-link to="/shoppingCar" class="flex-center" :class="['icon', { active: $route.path === '/shoppingCar' }]">
-        <i class="w-5 h-5 my-1 fas fa-shopping-bag "></i>
+        <Icon icon="eva:shopping-cart-outline" class="w-5 h-5 my-1" />
         <span>購物車</span>
       </router-link>
     </ul>
