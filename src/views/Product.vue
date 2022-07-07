@@ -57,8 +57,23 @@
         <Icon icon="akar-icons:link-chain" class="text-[#4267a1] w-7 h-7" />
       </div>
     </section>
+    <section>
+      <div class="justify-around text-lg flex-center ">
+        <router-link :to="{ name: 'description'}" class="hover:text-primary hover:underline hover:underline-offset-4">
+          商品描述</router-link>
+        <router-link :to="{ name: 'more'}"  class="hover:text-primary hover:underline hover:underline-offset-4">
+          了解更多</router-link>
+        <router-link :to="{ name: 'payment' }" class="hover:text-primary hover:underline hover:underline-offset-4">送貨付款方式</router-link>
+        <router-link :to="{ name: 'comment' }" class="hover:text-primary hover:underline hover:underline-offset-4">顧客評價</router-link>
+      </div>
+      <router-view />
+    </section>
   </main>
 </template>
 <script setup lang="ts">
 import NavTab from '../components/Global/NavTab.vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+console.log(route.params)
 </script>
