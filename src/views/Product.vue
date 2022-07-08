@@ -1,8 +1,8 @@
 <template>
   <NavTab />
-  <main class="w-full h-full px-4 space-y-6 md:px-6">
-    <div class="pt-6 md:flex md:space-x-6">
-      <section class="flex-center">
+  <main class="w-full h-full px-4 space-y-6 md:px-6 lg:max-w-[1280px] lg:mx-auto">
+    <section class="w-full pt-6 md:flex md:space-x-6">
+      <section class="lg:w-1/2 flex-center">
         <div class="mr-2 space-y-1">
           <div class="w-10 overflow-hidden aspect-3/4 md:w-16">
             <img class="object-cover"
@@ -26,7 +26,7 @@
             alt="">
         </div>
       </section>
-      <section>
+      <section class="flex flex-col justify-around lg:w-1/2">
         <div class="border-b-[1px] space-y-2">
           <h2 class="text-2xl font-bold">涼感上衣</h2>
           <p class="text-sm line-clamp-6 line-clamp">
@@ -60,7 +60,7 @@
           </div>
         </div>
       </section>
-    </div>
+    </section>
     <section>
       <div class="justify-around text-lg flex-center ">
         <router-link :to="{ name: 'description'}" class="hover:text-primary hover:underline hover:underline-offset-4">
