@@ -2,35 +2,34 @@
   <main class="container flex-col flex-center">
     <div class="progress-container">
       <!-- 進度條本體 -->
-      <div class="progress" id="progress" ref="progress"></div>
+      <div class="progress" id="progress"></div>
       <!-- 進度條的圈圈（Steps） -->
       <div class="circle active">1</div>
-      <div class="circle">2</div>
-      <div class="circle">3</div>
-      <div class="circle">4</div>
+      <div class="circle" :class="{ 'active': circle2 }">2</div>
+      <div class="circle" :class="{ 'active': circle3 }">3</div>
+      <div class="circle" :class="{ 'active': circle4 }">4</div>
     </div>
     <div>
       <!-- 前進後退按鈕 -->
-      <button class="btn" id="prev" disabled @click="processPrev">Prev</button>
-      <button class="btn" id="next" @click="processNext">Next</button>
+      <button :disabled="isPrevDisabled" class="btn" id="prev" ref="prev" @click="processPrev">Prev</button>
+      <button :disabled="isNextDisabled" class="btn" id="next" ref="next" @click="processNext">Next</button>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const progressNum = ref('0%')
 
-// onMounted(() => {
-//   console.log(progress.value)
-// })
-// 前進按鈕
-const prev:any = document.getElementById('prev')
-// 後退按鈕
-const next:any = document.getElementById('next')
-// 進度圈圈
-const circles = document.querySelectorAll('.circle')
-// const progress:any = document.getElementById('progress')
+const progressNum = ref('0%')
+const prev = ref(null)
+const next = ref(null)
+const isNextDisabled = ref(false)
+const isPrevDisabled = ref(true)
+
+const circle2 = ref(false)
+const circle3 = ref(false)
+const circle4 = ref(false)
+
 let currentActive = 1
 
 function processNext () {
@@ -48,38 +47,33 @@ function processPrev () {
   update()
 }
 function update () {
-  // progress.value.classList.add('w-14')
+  console.log(currentActive)
   // 第一件事：更新 .circle 元素的 .active class
+  if (currentActive >= 2) {
+    circle2.value = true
+  } else {
+    circle2.value = false
+  }
+  if (currentActive >= 3) {
+    circle3.value = true
+  } else {
+    circle3.value = false
+  }
+  if (currentActive >= 4) {
+    circle4.value = true
+  } else {
+    circle4.value = false
+  }
 
-  // // 遍歷一遍 circles
-  // circles.forEach((circle, idx) => {
-  //   // 如果現在的 circle 的 index 比 進度（currentActive） 小的話，就是一個已完成進度，加上 active
-  //   if (idx < currentActive) {
-  //     circle.classList.add('active')
-  //   } else {
-  //     // 否則這個 circle 就是一個未完成進度，拿掉 active
-  //     circle.classList.remove('active')
-  //   }
-  // })
-
-  // // 第二件事：更新進度條元素的長度
-  // // 因為是進度條的長度，所以我們用（已完成距離（進度-1）)/間隔數(圈圈總數-1) *100 取得長度百分比
+  // 第二件事：更新進度條元素的長度
+  // 因為是進度條的長度，所以我們用（已完成距離（進度-1）)/間隔數(圈圈總數-1) *100 取得長度百分比
   const length = ((currentActive - 1) / 3) * 100
-  // // 把單位加回去
+  // 把單位加回去
   progressNum.value = `${length}%`
 
   // 第三件事：更新按鈕狀態
-  // if (currentActive === 1) {
-  //   // 如果還在第一步，那就不能後退，後退鈕 disable
-  //   prev.disabled = true
-  // } else if (currentActive === circles.length) {
-  //   // 如果已經到了最後一步，那就不能前進，前進鈕 disable
-  //   next.disabled = true
-  // } else {
-  //   // 如果都不是的話，就不用 disable，disabled 設為 false
-  //   prev.disabled = false
-  //   next.disabled = false
-  // }
+  currentActive === 1 ? isPrevDisabled.value = true : isPrevDisabled.value = false
+  currentActive === 4 ? isNextDisabled.value = true : isNextDisabled.value = false
 }
 
 </script>
