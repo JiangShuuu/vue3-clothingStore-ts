@@ -2,7 +2,7 @@
   <div class="fixed bottom-0 w-full h-16 bg-white md:hidden">
     <ul class="justify-around h-full flex-center">
       <router-link to="/" class="flex-center" :class="['icon', { active: $route.path === '/' }]">
-        <Icon icon="ant-design:home-outlined" class="w-6 h-6 my-1"/>
+        <Icon icon="ant-design:home-outlined" class="w-6 h-6 my-1" />
         <span>首頁</span>
       </router-link>
       <router-link to="/search" class="flex-center" :class="['icon', { active: $route.path === '/search' }]">
@@ -13,7 +13,7 @@
         <Icon icon="clarity:heart-line" class="w-5 h-5 my-1" />
         <span>我的收藏</span>
       </router-link>
-      <router-link to="/shoppingCar" class="flex-center" :class="['icon', { active: $route.path === '/shoppingCar' }]">
+      <router-link to="/cart" class="flex-center" :class="['icon', { active: $route.path === '/cart' }]">
         <Icon icon="eva:shopping-cart-outline" class="w-5 h-5 my-1" />
         <span>購物車</span>
       </router-link>
@@ -61,9 +61,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-</script>
 
 <style lang="postcss" scoped>
 .text_title {
