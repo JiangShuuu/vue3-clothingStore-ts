@@ -14,47 +14,40 @@
 import { ref, reactive } from 'vue'
 import CartProgress from '../components/Carts/CartProgress.vue'
 
-const progress =
+const progress = reactive(
   {
-    progressNum: ref('0%'),
-    circle2: ref(false),
-    circle3: ref(false),
-    circle4: ref(false)
+    progressNum: '0%',
+    circle2: false,
+    circle3: false,
+    circle4: false
   }
-
+)
 const isNextDisabled = ref(false)
 const isPrevDisabled = ref(true)
 
 let currentActive = 1
 
 function processNext () {
-  currentActive++
-  if (currentActive > 4) {
-    currentActive = 4
-  }
+  currentActive === 4 ? currentActive = 4 : currentActive++
   update()
 }
 function processPrev () {
-  currentActive--
-  if (currentActive < 1) {
-    currentActive = 1
-  }
+  currentActive === 1 ? currentActive = 1 : currentActive--
   update()
 }
 function update () {
-  console.log(currentActive)
-  // 第一件事：更新 .circle 元素的 .active class
-  currentActive >= 2 ? progress.circle2.value = true : progress.circle2.value = false
-  currentActive >= 3 ? progress.circle3.value = true : progress.circle3.value = false
-  currentActive >= 4 ? progress.circle4.value = true : progress.circle4.value = false
+  // 1. 更新 .circle 元素的 .active class
+  currentActive >= 2 ? progress.circle2 = true : progress.circle2 = false
+  currentActive >= 3 ? progress.circle3 = true : progress.circle3 = false
+  currentActive >= 4 ? progress.circle4 = true : progress.circle4 = false
 
-  // 第二件事：更新進度條元素的長度
+  // 2. 更新進度條元素的長度
   // 因為是進度條的長度，所以我們用（已完成距離（進度-1）)/間隔數(圈圈總數-1) *100 取得長度百分比
   const length = ((currentActive - 1) / 3) * 100
   // 把單位加回去
-  progress.progressNum.value = `${length}%`
+  progress.progressNum = `${length}%`
 
-  // 第三件事：更新按鈕狀態
+  // 3. 更新按鈕狀態
   currentActive === 1 ? isPrevDisabled.value = true : isPrevDisabled.value = false
   currentActive === 4 ? isNextDisabled.value = true : isNextDisabled.value = false
 }
