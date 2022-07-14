@@ -19,6 +19,7 @@ module.exports = {
     'vue/no-multiple-template-root': 0,
     'no-unused-vars': 0,
     'vue/multi-word-component-names': 0,
-    'vue/no-v-for-template-key': 0
+    'vue/no-v-for-template-key': 0,
+    'vue/no-setup-props-destructure': 0
   }
 }
