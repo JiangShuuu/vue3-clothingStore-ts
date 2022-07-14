@@ -21,16 +21,15 @@ const props = defineProps({
 
 <style lang="postcss" scoped>
 .progress-container {
-  /* 讓這個元素成為 flexbox 的 container */
-  display: flex;
+    /* 讓這個元素成為 flexbox 的 container */
+    display: flex;
 
-  /* 使用 space-between 使內部元素取得相同間距 */
-  justify-content: space-between;
+    /* 使用 space-between 使內部元素取得相同間距 */
+    justify-content: space-between;
 
-  /* 想要使用 relative-absolute，所以這裡放 relative */
-  position: relative;
+    /* 想要使用 relative-absolute，所以這裡放 relative */
+    position: relative;
 
-    margin-bottom: 30px;
     max-width: 100%;
     width: 350px;
   }
