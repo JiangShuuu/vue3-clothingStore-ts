@@ -36,9 +36,9 @@
           <router-link to="/signIn" class="pt-1 md:pt-0">
             <Icon icon="carbon:user-avatar" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </router-link>
-          <li class="hidden mx-2 md:block">
+          <router-link to="/cart" class="hidden mx-2 md:block">
             <Icon icon="eva:shopping-cart-outline" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
-          </li>
+          </router-link>
           <li class="hidden mr-2 md:block">
             <Icon icon="clarity:heart-line" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </li>
