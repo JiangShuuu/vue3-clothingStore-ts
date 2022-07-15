@@ -1,5 +1,5 @@
 <template>
-  <section class="flex-col block w-full space-y-3 flex-center">
+  <section class="flex-col block w-full space-y-3 flex-center h-[1000px]">
     <h2 class="text-2xl underline underline-offset-4 text-primary">購物車</h2>
     <CartLogin />
     <section class="border">
@@ -30,9 +30,53 @@
         <p>NT$900</p>
       </div>
     </section>
+    <section class="border">
+      <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
+        <p>選擇送貨及付款方式</p>
+      </div>
+      <div class="p-2 space-y-3">
+        <div class="flex flex-col space-y-1 text-sm text-start">
+          <label for="">送貨地點</label>
+          <select name="" id="" class="p-2 border rounded-md">
+            <option value="" default>台北</option>
+          </select>
+        </div>
+        <div class="flex flex-col space-y-1 text-sm text-start">
+          <label for="">送貨方式</label>
+          <select name="" id="" class="p-2 border rounded-md">
+            <option value="" default>新竹物流</option>
+            <option value="" default>7-11店取</option>
+            <option value="" default>自取</option>
+          </select>
+        </div>
+        <div class="flex flex-col space-y-1 text-sm text-start">
+          <label for="">付款方式</label>
+          <select name="" id="" class="p-2 border rounded-md">
+            <option value="" default>銀行帳號/ATM</option>
+            <option value="" default>信用卡 (支援國內外Visa、Master、JCB)</option>
+          </select>
+        </div>
+      </div>
+    </section>
   </section>
 </template>
 
 <script setup lang="ts">
 import CartLogin from './CartLogin.vue'
 </script>
+
+<style lang="postcss" scoped>
+select {
+  cursor: pointer;
+  /* border: none; */
+  /* outline: none; */
+  /* width: 100%; */
+  /* height: 40px; */
+  /* line-height: 40px; */
+  /* appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none; */
+  /* background: url(../img/ico-arrow.png) 95% 50% no-repeat scroll transparent; */
+  /* padding-right: 60px; */
+}
+</style>

@@ -1,12 +1,12 @@
 <template>
-  <main class="flex-col p-4 text-center flex-center">
+  <main class="relative flex-col p-4 text-center flex-center">
     <CartProgress :progress="progress" class="py-5" />
     <Cart01 />
     <div class="absolute bottom-20">
       <!-- 前進後退按鈕 -->
       <button :disabled="isPrevDisabled" class="btn" id="prev" @click="processPrev">Prev</button>
       <button :disabled="isNextDisabled" class="btn" id="next" @click="processNext">Next</button>
-      </div>
+    </div>
   </main>
 </template>
 
