@@ -58,6 +58,30 @@
         </div>
       </div>
     </section>
+    <section class="border">
+      <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
+        <p>訂單資訊</p>
+      </div>
+      <div class="p-4 space-y-2">
+        <div class="justify-between text-sm flex-center">
+          <p>小計</p>
+          <p>NT$900</p>
+        </div>
+        <div class="justify-between text-sm flex-center">
+          <p>運費</p>
+          <p>NT$900</p>
+        </div>
+        <div class="cursor-pointer text-start text-primary hover:brightness-150">
+          使用優惠代碼
+        </div>
+        <hr />
+        <div class="justify-between text-sm font-bold flex-center">
+          <p>合計 (1件)</p>
+          <p>NT$900</p>
+        </div>
+      </div>
+
+    </section>
   </section>
 </template>
 
