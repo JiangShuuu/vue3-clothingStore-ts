@@ -1,7 +1,7 @@
 <template>
   <main class="relative flex-col p-4 text-center flex-center">
     <CartProgress :progress="progress" class="py-5" />
-    <Cart01 />
+    <router-view />
     <div class="absolute flex items-center justify-around w-full px-2 bottom-20">
       <!-- 前進後退按鈕 -->
       <button :disabled="isPrevDisabled" class="btn" id="prev" @click="processPrev">上一步</button>

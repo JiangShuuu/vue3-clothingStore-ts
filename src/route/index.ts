@@ -81,7 +81,25 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'Cart',
-      component: () => import('../views/Cart.vue')
+      component: () => import('../views/Cart.vue'),
+      redirect: '/cart/order',
+      children: [
+        {
+          path: '/cart/order',
+          name: 'order',
+          component: () => import('../components/Carts/Cart01.vue')
+        },
+        {
+          path: '/cart/info',
+          name: 'info',
+          component: () => import('../components/Carts/Cart02.vue')
+        },
+        {
+          path: '/cart/confirm',
+          name: 'confirm',
+          component: () => import('../components/Carts/Cart03.vue')
+        }
+      ]
     },
     {
       path: '/:pathMatch(.*)*',
