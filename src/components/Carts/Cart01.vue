@@ -80,7 +80,6 @@
           <p>NT$900</p>
         </div>
       </div>
-
     </section>
   </section>
 </template>

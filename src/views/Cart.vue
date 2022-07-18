@@ -13,7 +13,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import CartProgress from '../components/Carts/CartProgress.vue'
-import Cart01 from '../components/Carts/Cart01.vue'
 
 const progress = reactive(
   {
