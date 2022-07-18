@@ -69,7 +69,7 @@
       </section>
     </section>
     <div class="md:flex md:space-x-8">
-      <section class="w-full border">
+      <section class="w-full border md:basis-3/5">
         <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
           <p>選擇送貨及付款方式</p>
         </div>
@@ -97,7 +97,7 @@
           </div>
         </div>
       </section>
-      <section class="w-full border">
+      <section class="w-full border md:basis-2/5">
         <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
           <p>訂單資訊</p>
         </div>
@@ -120,7 +120,8 @@
               <p>NT$900</p>
             </div>
           </div>
-          <button class="w-full mt-5 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">前往結賬</button>
+          <button
+            class="w-full mt-5 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">前往結賬</button>
         </div>
       </section>
     </div>
