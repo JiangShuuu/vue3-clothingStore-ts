@@ -61,35 +61,42 @@
         </div>
       </div>
     </section>
-
     <section class="w-full border">
       <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
-        <p>訂單資訊</p>
+        <p>訂單備註</p>
       </div>
       <div class="p-4">
-        <div class="space-y-2">
-          <div class="justify-between text-sm flex-center">
-            <p>小計</p>
-            <p>NT$900</p>
-          </div>
-          <div class="justify-between text-sm flex-center">
-            <p>運費</p>
-            <p>NT$900</p>
-          </div>
-          <div class="cursor-pointer text-start text-primary hover:brightness-150">
-            使用優惠代碼
-          </div>
-          <hr />
-          <div class="justify-between text-sm font-bold flex-center">
-            <p>合計 (1件)</p>
-            <p>NT$900</p>
-          </div>
-        </div>
-        <button
-          class="w-full mt-5 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">前往結賬</button>
+        <textarea placeholder="有什麼想告訴賣家嗎?" class="w-full h-24 p-2 text-sm border"></textarea>
       </div>
     </section>
-
+    <section class="w-full border">
+      <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
+        <p>訂單備註</p>
+      </div>
+      <div class="p-4">
+        <textarea placeholder="有什麼想告訴賣家嗎?" class="w-full h-24 p-2 text-sm border"></textarea>
+      </div>
+    </section>
+    <section class="p-2 space-y-1 text-sm border">
+      <div class="justify-start space-x-1 flex-center">
+        <input type="checkbox" class="" name="">
+        <span>收件人資料與顧客資料相同</span>
+      </div>
+      <div class="justify-start space-x-1 flex-center">
+        <input type="checkbox" class="" name="">
+        <span>成為 LifeStyle 官方網站的會員</span>
+      </div>
+      <div class="justify-start space-x-1 flex-center">
+        <input type="checkbox" class="" name="">
+        <span>我想收到最新資訊及優惠方案</span>
+      </div>
+      <hr>
+      <div class="space-y-3">
+        <button class="w-full mt-3 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">提交訂單
+        </button>
+        <button class="text-lg font-medium text-blue-500 hover:brightness-110"> &lt 返回購物車</button>
+      </div>
+    </section>
   </section>
 </template>
 
