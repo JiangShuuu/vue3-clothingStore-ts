@@ -47,6 +47,17 @@
         <div class="flex flex-col">
           <span>地址</span>
           <span>送貨地點: 台灣</span>
+          <div class="grid grid-cols-2 gap-4">
+            <select name="" id="" class="w-full p-2 border rounded-md">
+              <option value="" default>城市/縣</option>
+              <option value="" default>信用卡 (支援國內外Visa、Master、JCB)</option>
+            </select>
+            <select name="" id="" class="w-full p-2 border rounded-md">
+              <option value="" default>地區</option>
+              <option value="" default>信用卡 (支援國內外Visa、Master、JCB)</option>
+            </select>
+            <input type="name" placeholder="地址" name="" id="" class="col-span-2 p-2 border border-gray-300 rounded-sm">
+          </div>
         </div>
       </div>
     </section>
