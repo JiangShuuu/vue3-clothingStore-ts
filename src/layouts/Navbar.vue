@@ -11,7 +11,7 @@
           </label>
           <input type="checkbox" class="navbar-toggle" id="navbar-toggle" v-model="isOpen" />
           <div class="content_list">
-            <div class="content_list_background" @click="checkClose()"></div>
+            <div class="content_list_background" @click="checkClose"></div>
             <ul class="content_list_items">
               <li class="content_list_item font-extralight">首頁</li>
               <li class="content_list_item font-extralight">所有商品</li>

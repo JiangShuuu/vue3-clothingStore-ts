@@ -8,7 +8,7 @@
         </button>
       </div>
     </div>
-    <div class="h-56 border menu" :class="{ 'menu-open': menuOpen }">
+    <div class="menu" :class="{ 'menu-open': menuOpen }">
       123
     </div>
   </main>
@@ -22,32 +22,27 @@ const menuOpen = ref(false)
 
 <style lang="postcss" scoped>
 .menu {
-  @apply hidden opacity-0;
+  @apply opacity-0;
+  height: 500px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .25s;
 }
 .menu-open {
-  @apply block opacity-100;
+  @apply opacity-100 transition duration-700 ease-in-out;
+  max-height: 300px;
+  transition: max-height .25s;
 }
-.burger-menu::after,
-.burger-menu::before {
-  @apply absolute left-0;
 
-  content: '';
-  top: -6px;
-  }
+.burger-menu--active {
+  @apply bg-transparent;
+}
 
-  .burger-menu::after {
-    top: 6px;
-  }
+.burger-menu--active::before {
+  transform: rotate(45deg) translate(3px, 3px);
+}
 
-  .burger-menu--active {
-    @apply bg-transparent;
-  }
-
-  .burger-menu--active::before {
-    transform: rotate(45deg) translate(3px, 3px);
-  }
-
-  .burger-menu--active::after {
-    transform: rotate(-45deg) translate(5px, -6px);
-  }
-</style>>
+.burger-menu--active::after {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+</style>
