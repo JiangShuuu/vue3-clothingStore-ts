@@ -8,8 +8,50 @@
         </button>
       </div>
     </div>
+    <hr />
     <div class="menu" :class="{ 'menu-open': menuOpen }">
-      123
+      <section class="mt-2">
+        <div class="flex justify-between px-2">
+          <div class="flex space-x-2">
+            <div class="w-16 h-16 overflow-hidden border">
+              <img
+                src="https://images.unsplash.com/photo-1657879005446-fd4563beddb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                class="object-cover" alt="">
+            </div>
+            <p class="text-sm">防風上衣</p>
+          </div>
+          <div class="flex items-end text-sm">
+            <p>NT$450</p>
+          </div>
+        </div>
+        <div class="justify-between p-2 text-sm flex-center">
+          <div class="justify-between w-32 flex-center">
+            <p>數量: 2</p>
+          </div>
+          <p>NT$900</p>
+        </div>
+      </section>
+      <hr>
+      <div class="p-2">
+        <div class="space-y-2">
+          <div class="justify-between text-sm flex-center">
+            <p>小計</p>
+            <p>NT$900</p>
+          </div>
+          <div class="justify-between text-sm flex-center">
+            <p>運費</p>
+            <p>免費</p>
+          </div>
+          <div class="justify-between text-sm font-bold flex-center">
+            <p>合計 (1件)</p>
+            <p>NT$900</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="w-full p-4 cursor-pointer flex-center" @click="menuOpen = !menuOpen">
+        <Icon icon="ant-design:up-outlined" class="w-4 h-4" />
+      </div>
     </div>
   </main>
 </template>
@@ -22,15 +64,14 @@ const menuOpen = ref(false)
 
 <style lang="postcss" scoped>
 .menu {
-  @apply opacity-0;
   height: 500px;
   max-height: 0;
   overflow: hidden;
   transition: max-height .25s;
 }
 .menu-open {
-  @apply opacity-100 transition duration-700 ease-in-out;
-  max-height: 300px;
+  @apply transition duration-700 ease-in-out;
+  max-height: 250px;
   transition: max-height .25s;
 }
 
