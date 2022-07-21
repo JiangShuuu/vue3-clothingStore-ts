@@ -10,7 +10,8 @@
     </div>
     <hr />
     <div class="menu" :class="{ 'menu-open': menuOpen }">
-      <section class="mt-2">
+      <!-- product -->
+      <section class="mt-2 border-b">
         <div class="flex justify-between px-2">
           <div class="flex space-x-2">
             <div class="w-16 h-16 overflow-hidden border">
@@ -31,7 +32,28 @@
           <p>NT$900</p>
         </div>
       </section>
-      <hr>
+      <section class="mt-2 border-b">
+        <div class="flex justify-between px-2">
+          <div class="flex space-x-2">
+            <div class="w-16 h-16 overflow-hidden border">
+              <img
+                src="https://images.unsplash.com/photo-1657879005446-fd4563beddb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                class="object-cover" alt="">
+            </div>
+            <p class="text-sm">防風上衣</p>
+          </div>
+          <div class="flex items-end text-sm">
+            <p>NT$450</p>
+          </div>
+        </div>
+        <div class="justify-between p-2 text-sm flex-center">
+          <div class="justify-between w-32 flex-center">
+            <p>數量: 2</p>
+          </div>
+          <p>NT$900</p>
+        </div>
+      </section>
+      <!--  -->
       <div class="p-2">
         <div class="space-y-2">
           <div class="justify-between text-sm flex-center">
@@ -57,21 +79,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 const menuOpen = ref(false)
+const orderCountHeight = ref('0px')
+
+onMounted(() => {
+  count(2)
+})
+
+function count (num: number) {
+  const height = (104 * num) + 150
+  // 把單位加回去
+  orderCountHeight.value = `${height}px`
+}
 
 </script>
 
 <style lang="postcss" scoped>
 .menu {
-  height: 500px;
+  height: v-bind(orderCountHeight);
   max-height: 0;
   overflow: hidden;
   transition: max-height .25s;
 }
 .menu-open {
   @apply transition duration-700 ease-in-out;
-  max-height: 250px;
+  max-height: v-bind(orderCountHeight);
   transition: max-height .25s;
 }
 
