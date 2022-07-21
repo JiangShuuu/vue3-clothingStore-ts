@@ -4,7 +4,7 @@
       <h2 class="font-bold">合計: NT$2800</h2>
       <div class="flex items-center h-full">
         <button class="focus:outline-none" @click="menuOpen = !menuOpen">
-          <span :class="{ 'burger-menu--active': menuOpen }">V</span>
+          <Icon icon="ant-design:down-outlined" :class="{ 'burger-menu--active': menuOpen }" />
         </button>
       </div>
     </div>
@@ -34,15 +34,26 @@ const menuOpen = ref(false)
   transition: max-height .25s;
 }
 
+@keyframes icon-rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+  25% {
+    transform: rotate(45deg)
+  }
+  50% {
+    transform: rotate(90deg)
+  }
+  75% {
+    transform: rotate(120deg)
+  }
+  100% {
+    transform: rotate(180deg)
+  }
+}
+
 .burger-menu--active {
-  @apply bg-transparent;
-}
-
-.burger-menu--active::before {
-  transform: rotate(45deg) translate(3px, 3px);
-}
-
-.burger-menu--active::after {
-  transform: rotate(-45deg) translate(5px, -6px);
+  animation: icon-rotate .2s ease-in-out;
+  transform: rotate(180deg);
 }
 </style>
