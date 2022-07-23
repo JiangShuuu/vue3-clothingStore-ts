@@ -1,56 +1,12 @@
 <template>
   <main class="relative flex-col p-4 text-center flex-center lg:max-w-[1280px] lg:mx-auto">
-    <CartProgress :progress="progress" class="py-5" />
+    <CartProgress class="py-5" />
     <router-view />
-    <div class="absolute flex items-center justify-around w-full px-2 bottom-10">
-      <!-- 前進後退按鈕 -->
-      <button :disabled="isPrevDisabled" class="btn" id="prev" @click="processPrev">上一步</button>
-      <button :disabled="isNextDisabled" class="btn" id="next" @click="processNext">下一步</button>
-    </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
 import CartProgress from '../components/Carts/CartProgress.vue'
-
-const progress = reactive(
-  {
-    progressNum: '0%',
-    circle2: false,
-    circle3: false,
-    circle4: false
-  }
-)
-const isNextDisabled = ref(false)
-const isPrevDisabled = ref(true)
-
-let currentActive = 1
-
-function processNext () {
-  currentActive === 4 ? currentActive = 4 : currentActive++
-  update()
-}
-function processPrev () {
-  currentActive === 1 ? currentActive = 1 : currentActive--
-  update()
-}
-function update () {
-  // 1. 更新 .circle 元素的 .active class
-  currentActive >= 2 ? progress.circle2 = true : progress.circle2 = false
-  currentActive >= 3 ? progress.circle3 = true : progress.circle3 = false
-  currentActive >= 4 ? progress.circle4 = true : progress.circle4 = false
-
-  // 2. 更新進度條元素的長度
-  // 因為是進度條的長度，所以我們用（已完成距離（進度-1）)/間隔數(圈圈總數-1) *100 取得長度百分比
-  const length = ((currentActive - 1) / 3) * 100
-  // 把單位加回去
-  progress.progressNum = `${length}%`
-
-  // 3. 更新按鈕狀態
-  currentActive === 1 ? isPrevDisabled.value = true : isPrevDisabled.value = false
-  currentActive === 4 ? isNextDisabled.value = true : isNextDisabled.value = false
-}
 
 </script>
 

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@iconify/vue": "^3.2.1",
+    "pinia": "^2.0.16",
     "swiper": "^8.2.5",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16"

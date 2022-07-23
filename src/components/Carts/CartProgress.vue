@@ -4,19 +4,16 @@
     <div class="progress" id="progress"></div>
     <!-- 進度條的圈圈（Steps） -->
     <div class="circle active">1</div>
-    <div class="circle" :class="{ 'active': props.progress.circle2}">2</div>
-    <div class="circle" :class="{ 'active': props.progress.circle3}">3</div>
-    <div class="circle" :class="{ 'active': props.progress.circle4}">4</div>
+    <div class="circle" :class="{ 'active': state.progress.circle2}">2</div>
+    <div class="circle" :class="{ 'active': state.progress.circle3}">3</div>
+    <div class="circle" :class="{ 'active': state.progress.circle4}">4</div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  progress: {
-    type: Object,
-    required: true
-  }
-})
+import { useCounterStore } from '../../stores/counter'
+
+const state = useCounterStore()
 </script>
 
 <style lang="postcss" scoped>
@@ -63,7 +60,7 @@ const props = defineProps({
   /* height 一樣 4px，width在切版時可以先放成 50%，調整好再改回進度為 0% 的狀態 */
   /* 附圖為 50% 的狀態 */
   height: 4px;
-  width: v-bind('props.progress.progressNum');
+  width: v-bind('state.progress.progressNum');
   /* 一樣使用 relative-absolute把已完成進度條也放到正確位置上 */
   position: absolute;
   top: 50%;

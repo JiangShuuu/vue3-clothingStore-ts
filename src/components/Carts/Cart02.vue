@@ -98,9 +98,10 @@
           </div>
           <hr>
           <div class="space-y-3">
-            <button class="w-full mt-3 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">提交訂單
+            <button @click="nextStep"
+              class="w-full mt-3 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">提交訂單
             </button>
-            <button class="font-medium text-blue-500 text-md hover:brightness-110"> &lt 返回購物車</button>
+            <button @click="prevStep" class="font-medium text-blue-500 text-md hover:brightness-110"> &lt 返回購物車</button>
           </div>
         </section>
       </div>
@@ -111,4 +112,19 @@
 <script setup lang="ts">
 import CartLogin from './CartLogin.vue'
 import CartInfo from './CartInfo.vue'
+import { useCounterStore } from '../../stores/counter'
+import { useRouter } from 'vue-router'
+
+const mainStore = useCounterStore()
+const router = useRouter()
+
+const nextStep = () => {
+  mainStore.next()
+  router.push('/cart/confirm')
+}
+
+const prevStep = () => {
+  mainStore.prev()
+  router.push('/cart/order')
+}
 </script>

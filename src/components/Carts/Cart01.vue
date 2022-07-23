@@ -121,6 +121,7 @@
             </div>
           </div>
           <button
+            @click="nextStep"
             class="w-full mt-5 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">前往結賬</button>
         </div>
       </section>
@@ -130,6 +131,17 @@
 
 <script setup lang="ts">
 import CartLogin from './CartLogin.vue'
+import { useCounterStore } from '../../stores/counter'
+import { useRouter } from 'vue-router'
+
+const mainStore = useCounterStore()
+const router = useRouter()
+
+const nextStep = () => {
+  mainStore.next()
+  router.push('/cart/info')
+}
+
 </script>
 
 <style lang="postcss" scoped>
