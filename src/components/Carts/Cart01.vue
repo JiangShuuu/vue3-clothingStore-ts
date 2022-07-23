@@ -133,6 +133,12 @@
 import CartLogin from './CartLogin.vue'
 import { useCounterStore } from '../../stores/counter'
 import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  mainStore.progress.circle2 = false
+  mainStore.progress.circle3 = false
+})
 
 const mainStore = useCounterStore()
 const router = useRouter()
