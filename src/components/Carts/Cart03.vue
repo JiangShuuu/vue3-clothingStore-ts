@@ -9,6 +9,7 @@ import { onMounted } from 'vue'
 const mainStore = useCounterStore()
 
 onMounted(() => {
+  mainStore.progress.progressNum = '100%'
   mainStore.progress.circle3 = true
 })
 </script>

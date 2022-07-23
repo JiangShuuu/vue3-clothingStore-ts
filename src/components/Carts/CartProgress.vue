@@ -6,7 +6,6 @@
     <div class="circle active">1</div>
     <div class="circle" :class="{ 'active': state.progress.circle2}">2</div>
     <div class="circle" :class="{ 'active': state.progress.circle3}">3</div>
-    <div class="circle" :class="{ 'active': state.progress.circle4}">4</div>
   </div>
 </template>
 

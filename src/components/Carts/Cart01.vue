@@ -136,6 +136,7 @@ import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 
 onMounted(() => {
+  mainStore.progress.progressNum = '0%'
   mainStore.progress.circle2 = false
   mainStore.progress.circle3 = false
 })
@@ -144,7 +145,6 @@ const mainStore = useCounterStore()
 const router = useRouter()
 
 const nextStep = () => {
-  mainStore.next()
   router.push('/cart/info')
 }
 

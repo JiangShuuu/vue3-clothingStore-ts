@@ -120,17 +120,16 @@ const mainStore = useCounterStore()
 const router = useRouter()
 
 onMounted(() => {
+  mainStore.progress.progressNum = '50%'
   mainStore.progress.circle2 = true
   mainStore.progress.circle3 = false
 })
 
 const nextStep = () => {
-  mainStore.next()
   router.push('/cart/confirm')
 }
 
 const prevStep = () => {
-  mainStore.prev()
   router.push('/cart/order')
 }
 </script>
