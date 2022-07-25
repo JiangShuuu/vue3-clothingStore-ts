@@ -26,17 +26,17 @@
           </div>
           <div></div>
           <div class="flex-center">
-            <p>NT$450</p>
+            <p>NT${{ mainStore.cartProduct.price }}</p>
           </div>
           <div class="flex-center">
             <div class="justify-between w-32 p-2 border flex-center">
-              <Icon icon="fa-solid:minus" class="w-4 h-4 cursor-pointer" />
-              <p class="text-sm">2</p>
-              <Icon icon="fa-solid:plus" class="w-4 h-4 cursor-pointer" />
+              <Icon icon="fa-solid:minus" @click="mainStore.reduceCount(testProduct)" class="w-4 h-4 cursor-pointer " />
+              <p class="text-sm">{{ mainStore.cartProduct.count }}</p>
+              <Icon icon="fa-solid:plus" @click="mainStore.addCount(testProduct)" class="w-4 h-4 cursor-pointer" />
             </div>
           </div>
           <div class="flex-center">
-            <p>NT$900</p>
+            <p>NT${{ testProduct.total }}</p>
           </div>
           <div class="absolute right-5 top-[4.8rem]">
             <Icon icon="icon-park-outline:delete-five" class="w-5 h-5 text-gray-500 cursor-pointer" />
@@ -105,11 +105,11 @@
           <div class="space-y-2">
             <div class="justify-between text-sm flex-center">
               <p>小計</p>
-              <p>NT$900</p>
+              <p>NT${{ mainStore.order.price }}</p>
             </div>
             <div class="justify-between text-sm flex-center">
               <p>運費</p>
-              <p>NT$900</p>
+              <p>NT${{ mainStore.order.fee }}</p>
             </div>
             <div class="cursor-pointer text-start text-primary hover:brightness-150">
               使用優惠代碼
@@ -117,11 +117,10 @@
             <hr />
             <div class="justify-between text-sm font-bold flex-center">
               <p>合計 (1件)</p>
-              <p>NT$900</p>
+              <p>NT${{ mainStore.orderTotal }}</p>
             </div>
           </div>
-          <button
-            @click="nextStep"
+          <button @click="nextStep"
             class="w-full mt-5 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">前往結賬</button>
         </div>
       </section>
@@ -143,6 +142,7 @@ onMounted(() => {
 
 const mainStore = useCounterStore()
 const router = useRouter()
+const testProduct = mainStore.cartProduct
 
 const nextStep = () => {
   router.push('/cart/info')

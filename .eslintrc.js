@@ -21,6 +21,7 @@ module.exports = {
     'vue/multi-word-component-names': 0,
     'vue/no-v-for-template-key': 0,
     'vue/no-setup-props-destructure': 0,
-    'vue/no-parsing-error': 0
+    'vue/no-parsing-error': 0,
+    'no-return-assign': 0
   }
 }

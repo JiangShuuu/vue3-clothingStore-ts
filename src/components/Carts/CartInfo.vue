@@ -1,7 +1,7 @@
 <template>
   <main class="border">
     <div class="justify-between p-3 flex-center">
-      <h2 class="font-bold">合計: NT$2800</h2>
+      <h2 class="font-bold">合計: NT${{ mainStore.order.total }}</h2>
       <div class="flex items-center h-full">
         <button class="focus:outline-none" @click="menuOpen = !menuOpen">
           <Icon icon="ant-design:down-outlined" :class="{ 'burger-menu--active': menuOpen }" />
@@ -80,6 +80,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useCounterStore } from '../../stores/counter'
+const mainStore = useCounterStore()
 const menuOpen = ref(false)
 const orderCountHeight = ref('0px')
 
