@@ -6,7 +6,7 @@
     </section>
     <section class="flex-1">
       <Sort />
-      <Cards />
+      <Cards :cards="result"/>
     </section>
   </main>
 </template>
@@ -16,4 +16,15 @@ import NavTab from '../components/Global/NavTab.vue'
 import Categroy from '../components/Products/Categroy.vue'
 import Sort from '../components/Products/Sort.vue'
 import Cards from '../components/Products/Cards.vue'
+import productsAPI from '~/apis/product'
+import { ref } from 'vue'
+
+const result = ref()
+
+async function get () {
+  const { data } = await productsAPI.getProducts()
+  result.value = data.data
+}
+
+get()
 </script>
