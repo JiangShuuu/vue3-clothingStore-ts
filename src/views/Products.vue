@@ -37,7 +37,7 @@ const result = ref()
 async function get () {
   const { data } = await productsAPI.getProducts()
   result.value = data.data.data as Products
-  console.log(result)
+  console.log(result.value)
 }
 
 get()
