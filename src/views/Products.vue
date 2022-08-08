@@ -6,7 +6,7 @@
     </section>
     <section class="flex-1">
       <Sort />
-      <Cards :cards="result"/>
+      <Cards v-if="result" :cards="result"/>
     </section>
   </main>
 </template>
@@ -19,11 +19,25 @@ import Cards from '../components/Products/Cards.vue'
 import productsAPI from '~/apis/product'
 import { ref } from 'vue'
 
+interface Products {
+  Category: Object,
+  categoryID: Number,
+  description: String,
+  id: Number,
+  image: String,
+  isOpen: Boolean,
+  og_price: Number,
+  price: Number,
+  short_intro: String,
+  title: String
+}
+
 const result = ref()
 
 async function get () {
   const { data } = await productsAPI.getProducts()
-  result.value = data.data
+  result.value = data.data.data as Products
+  console.log(result)
 }
 
 get()
