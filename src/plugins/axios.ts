@@ -1,6 +1,6 @@
 import axios from 'axios'
 // axios
-const baseURL = 'https://marvelous-olympic-18045.herokuapp.com/'
+const baseURL = import.meta.env.VITE_APIURL
 
 const axiosInstance = axios.create({
   baseURL
