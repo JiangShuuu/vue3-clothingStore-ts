@@ -1,7 +1,7 @@
 <template>
   <NavTab />
   <main class="w-full h-full px-4 space-y-6 md:px-6 lg:max-w-[1280px] lg:mx-auto">
-    <Header />
+    <Header v-if="result" :data="result" />
     <section>
       <div class="justify-around text-lg flex-center ">
         <router-link :to="{ name: 'description'}" class="hover:text-primary hover:underline hover:underline-offset-4">
@@ -19,7 +19,7 @@
   </main>
 </template>
 <script setup lang="ts">
-import NavTab from '../components/Global/NavTab.vue'
+import NavTab from '~/components/Global/NavTab.vue'
 import Header from '~/components/Product/Header.vue'
 import productsAPI from '~/apis/product'
 import { useRoute } from 'vue-router'
@@ -35,7 +35,7 @@ onMounted(() => {
 
 async function get (id:any) {
   const { data } = await productsAPI.getProduct(id)
-  result.value = data.data
+  result.value = data.data.product
   console.log(result.value)
 }
 
