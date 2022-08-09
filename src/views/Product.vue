@@ -21,8 +21,22 @@
 <script setup lang="ts">
 import NavTab from '../components/Global/NavTab.vue'
 import Header from '~/components/Product/Header.vue'
+import productsAPI from '~/apis/product'
 import { useRoute } from 'vue-router'
-const route = useRoute()
+import { ref, onMounted } from 'vue'
 
-console.log(route.params)
+const route = useRoute()
+const { id } = route.params
+const result = ref()
+
+onMounted(() => {
+  get(id)
+})
+
+async function get (id:any) {
+  const { data } = await productsAPI.getProduct(id)
+  result.value = data.data
+  console.log(result.value)
+}
+
 </script>
