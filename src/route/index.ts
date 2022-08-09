@@ -55,26 +55,31 @@ const router = createRouter({
       path: '/product/:id',
       name: 'Product',
       component: () => import('../views/Product.vue'),
+      meta: { title: '產品資訊' },
       children: [
         {
           path: '/product/:id/description',
           name: 'description',
-          component: () => import('../components/Product/Description.vue')
+          component: () => import('../components/Product/Description.vue'),
+          meta: { title: '商品描述' }
         },
         {
           path: '/product/:id/more',
           name: 'more',
-          component: () => import('../components/Product/More.vue')
+          component: () => import('../components/Product/More.vue'),
+          meta: { title: '了解更多' }
         },
         {
           path: '/product/:id/payment',
           name: 'payment',
-          component: () => import('../components/Product/Payment.vue')
+          component: () => import('../components/Product/Payment.vue'),
+          meta: { title: '運送方式' }
         },
         {
           path: '/product/:id/comment',
           name: 'comment',
-          component: () => import('../components/Product/Comment.vue')
+          component: () => import('../components/Product/Comment.vue'),
+          meta: { title: '顧客評價' }
         }
       ]
     },

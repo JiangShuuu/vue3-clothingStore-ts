@@ -1,5 +1,5 @@
 <template>
-  <NavTab />
+  <BreadcrumbList />
   <main class="w-full h-full px-4 space-y-6 md:px-6 lg:max-w-[1280px] lg:mx-auto">
     <Header v-if="result" :data="result" />
     <section>
@@ -21,7 +21,7 @@
   </main>
 </template>
 <script setup lang="ts">
-import NavTab from '~/components/Global/NavTab.vue'
+import BreadcrumbList from '~/components/Global/BreadcrumbList.vue'
 import Header from '~/components/Product/Header.vue'
 import productsAPI from '~/apis/product'
 import { useRoute } from 'vue-router'
