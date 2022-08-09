@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import Banner from '../components/IndexPage/Banner.vue'
-import Menu from '../components/IndexPage/Menu.vue'
-import ShopNow from '../components/IndexPage/ShopNow.vue'
-import Subscribe from '../components/IndexPage/Subscribe.vue'
+import Banner from '~/components/IndexPage/Banner.vue'
+import Menu from '~/components/IndexPage/Menu.vue'
+import ShopNow from '~/components/IndexPage/ShopNow.vue'
+import Subscribe from '~/components/IndexPage/Subscribe.vue'
 </script>
 
 <style lang="postcss" scoped>
