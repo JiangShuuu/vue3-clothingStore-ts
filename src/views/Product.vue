@@ -14,8 +14,8 @@
           顧客評價
         </router-link>
       </div>
-      <div class="my-4">
-        <router-view :data="result" />
+      <div class="p-4 my-4 flex-center">
+        <router-view v-if="result" :data="result" />
       </div>
     </section>
   </main>

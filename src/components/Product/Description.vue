@@ -1,5 +1,5 @@
 <template>
-  <main class="p-4 flex-center">
+  <main>
     <p>{{data?.description}}</p>
   </main>
 </template>
