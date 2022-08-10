@@ -2,19 +2,19 @@
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       <!-- 前一頁 previousPage -->
-      <!-- <li v-if="currentPage !== 1" :class="[
+      <li v-if="currentPage !== 1" :class="[
         'page-item',
         {
           disabled: currentPage === 1,
         },
       ]">
         <router-link class="page-link" aria-label="Previous" :to="{
-          name: 'restaurants',
-          query: { categoryId, page: previousPage },
+          name: 'Products',
+          query: { page: previousPage },
         }">
           <span aria-hidden="true">&laquo;</span>
         </router-link>
-      </li> -->
+      </li>
 
       <!-- 頁籤 -->
       <li :class="['page-item', { active: currentPage === page }]" v-for="(page, index) in totalPage" :key="index">
@@ -24,17 +24,17 @@
       </li>
 
       <!-- 後一頁 nextPage -->
-      <!-- <li v-if="currentPage !== totalPage.length" :class="[
+      <li v-if="currentPage !== totalPage?.length" :class="[
         'page-item',
         {
-          disabled: currentPage === totalPage.length,
+          disabled: currentPage === totalPage?.length,
         },
       ]">
         <router-link class="page-link" aria-label="Next"
-          :to="{ name: 'restaurants', query: { categoryId, page: nextPage } }">
+          :to="{ name: 'Products', query: { page: nextPage } }">
           <span aria-hidden="true">&raquo;</span>
         </router-link>
-      </li> -->
+      </li>
     </ul>
   </nav>
 </template>
