@@ -2,17 +2,14 @@
   <BreadCrumb />
   <main class="flex flex-col px-4 bg-white lg:px-10 lg:py-10 lg:flex-row">
     <section class="justify-start lg:flex-col lg:w-1/5 flex-center">
-      <Categroy />
+      <Categroy v-if="categories" :categories="categories" />
     </section>
     <section class="flex-1">
       <Sort />
       <div>
         <Cards v-if="result" :cards="result" />
-        <Pagination
-          v-if="pagination && pagination.pages.length > 1"
-          :current-page="pagination.currentPage"
-          :total-page="pagination.pages"
-          :previous-page="pagination.prev"
+        <Pagination v-if="pagination && pagination.pages.length > 1" :category-num="categoryNum"
+          :current-page="pagination.currentPage" :total-page="pagination.pages" :previous-page="pagination.prev"
           :next-page="pagination.next" />
       </div>
     </section>
@@ -45,6 +42,8 @@ interface Products {
 const route = useRoute()
 const result = ref()
 const pagination = ref()
+const categories = ref()
+const categoryNum = ref()
 
 const { page = '', categoryId = '' } = route.query
 get(page, categoryId)
@@ -54,7 +53,8 @@ async function get (page:any, categoryId:any) {
 
   result.value = data.data.data as Products
   pagination.value = data.data.pagination
-  console.log(pagination.value)
+  categories.value = data.data.categories
+  categoryNum.value = categoryId
 }
 
 onBeforeRouteUpdate((to, from, next) => {

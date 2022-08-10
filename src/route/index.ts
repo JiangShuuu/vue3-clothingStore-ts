@@ -11,53 +11,52 @@ const router = createRouter({
     {
       path: '/products',
       name: 'Products',
-      component: () => import('../views/Products.vue'),
-      redirect: '/products/all',
-      meta: { title: '產品' },
-      children: [
-        {
-          path: '/products/all',
-          name: 'all',
-          component: () => import('../views/Products.vue'),
-          meta: { title: '全部產品' }
-        },
-        {
-          path: '/products/hot-product',
-          name: 'hot-product',
-          component: () => import('../views/Products.vue'),
-          meta: { title: '熱門產品' }
-        },
-        {
-          path: '/products/new-product',
-          name: 'new-product',
-          component: () => import('../views/Products.vue'),
-          meta: { title: '新上市' }
-        },
-        {
-          path: '/products/clothes',
-          name: 'clothes',
-          component: () => import('../views/Products.vue'),
-          meta: { title: '熱銷上衣' }
-        },
-        {
-          path: '/products/coat',
-          name: 'coat',
-          component: () => import('../views/Products.vue'),
-          meta: { title: '精選外套' }
-        },
-        {
-          path: '/products/pants',
-          name: 'pants',
-          component: () => import('../views/Products.vue'),
-          meta: { title: '經典褲款' }
-        },
-        {
-          path: '/products/specials',
-          name: 'specials',
-          component: () => import('../views/Products.vue'),
-          meta: { title: '特價商品' }
-        }
-      ]
+      component: () => import('../views/Products.vue')
+      // meta: { title: '產品' },
+      // children: [
+      //   {
+      //     path: '/products/all',
+      //     name: 'all',
+      //     component: () => import('../views/Products.vue'),
+      //     meta: { title: '全部產品' }
+      //   },
+      //   {
+      //     path: '/products/hot-product',
+      //     name: 'hot-product',
+      //     component: () => import('../views/Products.vue'),
+      //     meta: { title: '熱門產品' }
+      //   },
+      //   {
+      //     path: '/products/new-product',
+      //     name: 'new-product',
+      //     component: () => import('../views/Products.vue'),
+      //     meta: { title: '新上市' }
+      //   },
+      //   {
+      //     path: '/products/clothes',
+      //     name: 'clothes',
+      //     component: () => import('../views/Products.vue'),
+      //     meta: { title: '熱銷上衣' }
+      //   },
+      //   {
+      //     path: '/products/coat',
+      //     name: 'coat',
+      //     component: () => import('../views/Products.vue'),
+      //     meta: { title: '精選外套' }
+      //   },
+      //   {
+      //     path: '/products/pants',
+      //     name: 'pants',
+      //     component: () => import('../views/Products.vue'),
+      //     meta: { title: '經典褲款' }
+      //   },
+      //   {
+      //     path: '/products/specials',
+      //     name: 'specials',
+      //     component: () => import('../views/Products.vue'),
+      //     meta: { title: '特價商品' }
+      //   }
+      // ]
     },
     {
       path: '/product/:id',

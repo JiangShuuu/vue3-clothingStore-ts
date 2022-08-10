@@ -10,7 +10,7 @@
       ]">
         <router-link class="page-link" aria-label="Previous" :to="{
           name: 'Products',
-          query: { page: previousPage },
+          query: { page: previousPage, categoryId: categoryNum },
         }">
           <span aria-hidden="true">&laquo;</span>
         </router-link>
@@ -18,7 +18,7 @@
 
       <!-- 頁籤 -->
       <li :class="['page-item', { active: currentPage === page }]" v-for="(page, index) in totalPage" :key="index">
-        <router-link class="page-link" :to="{ name: 'Products', query: { page } }">
+        <router-link class="page-link" :to="{ name: 'Products', query: { page, categoryId: categoryNum } }">
           {{ page }}
         </router-link>
       </li>
@@ -31,7 +31,7 @@
         },
       ]">
         <router-link class="page-link" aria-label="Next"
-          :to="{ name: 'Products', query: { page: nextPage } }">
+          :to="{ name: 'Products', query: { page: nextPage, categoryId: categoryNum } }">
           <span aria-hidden="true">&raquo;</span>
         </router-link>
       </li>
@@ -42,6 +42,9 @@
 <script setup lang="ts">
 
 const props = defineProps({
+  categoryNum: {
+    type: Number
+  },
   currentPage: {
     type: Number,
     default: 1
