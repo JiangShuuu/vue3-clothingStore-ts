@@ -6,7 +6,15 @@
     </section>
     <section class="flex-1">
       <Sort />
-      <Cards v-if="result" :cards="result" />
+      <div>
+        <Cards v-if="result" :cards="result" />
+        <Pagination
+          v-if="pagination && pagination.pages.length > 1"
+          :current-page="pagination.currentPage"
+          :total-page="pagination.pages"
+          :previous-page="pagination.prev"
+          :next-page="pagination.next" />
+      </div>
     </section>
   </main>
 </template>
@@ -16,8 +24,10 @@ import BreadCrumb from '~/components/Global/BreadCrumb.vue'
 import Categroy from '../components/Products/Categroy.vue'
 import Sort from '../components/Products/Sort.vue'
 import Cards from '../components/Products/Cards.vue'
+import Pagination from '~/components/Products/Pagination.vue'
 import productsAPI from '~/apis/product'
 import { ref } from 'vue'
+import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 
 interface Products {
   Category: Object,
@@ -32,13 +42,24 @@ interface Products {
   title: String
 }
 
+const route = useRoute()
 const result = ref()
+const pagination = ref()
 
-async function get () {
-  const { data } = await productsAPI.getProducts()
+const { page = '', categoryId = '' } = route.query
+get(page, categoryId)
+
+async function get (page:any, categoryId:any) {
+  const { data } = await productsAPI.getProducts(page, categoryId)
+
   result.value = data.data.data as Products
-  console.log(result.value)
+  pagination.value = data.data.pagination
+  console.log(pagination.value)
 }
 
-get()
+onBeforeRouteUpdate((to, from, next) => {
+  const { page = '', categoryId = '' } = to.query
+  get(page, categoryId)
+  next()
+})
 </script>
