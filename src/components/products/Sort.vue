@@ -23,14 +23,13 @@ import { useRoute } from 'vue-router'
 const props = defineProps<{ categories: any }>()
 
 const route = useRoute()
-const routeId = ref()
 const title = ref('全部商品')
 
 watch(route, (newRoute) => {
-  routeId.value = Number(newRoute.query.categoryId)
+  const routeId = Number(newRoute.query.categoryId)
 
   const itemName = props.categories.find((item: any) => {
-    return item.id === routeId.value
+    return item.id === routeId
   })
 
   itemName ? title.value = itemName.name : title.value = '全部商品'
