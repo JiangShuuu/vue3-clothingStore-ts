@@ -1,8 +1,8 @@
 import { apiHelper } from '~/plugins/axios'
 
 export default {
-  getProducts (page:any, categoryId:any) {
-    const searchParams = new URLSearchParams({ page, categoryId })
+  getProducts (page:any, categoryId:any, sort:any, value:any) {
+    const searchParams = new URLSearchParams({ page, categoryId, sort, value })
 
     return apiHelper.get(`/products?${searchParams.toString()}`)
   },

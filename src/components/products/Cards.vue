@@ -37,7 +37,6 @@ const props = defineProps<{ cards: any }>()
 props.cards.forEach((element:any) => {
   element.isOpen = false
 })
-console.log('props', props.cards)
 
 </script>
 

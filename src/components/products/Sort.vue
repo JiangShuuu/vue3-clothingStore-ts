@@ -7,11 +7,15 @@
     </button>
     <div class="absolute z-10 hidden w-40 h-auto p-2 space-y-1 bg-white border shadow-md right-2 top-7"
       :class="{ open: isOpen }">
-      <button @click="changeSort('全部')" class="item">全部</button>
-      <button @click="changeSort('上架時間: 由新到舊')" class="item">上架時間: 由新到舊</button>
-      <button @click="changeSort('上架時間: 由舊到新')" class="item">上架時間: 由舊到新</button>
-      <button @click="changeSort('價格: 由高至低')" class="item">價格: 由高至低</button>
-      <button @click="changeSort('價格: 由低至高')" class="item">價格: 由低至高</button>
+      <router-link to="Products" @click="changeSort('預設')" class="item">預設</router-link>
+      <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'DESC' } }"
+        @click="changeSort('上架時間: 由新到舊')" class="item">上架時間: 由新到舊</router-link>
+      <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'ASC' } }"
+        @click="changeSort('上架時間: 由舊到新')" class="item">上架時間: 由舊到新</router-link>
+      <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'DESC' } }" @click="changeSort('價格: 由高至低')"
+        class="item">價格: 由高至低</router-link>
+      <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'ASC' } }" @click="changeSort('價格: 由低至高')"
+        class="item">價格: 由低至高</router-link>
     </div>
   </main>
 </template>
@@ -46,7 +50,7 @@ function changeSort (newName:string) {
 
 <style lang="postcss" scoped>
 .item {
-  @apply text-gray-500 hover:text-black;
+  @apply block text-gray-500 hover:text-black;
 }
 .open {
   @apply block;

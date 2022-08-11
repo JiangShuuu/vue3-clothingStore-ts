@@ -2,7 +2,7 @@
   <BreadCrumb />
   <main class="flex flex-col px-4 bg-white lg:px-10 lg:py-10 lg:flex-row">
     <section class="justify-start lg:flex-col lg:w-1/5 flex-center">
-      <Categroy v-if="categories" :categories="categories" />
+      <Categroy v-if="categories" :categories="categories" :sort-name="sortName" :value-name="valueName" />
     </section>
     <section class="flex-1">
       <Sort v-if="categories" :categories="categories" />
@@ -10,7 +10,7 @@
         <Cards v-if="result" :cards="result" />
         <Pagination v-if="pagination && pagination.pages.length > 1" :category-num="categoryNum"
           :current-page="pagination.currentPage" :total-page="pagination.pages" :previous-page="pagination.prev"
-          :next-page="pagination.next" />
+          :next-page="pagination.next" :sort-name="sortName" :value-name="valueName" />
       </div>
     </section>
   </main>
@@ -44,22 +44,26 @@ const result = ref()
 const pagination = ref()
 const categories = ref()
 const categoryNum = ref()
+const sortName = ref()
+const valueName = ref()
 
-const { page = '', categoryId = '' } = route.query
-get(page, categoryId)
+const { page = '', categoryId = '', sort = '', value = '' } = route.query
+get(page, categoryId, sort, value)
 
-async function get (page:any, categoryId:any) {
-  const { data } = await productsAPI.getProducts(page, categoryId)
+async function get (page:any, categoryId:any, sort:any, value:any) {
+  const { data } = await productsAPI.getProducts(page, categoryId, sort, value)
 
   result.value = data.data.data as Products
   pagination.value = data.data.pagination
   categories.value = data.data.categories
   categoryNum.value = categoryId
+  sortName.value = sort
+  valueName.value = value
 }
 
 onBeforeRouteUpdate((to, from, next) => {
-  const { page = '', categoryId = '' } = to.query
-  get(page, categoryId)
+  const { page = '', categoryId = '', sort = '', value = '' } = to.query
+  get(page, categoryId, sort, value)
   next()
 })
 </script>
