@@ -25,6 +25,7 @@ const isHome = (name:any) => {
 }
 const getBreadcrumbs = () => {
   let matched:any = route.matched
+  console.log(matched)
   if (!isHome(route.name)) {
     matched = [{ path: '/', meta: { title: '首頁' } }].concat(matched)
   }

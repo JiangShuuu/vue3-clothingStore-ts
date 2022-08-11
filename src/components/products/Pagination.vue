@@ -43,7 +43,7 @@
 
 const props = defineProps({
   categoryNum: {
-    type: Number
+    type: String
   },
   currentPage: {
     type: Number,
