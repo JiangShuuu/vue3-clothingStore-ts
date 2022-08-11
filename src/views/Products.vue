@@ -5,7 +5,7 @@
       <Categroy v-if="categories" :categories="categories" />
     </section>
     <section class="flex-1">
-      <Sort />
+      <Sort v-if="categories" :categories="categories" />
       <div>
         <Cards v-if="result" :cards="result" />
         <Pagination v-if="pagination && pagination.pages.length > 1" :category-num="categoryNum"

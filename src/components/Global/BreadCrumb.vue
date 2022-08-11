@@ -20,15 +20,11 @@ onMounted(() => {
   getBreadcrumbs()
 })
 
-const isHome = (name:any) => {
-  return name === 'Home'
-}
 const getBreadcrumbs = () => {
   let matched:any = route.matched
-  console.log(matched)
-  if (!isHome(route.name)) {
-    matched = [{ path: '/', meta: { title: '首頁' } }].concat(matched)
-  }
+
+  matched = [{ path: '/', meta: { title: '首頁' } }].concat(matched)
+
   breadcrumbList.value = matched
 }
 

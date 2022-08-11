@@ -1,6 +1,5 @@
 <template>
   <main class="relative justify-between flex-center">
-
     <span class="text-xl">{{ title }}</span>
     <button @mouseenter="isOpen = !isOpen" class="space-x-2 text-sm flex-center">
       <span>{{ name }}</span>
@@ -21,40 +20,20 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
+const props = defineProps<{ categories: any }>()
+
 const route = useRoute()
+const routeId = ref()
 const title = ref('全部商品')
 
 watch(route, (newRoute) => {
-  switch (newRoute.name) {
-    case 'all': {
-      title.value = '全部商品'
-      break
-    }
-    case 'hot-product': {
-      title.value = '熱門商品'
-      break
-    }
-    case 'new-product': {
-      title.value = '新上市'
-      break
-    }
-    case 'clothes': {
-      title.value = '熱銷上衣'
-      break
-    }
-    case 'coat': {
-      title.value = '精選外套'
-      break
-    }
-    case 'pants': {
-      title.value = '經典褲款'
-      break
-    }
-    case 'specials': {
-      title.value = '特價商品'
-      break
-    }
-  }
+  routeId.value = Number(newRoute.query.categoryId)
+
+  const itemName = props.categories.find((item: any) => {
+    return item.id === routeId.value
+  })
+
+  itemName ? title.value = itemName.name : title.value = '全部商品'
 })
 
 const isOpen = ref(false)
