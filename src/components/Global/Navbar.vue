@@ -2,7 +2,7 @@
   <div class="fixed z-10 w-full -mt-2 bg-white shadow-md">
     <div class="relative flex-col flex-center">
       <div class="w-[200px]">
-        <img class="w-[200px]" src="./../assets/Icon/LogoBA.png" alt="" />
+        <img class="w-[200px]" src="../../assets/Icon/LogoBA.png" alt="" />
       </div>
       <div class="main">
         <div class="w-full md:hidden">

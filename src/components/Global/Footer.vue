@@ -23,7 +23,7 @@
     <div class="flex-col w-full bg-white flex-center">
       <div class="items-start justify-around w-[90%] flex-center">
         <div class="flex-center">
-          <img class="w-40 h-40" src="../assets/Icon/logo.png" alt="" />
+          <img class="w-40 h-40" src="../../assets/Icon/logo.png" alt="" />
         </div>
         <ul>
           <li class="text_title">客戶服務</li>
