@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import Navbar from '~/components/Global/Navbar.vue'
-import GoTop from '~/components/Global/GoTop.vue'
-import Footer from '~/components/Global/Footer.vue'
+import Navbar from '~/components/global/Navbar.vue'
+import GoTop from '~/components/global/GoTop.vue'
+import Footer from '~/components/global/Footer.vue'
 
 </script>

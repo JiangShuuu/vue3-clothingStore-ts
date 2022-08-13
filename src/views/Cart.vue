@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import CartProgress from '../components/Carts/CartProgress.vue'
+import CartProgress from '../components/carts/CartProgress.vue'
 
 </script>
 

@@ -21,8 +21,8 @@
   </main>
 </template>
 <script setup lang="ts">
-import BreadCrumb from '~/components/Global/BreadCrumb.vue'
-import Header from '~/components/Product/Header.vue'
+import BreadCrumb from '~/components/global/BreadCrumb.vue'
+import Header from '~/components/product/Header.vue'
 import productsAPI from '~/apis/product'
 import { useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'

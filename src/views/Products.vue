@@ -17,11 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import BreadCrumb from '~/components/Global/BreadCrumb.vue'
-import Categroy from '../components/Products/Categroy.vue'
-import Sort from '../components/Products/Sort.vue'
-import Cards from '../components/Products/Cards.vue'
-import Pagination from '~/components/Products/Pagination.vue'
+import BreadCrumb from '~/components/global/BreadCrumb.vue'
+import Categroy from '~/components/products/Categroy.vue'
+import Sort from '~/components/products/Sort.vue'
+import Cards from '~/components/products/Cards.vue'
+import Pagination from '~/components/products/Pagination.vue'
 import productsAPI from '~/apis/product'
 import { ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
