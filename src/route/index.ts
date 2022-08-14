@@ -14,6 +14,13 @@ const router = createRouter({
       component: () => import('../views/products.vue'),
       meta: { title: '產品目錄' }
     },
+    // 待刪除
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../views/test.vue'),
+      meta: { title: 'test' }
+    },
     {
       path: '/product/:id',
       name: 'Product',
