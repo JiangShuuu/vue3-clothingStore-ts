@@ -29,7 +29,6 @@ import productsAPI from '~/apis/product'
 import { ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { useToast } from 'vue-toastification'
-import Loading from '~/components/global/Loading.vue'
 
 interface Products {
   Category: Object,
