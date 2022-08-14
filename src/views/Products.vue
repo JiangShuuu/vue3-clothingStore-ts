@@ -25,6 +25,7 @@ import Pagination from '~/components/products/Pagination.vue'
 import productsAPI from '~/apis/product'
 import { ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
 interface Products {
   Category: Object,
@@ -46,19 +47,28 @@ const categories = ref()
 const categoryNum = ref()
 const sortName = ref()
 const valueName = ref()
+const toast = useToast()
 
 const { page = '', categoryId = '', sort = '', value = '' } = route.query
 get(page, categoryId, sort, value)
 
 async function get (page:any, categoryId:any, sort:any, value:any) {
-  const { data } = await productsAPI.getProducts(page, categoryId, sort, value)
+  try {
+    const { data } = await productsAPI.getProducts(page, categoryId, sort, value)
 
-  result.value = data.data.data as Products
-  pagination.value = data.data.pagination
-  categories.value = data.data.categories
-  categoryNum.value = categoryId
-  sortName.value = sort
-  valueName.value = value
+    result.value = data.data.data as Products
+    pagination.value = data.data.pagination
+    categories.value = data.data.categories
+    categoryNum.value = categoryId
+    sortName.value = sort
+    valueName.value = value
+
+    toast.success('成功獲取所有商品', {
+      timeout: 2000
+    })
+  } catch (err) {
+    toast.error('系統錯誤請稍候再試')
+  }
 }
 
 onBeforeRouteUpdate((to, from, next) => {
