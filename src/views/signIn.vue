@@ -30,14 +30,26 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '~/stores/user'
 import userAPI from '~/apis/user'
 
 const password = ref()
 const email = ref()
+const route = useRouter()
+const mainStore = useUserStore()
 
 async function handleSubmit () {
   const { data } = await userAPI.signIn({ email: email.value, password: password.value })
-  console.log(data)
+
+  // 將伺服器回傳的token 保存在 localStorage 中
+  localStorage.setItem('token', data.data.token)
+
+  // 透過 setCurrentUser 把使用者資料存到 vuex 的 state 中
+  mainStore.setCurrentUser(data.data.user)
+
+  // 成功登入後進行轉址
+  route.push('/member')
 }
 
 </script>
