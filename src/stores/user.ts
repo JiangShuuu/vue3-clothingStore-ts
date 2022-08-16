@@ -24,9 +24,6 @@ export const useUserStore = defineStore({
     async fetchCurrentUser () {
       try {
         const { data } = await usersAPI.getCurrentUser()
-        console.log(data)
-        const { id, name, email, isAdmin } = data.data
-
         this.currentUser = data.data
 
         return true
