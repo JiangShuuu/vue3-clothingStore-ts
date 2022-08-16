@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from '~/stores/user'
-import { useRouter } from 'vue-router'
+import { useRouter, onBeforeRouteUpdate } from 'vue-router'
 
 const mainStore = useUserStore()
 const router = useRouter()
@@ -14,5 +14,4 @@ function logout () {
   mainStore.revokeAuthentication()
   router.push('/signin')
 }
-
 </script>
