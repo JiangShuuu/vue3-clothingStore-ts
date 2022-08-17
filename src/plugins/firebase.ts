@@ -7,13 +7,13 @@ import { initializeApp } from 'firebase/app'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyCA58hPjzk1Q0PmJmavzdHvypCCeBleDVQ',
-  authDomain: 'clothing-store-eba22.firebaseapp.com',
-  projectId: 'clothing-store-eba22',
-  storageBucket: 'clothing-store-eba22.appspot.com',
-  messagingSenderId: '104937580227',
-  appId: '1:104937580227:web:9a1fceb9c3c4a7c0f76476',
-  measurementId: 'G-CHGR6NP2E9'
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 }
 
 // Initialize Firebase
