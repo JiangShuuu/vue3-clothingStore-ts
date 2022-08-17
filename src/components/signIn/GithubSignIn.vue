@@ -1,20 +1,23 @@
 <template>
-  <button @click="signIn">Apple登入</button>
+  <button @click="signIn">GitHub登入</button>
 </template>
 
 <script setup lang="ts">
 // firebase
 import { firebaseApp } from '~/plugins/firebase'
-import { getAuth, OAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { getAuth, GithubAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { useToast } from 'vue-toastification'
 
 const toast = useToast()
 const firebaseAuth = getAuth(firebaseApp)
-const provider = new OAuthProvider('.apple.com')
+const provider = new GithubAuthProvider()
 
 const signIn = () => {
   signInWithPopup(firebaseAuth, provider)
     .then((result) => {
+      const credential: any = GithubAuthProvider.credentialFromResult(result)
+      const token = credential.accessToken
+      console.log(token)
       console.log(result)
     })
     .catch((err) => {

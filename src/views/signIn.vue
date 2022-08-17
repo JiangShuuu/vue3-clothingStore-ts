@@ -23,6 +23,7 @@
     </form>
     <GoogleSignIn />
     <FacebookSignIn />
+    <GithubSignIn />
     <div class="mb-3 text-center">
       <router-link to="/signup"> Sign Up </router-link>
       <p class="mt-5 mb-3 text-center text-muted">&copy; 2022</p>
@@ -37,6 +38,7 @@ import { useUserStore } from '~/stores/user'
 import { useToast } from 'vue-toastification'
 import GoogleSignIn from '~/components/signIn/GoogleSignIn.vue'
 import FacebookSignIn from '~/components/signIn/FacebookSignIn.vue'
+import GithubSignIn from '~/components/signIn/GithubSignIn.vue'
 import userAPI from '~/apis/user'
 
 const toast = useToast()
