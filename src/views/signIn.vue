@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-center">
+  <main class="flex-col space-y-10 flex-center">
     <form class="flex-col space-y-10 w-72 flex-center" @submit.prevent.stop="handleSubmit">
       <h1 class="text-3xl">Sign In</h1>
 
@@ -20,11 +20,12 @@
         Submit
       </button>
 
-      <div class="mb-3 text-center">
-        <router-link to="/signup"> Sign Up </router-link>
-        <p class="mt-5 mb-3 text-center text-muted">&copy; 2022</p>
-      </div>
     </form>
+    <GoogleSignIn />
+    <div class="mb-3 text-center">
+      <router-link to="/signup"> Sign Up </router-link>
+      <p class="mt-5 mb-3 text-center text-muted">&copy; 2022</p>
+    </div>
   </main>
 </template>
 
@@ -33,6 +34,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '~/stores/user'
 import { useToast } from 'vue-toastification'
+import GoogleSignIn from '~/components/signIn/GoogleSignIn.vue'
 import userAPI from '~/apis/user'
 
 const toast = useToast()

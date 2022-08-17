@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@iconify/vue": "^3.2.1",
+    "@vueuse/firebase": "^9.1.0",
     "axios": "^0.27.2",
+    "firebase": "^9.9.2",
     "pinia": "^2.0.16",
     "swiper": "^8.2.5",
     "vue": "^3.2.25",
