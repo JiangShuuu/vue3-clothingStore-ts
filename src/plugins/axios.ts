@@ -1,14 +1,20 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 // axios
 const baseURL = import.meta.env.VITE_APIURL
 
 const axiosInstance = axios.create({
-  baseURL
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  }
 })
 
 axiosInstance.interceptors.request.use(
-  (config:any) => {
+  (config:AxiosRequestConfig) => {
     const token = localStorage.getItem('token')
+
+    config.headers = config.headers ?? {}
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
