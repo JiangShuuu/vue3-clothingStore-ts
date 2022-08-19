@@ -13,7 +13,7 @@ export const useUserStore = defineStore({
       this.currentUser = user
       this.isAuthenticated = true
       this.token = `${localStorage.getItem('token')}`
-      console.log(this.token)
+      console.log('currentUser', user.name)
     },
     revokeAuthentication () {
       this.currentUser = null
