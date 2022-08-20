@@ -1,6 +1,6 @@
 <template>
   <main class="relative justify-between flex-center">
-    <span class="text-xl">{{ title }}</span>
+    <span class="text-xl">{{ categoryName }}</span>
     <button @mouseenter="isOpen = !isOpen" class="space-x-2 text-sm flex-center">
       <span>{{ name }}</span>
       <i class="w-2.5 h-2.5 fa-solid fa-chevron-down"></i>
@@ -22,21 +22,12 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
 
-const props = defineProps<{ categories: any }>()
-
-const route = useRoute()
-const title = ref('全部商品')
-
-watch(route, (newRoute) => {
-  const routeId = Number(newRoute.query.categoryId)
-
-  const itemName = props.categories.find((item: any) => {
-    return item.id === routeId
-  })
-
-  itemName ? title.value = itemName.name : title.value = '全部商品'
+defineProps({
+  categoryName: {
+    type: String,
+    default: '全部商品'
+  }
 })
 
 const isOpen = ref(false)

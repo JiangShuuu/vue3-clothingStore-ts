@@ -7,7 +7,7 @@
         <Categroy v-if="categories" :categories="categories" :sort-name="sortName" :value-name="valueName" />
       </section>
       <section class="flex-1">
-        <Sort v-if="categories" :categories="categories" />
+        <Sort v-if="categories" :category-name="categoryName" />
         <div>
           <Cards v-if="result" :cards="result" />
           <Pagination v-if="pagination && pagination.pages.length > 1" :category-num="categoryNum"
@@ -50,6 +50,7 @@ const categories = ref()
 const categoryNum = ref()
 const sortName = ref()
 const valueName = ref()
+const categoryName = ref()
 const toast = useToast()
 const loading = ref(true)
 
@@ -68,6 +69,14 @@ async function get (page:any, categoryId:any, sort:any, value:any) {
     sortName.value = sort
     valueName.value = value
 
+    // SortTitle
+    const routeId = Number(route.query.categoryId)
+    const itemName = categories.value.find((item: any) => {
+      return item.id === routeId
+    })
+
+    itemName ? categoryName.value = itemName.name : categoryName.value = '全部商品'
+
     toast.success('成功獲取所有商品', {
       timeout: 2000
     })
@@ -81,6 +90,7 @@ async function get (page:any, categoryId:any, sort:any, value:any) {
 onBeforeRouteUpdate((to, from, next) => {
   const { page = '', categoryId = '', sort = '', value = '' } = to.query
   get(page, categoryId, sort, value)
+
   next()
 })
 </script>
