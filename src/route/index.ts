@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SignIn from '~/views/signIn.vue'
+import SignUp from '~/views/signUp.vue'
 import { useUserStore } from '~/stores/user'
 
 const authorizeIsUser = async (to:any, from:any, next:any) => {
@@ -47,6 +48,12 @@ const router = createRouter({
       path: '/signIn',
       name: 'sign-in',
       component: SignIn,
+      beforeEnter: authorizeIsUser
+    },
+    {
+      path: '/signUp',
+      name: 'sign-up',
+      component: SignUp,
       beforeEnter: authorizeIsUser
     },
     {

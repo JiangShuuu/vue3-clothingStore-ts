@@ -7,6 +7,9 @@ export default {
   signIn (data:any) {
     return apiHelper.post('/signin', data)
   },
+  signUp (data:any) {
+    return apiHelper.post('/users/register', data)
+  },
   getCurrentUser () {
     return apiHelper.get('/current_user')
   }
