@@ -63,7 +63,7 @@ async function handleSubmit () {
     })
 
     route.push('/signIn')
-  } catch (err) {
+  } catch (err:any) {
     console.log('err', err)
     toast.error(err.response.data.message)
   }

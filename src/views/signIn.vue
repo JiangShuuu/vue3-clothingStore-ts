@@ -1,18 +1,18 @@
 <template>
   <main class="flex-col space-y-10 flex-center">
-    <form class="flex-col space-y-10 w-72 flex-center" @submit.prevent.stop="handleSubmit">
+    <Form class="flex-col space-y-10 w-[500px] flex-center" @submit="onSubmit" :validation-schema="schema">
       <h1 class="text-3xl">Sign In</h1>
 
       <div class="space-y-5">
-        <div class="space-x-10">
+        <div class="space-x-5">
           <label for="email">email</label>
-          <input id="email" v-model="email" name="email" type="email" class="border border-black" placeholder="email"
-            autocomplete="username" required autofocus />
+          <Field id="email_vaildate" name="email_vaildate" type="email" class="border border-black" />
+          <ErrorMessage name="email_vaildate" class="error-style" />
         </div>
         <div class="space-x-5">
           <label for="password">Password</label>
-          <input id="password" v-model="password" name="password" type="password" class="border border-black"
-            placeholder="Password" autocomplete="current-password" required />
+          <Field id="password_vaildate" name="password_vaildate" type="password" class="border border-black" />
+          <ErrorMessage name="password_vaildate" class="error-style" />
         </div>
       </div>
 
@@ -20,7 +20,7 @@
         Submit
       </button>
 
-    </form>
+    </Form>
     <GoogleSignIn />
     <FacebookSignIn />
     <GithubSignIn />
@@ -32,24 +32,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '~/stores/user'
 import { useToast } from 'vue-toastification'
+
+import { Field, Form, ErrorMessage } from 'vee-validate'
+import * as yup from 'yup'
+import lang from '~/plugins/yup/zhTW.json'
+
 import GoogleSignIn from '~/components/signIn/GoogleSignIn.vue'
 import FacebookSignIn from '~/components/signIn/FacebookSignIn.vue'
 import GithubSignIn from '~/components/signIn/GithubSignIn.vue'
 import userAPI from '~/apis/user'
 
 const toast = useToast()
-const password = ref()
-const email = ref()
 const route = useRouter()
 const mainStore = useUserStore()
+yup.setLocale(lang)
 
-async function handleSubmit () {
+const schema = yup.object().shape({
+  email_vaildate: yup.string().required().email().label('信箱'),
+  password_vaildate: yup.string().required().label('密碼')
+})
+
+async function onSubmit (values:any) {
   try {
-    const { data } = await userAPI.signIn({ email: email.value, password: password.value })
+    const { data } = await userAPI.signIn({ email: values.email_vaildate, password: values.password_vaildate })
 
     // 將伺服器回傳的token 保存在 localStorage 中
     localStorage.setItem('token', data.data.token)
@@ -64,10 +72,16 @@ async function handleSubmit () {
 
     // 成功登入後進行轉址
     route.push('/member')
-  } catch (error) {
+  } catch (error:any) {
     console.log('err', error)
-    toast.error('請重新登入')
+    toast.error('請重新登入', error.response.data.message)
   }
 }
 
 </script>
+
+<style lang="postcss" scoped>
+.error-style {
+  color: red
+}
+</style>
