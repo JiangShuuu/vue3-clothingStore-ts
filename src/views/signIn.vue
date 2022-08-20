@@ -79,9 +79,3 @@ async function onSubmit (values:any) {
 }
 
 </script>
-
-<style lang="postcss" scoped>
-.error-style {
-  color: red
-}
-</style>

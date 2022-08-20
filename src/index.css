@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  .error-style {
+    color: red
+  }
+
   .flex-center {
     @apply flex items-center justify-center
   }

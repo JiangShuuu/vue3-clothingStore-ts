@@ -1,28 +1,28 @@
 <template>
   <main class="flex-col space-y-10 flex-center">
-    <form class="flex-col space-y-10 w-96 flex-center" @submit.prevent.stop="handleSubmit">
+    <Form class="flex-col space-y-10 w-[500px] flex-center" @submit="handleSubmit" :validation-schema="schema">
       <h1 class="text-3xl">Sign Up</h1>
 
       <div class="space-y-5">
         <div class="space-x-10">
           <label for="name">name</label>
-          <input id="name" v-model="user.name" name="name" type="name" class="border border-black" placeholder="name"
-            autocomplete="username" required autofocus />
+          <Field id="name_vaildate" name="name_vaildate" type="name" class="border border-black" />
+          <ErrorMessage name="name_vaildate" class="error-style" />
         </div>
         <div class="space-x-10">
           <label for="email">email</label>
-          <input id="email" v-model="user.email" name="email" type="email" class="border border-black" placeholder="email"
-            autocomplete="username" required autofocus />
+          <Field id="email_vaildate" name="email_vaildate" type="email" class="border border-black" />
+          <ErrorMessage name="email_vaildate" class="error-style" />
         </div>
         <div class="space-x-5">
           <label for="password">Password</label>
-          <input id="password" v-model="user.password" name="password" type="password" class="border border-black"
-            placeholder="Password" autocomplete="current-password" required />
+          <Field id="password_vaildate" name="password_vaildate" type="password" class="border border-black" />
+          <ErrorMessage name="password_vaildate" class="error-style" />
         </div>
         <div class="space-x-5">
           <label for="checkPassword">CheckPassword</label>
-          <input id="checkPassword" v-model="user.passwordCheck" name="checkPassword" type="password" class="border border-black"
-            placeholder="checkPassword" autocomplete="current-password" required />
+          <Field id="passwordConfirmation" name="passwordConfirmation" type="password" class="border border-black" />
+          <ErrorMessage name="passwordConfirmation" class="error-style" />
         </div>
       </div>
 
@@ -30,7 +30,7 @@
         Submit
       </button>
 
-    </form>
+    </Form>
     <div class="mb-3 text-center">
       <router-link to="/signin"> Sign In </router-link>
       <p class="mt-5 mb-3 text-center text-muted">&copy; 2022</p>
@@ -39,25 +39,35 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '~/stores/user'
 import { useToast } from 'vue-toastification'
 import userAPI from '~/apis/user'
 
+import { Field, Form, ErrorMessage } from 'vee-validate'
+import * as yup from 'yup'
+import lang from '~/plugins/yup/zhTW.json'
+
 const route = useRouter()
 const toast = useToast()
-const user = reactive({
-  name: 'qwe',
-  email: 'gggg@gmail.com',
-  password: 'qwe',
-  passwordCheck: 'qwe'
+yup.setLocale(lang)
+
+const schema = yup.object().shape({
+  name_vaildate: yup.string().required().label('名字'),
+  email_vaildate: yup.string().required().email().label('信箱'),
+  password_vaildate: yup.string().required().label('密碼'),
+  passwordConfirmation: yup.string().required().oneOf([yup.ref('password_vaildate')], '密碼不相同').label('密碼確認')
 })
 
-async function handleSubmit () {
+async function handleSubmit (values: any) {
   try {
-    const { data } = await userAPI.signUp({ name: user.name, email: user.email, password: user.password, passwordCheck: user.passwordCheck })
+    const { data } = await userAPI.signUp({
+      name: values.name_vaildate,
+      email: values.email_vaildate,
+      password: values.password_vaildate,
+      passwordCheck: values.passwordConfirmation
+    })
 
+    console.log(data)
     toast.success('註冊成功', {
       timeout: 1000
     })
