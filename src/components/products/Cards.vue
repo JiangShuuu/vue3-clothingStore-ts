@@ -4,9 +4,7 @@
       <div class="relative cursor-pointer" @mouseenter="arr.isOpen = true"
         @mouseleave="arr.isOpen = false">
         <router-link :to="`/product/${arr.id}`" class="block overflow-hidden w-44 md:w-56 aspect-3/4">
-          <img class="object-cover"
-            :src="arr.image"
-            alt="">
+          <ImageLoad :image-url="arr.image" />
         </router-link>
         <div class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
           :class="{ ani : arr.isOpen }">
