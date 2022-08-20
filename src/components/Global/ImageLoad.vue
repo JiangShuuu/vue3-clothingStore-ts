@@ -22,7 +22,4 @@ const successLoadImg = () => {
     background-position: center;
     background-size: 30%;
 }
-.loading-image.hide {
-  display: none;
-}
 </style>
