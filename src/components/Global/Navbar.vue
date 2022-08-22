@@ -36,8 +36,11 @@
           <router-link to="/signIn" class="pt-1 md:pt-0">
             <Icon icon="carbon:user-avatar" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </router-link>
-          <router-link to="/cart" class="hidden mx-2 md:block">
+          <router-link to="/cart" class="relative hidden mx-2 md:block">
             <Icon icon="eva:shopping-cart-outline" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
+            <div class="absolute w-4 h-4 rounded-full -top-0.5 -right-1 bg-primary flex-center">
+              <p class="text-[1px] text-white">{{user.carts.length}}</p>
+            </div>
           </router-link>
           <li class="hidden mr-2 md:block">
             <Icon icon="clarity:heart-line" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
@@ -53,8 +56,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useUserStore } from '~/stores/user'
 
 const isOpen = ref(false)
+const user = useUserStore()
 
 function checkClose () {
   isOpen.value = !isOpen.value
