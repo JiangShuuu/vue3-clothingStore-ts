@@ -12,5 +12,8 @@ export default {
   },
   getCurrentUser () {
     return apiHelper.get('/current_user')
+  },
+  addCart (id:number) {
+    return apiHelper.post(`/cart/${id}`)
   }
 }

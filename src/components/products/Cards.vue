@@ -7,7 +7,7 @@
           <ImageLoad :image-url="arr.image" />
         </router-link>
         <div class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
-          :class="{ ani : arr.isOpen }">
+          :class="{ ani : arr.isOpen }" @click="addCart(arr.id)" >
           <div class="h-10 p-2 bg-black w-44 md:w-56 opacity-30"></div>
           <span class="absolute text-white opacity-0" :class="{ showtext : arr.isOpen }">加入購物車</span>
         </div>
@@ -17,6 +17,10 @@
 </template>
 
 <script setup lang="ts">
+import { useUserStore } from '~/stores/user'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+import userAPI from '~/apis/user'
 
 interface Products {
   Category: Object,
@@ -31,10 +35,26 @@ interface Products {
   title: String
 }
 
+const mainUser = useUserStore()
+const toast = useToast()
+const route = useRouter()
 const props = defineProps<{ cards: any }>()
 props.cards.forEach((element:any) => {
   element.isOpen = false
 })
+
+const addCart = async (id) => {
+  console.log('id', id)
+  console.log(mainUser.currentUser)
+
+  if (!mainUser.currentUser) {
+    toast.error('請先登入')
+    return route.push('/signIn')
+  }
+
+  const { data } = await userAPI.addCart(id)
+  console.log(data)
+}
 
 </script>
 

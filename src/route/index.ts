@@ -131,4 +131,22 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach(async (to, from, next) => {
+  // store
+  const userStore = useUserStore()
+
+  // 從locoalStorage 取出 token
+  const token = localStorage.getItem('token')
+  const tokenInStore = userStore.token
+
+  let isAuthenticated = userStore.isAuthenticated
+
+  // 有 token 的情況下，才向後端驗證
+  if (token && token !== tokenInStore) {
+    isAuthenticated = await userStore.fetchCurrentUser()
+  }
+
+  next()
+})
+
 export default router
