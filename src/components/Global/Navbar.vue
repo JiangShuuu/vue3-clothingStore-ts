@@ -34,7 +34,7 @@
       <div class="absolute right-4 top-3.5">
         <ul class="flex-center">
           <router-link to="/signIn" class="pt-1 md:pt-0">
-            <Icon icon="carbon:user-avatar" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
+            <Icon icon="carbon:user-avatar" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" :class="{ color: user.currentUser }"/>
           </router-link>
           <router-link to="/cart" class="relative hidden mx-2 md:block">
             <Icon icon="eva:shopping-cart-outline" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
@@ -68,6 +68,9 @@ function checkClose () {
 </script>
 
 <style lang="postcss" scoped>
+.color {
+  @apply text-primary;
+}
 .item {
   @apply font-extralight
 }

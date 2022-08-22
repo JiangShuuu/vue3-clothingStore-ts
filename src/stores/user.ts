@@ -20,6 +20,7 @@ export const useUserStore = defineStore({
     revokeAuthentication () {
       this.currentUser = null
       this.isAuthenticated = false
+      this.carts = []
       this.token = ''
       localStorage.removeItem('token')
     },
