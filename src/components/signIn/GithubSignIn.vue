@@ -1,5 +1,5 @@
 <template>
-  <button @click="signIn">GitHub登入</button>
+  <img src="/image/Github.svg" class="cursor-pointer w-14" alt="Github登入" @click="signIn"/>
 </template>
 
 <script setup lang="ts">

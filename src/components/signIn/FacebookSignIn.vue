@@ -1,5 +1,5 @@
 <template>
-  <button @click="signIn">Facebook登入</button>
+  <img src="/image/Facebook.svg" class="w-12 cursor-pointer" alt="Facebook登入" @click="signIn"/>
 </template>
 
 <script setup lang="ts">

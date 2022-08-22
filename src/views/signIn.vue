@@ -1,33 +1,38 @@
 <template>
   <main class="flex-col space-y-10 flex-center">
     <Form class="flex-col space-y-10 w-[500px] flex-center" @submit="onSubmit" :validation-schema="schema">
-      <h1 class="text-3xl">Sign In</h1>
+      <h1 class="pt-10 text-3xl">會員登入</h1>
 
-      <div class="space-y-5">
-        <div class="space-x-5">
+      <div class="flex flex-col items-end space-y-5">
+        <div class="items-start space-x-5 flex-center">
           <label for="email">email</label>
-          <Field id="email_vaildate" name="email_vaildate" type="email" class="border border-black" />
-          <ErrorMessage name="email_vaildate" class="error-style" />
+          <div class="flex flex-col space-y-2">
+            <Field id="email_vaildate" name="email_vaildate" type="email" class="border border-black" />
+            <ErrorMessage name="email_vaildate" class="error-style" />
+          </div>
         </div>
-        <div class="space-x-5">
+        <div class="items-start space-x-5 flex-center">
           <label for="password">Password</label>
-          <Field id="password_vaildate" name="password_vaildate" type="password" class="border border-black" />
-          <ErrorMessage name="password_vaildate" class="error-style" />
+          <div class="flex flex-col space-y-2">
+            <Field id="password_vaildate" name="password_vaildate" type="password" class="border border-black" />
+            <ErrorMessage name="password_vaildate" class="error-style" />
+          </div>
         </div>
       </div>
 
-      <button class="p-2 border rounded border-primary" type="submit">
-        Submit
-      </button>
-
+      <div class="flex flex-col space-y-2 text-center">
+        <button class="p-2 border rounded border-primary" type="submit">
+          Submit
+        </button>
+        <router-link to="/signup" class="text-primary"> Sign Up </router-link>
+      </div>
     </Form>
-    <GoogleSignIn />
-    <FacebookSignIn />
-    <GithubSignIn />
-    <div class="mb-3 text-center">
-      <router-link to="/signup"> Sign Up </router-link>
-      <p class="mt-5 mb-3 text-center text-muted">&copy; 2022</p>
+    <div class="flex space-x-6">
+      <GoogleSignIn />
+      <FacebookSignIn />
+      <GithubSignIn />
     </div>
+    <p class="pb-10 text-center text-muted">&copy; 2022</p>
   </main>
 </template>
 

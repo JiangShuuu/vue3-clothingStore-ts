@@ -1,5 +1,5 @@
 <template>
-  <button @click="signIn">Google登入</button>
+  <img src="/image/Google.svg" class="cursor-pointer w-14" alt="google登入" @click="signIn"/>
 </template>
 
 <script setup lang="ts">
