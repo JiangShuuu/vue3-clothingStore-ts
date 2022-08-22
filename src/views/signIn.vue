@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-col space-y-10 flex-center">
+  <main class="flex-col mb-10 space-y-10 flex-center">
     <Form class="flex-col space-y-10 w-[500px] flex-center" @submit="onSubmit" :validation-schema="schema">
       <h1 class="pt-10 text-3xl">會員登入</h1>
 
@@ -32,7 +32,6 @@
       <FacebookSignIn />
       <GithubSignIn />
     </div>
-    <p class="pb-10 text-center text-muted">&copy; 2022</p>
   </main>
 </template>
 

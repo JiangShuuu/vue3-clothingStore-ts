@@ -1,40 +1,46 @@
 <template>
-  <main class="flex-col space-y-10 flex-center">
+  <main class="flex-col mb-10 space-y-10 flex-center">
     <Form class="flex-col space-y-10 w-[500px] flex-center" @submit="handleSubmit" :validation-schema="schema">
-      <h1 class="text-3xl">Sign Up</h1>
+      <h1 class="pt-10 text-3xl">會員註冊</h1>
 
-      <div class="space-y-5">
-        <div class="space-x-10">
+      <div class="flex flex-col items-end space-y-5">
+        <div class="items-start space-x-5 flex-center">
           <label for="name">name</label>
-          <Field id="name_vaildate" name="name_vaildate" type="name" class="border border-black" />
-          <ErrorMessage name="name_vaildate" class="error-style" />
+          <div class="flex flex-col space-y-2">
+            <Field id="name_vaildate" name="name_vaildate" type="name" class="border border-black" />
+            <ErrorMessage name="name_vaildate" class="error-style" />
+          </div>
         </div>
-        <div class="space-x-10">
+        <div class="items-start space-x-5 flex-center">
           <label for="email">email</label>
-          <Field id="email_vaildate" name="email_vaildate" type="email" class="border border-black" />
-          <ErrorMessage name="email_vaildate" class="error-style" />
+          <div class="flex flex-col space-y-2">
+            <Field id="email_vaildate" name="email_vaildate" type="email" class="border border-black" />
+            <ErrorMessage name="email_vaildate" class="error-style" />
+          </div>
         </div>
-        <div class="space-x-5">
+        <div class="items-start space-x-5 flex-center">
           <label for="password">Password</label>
-          <Field id="password_vaildate" name="password_vaildate" type="password" class="border border-black" />
-          <ErrorMessage name="password_vaildate" class="error-style" />
+          <div class="flex flex-col space-y-2">
+            <Field id="password_vaildate" name="password_vaildate" type="password" class="border border-black" />
+            <ErrorMessage name="password_vaildate" class="error-style" />
+          </div>
         </div>
-        <div class="space-x-5">
+        <div class="items-start space-x-5 flex-center">
           <label for="checkPassword">CheckPassword</label>
-          <Field id="passwordConfirmation" name="passwordConfirmation" type="password" class="border border-black" />
-          <ErrorMessage name="passwordConfirmation" class="error-style" />
+          <div class="flex flex-col space-y-2">
+            <Field id="passwordConfirmation" name="passwordConfirmation" type="password" class="border border-black" />
+            <ErrorMessage name="passwordConfirmation" class="error-style" />
+          </div>
         </div>
       </div>
 
-      <button class="p-2 border rounded border-primary" type="submit">
-        Submit
-      </button>
-
+      <div class="flex flex-col space-y-2 text-center">
+        <button class="p-2 border rounded border-primary" type="submit">
+          Submit
+        </button>
+        <router-link to="/signin" class="text-primary"> Sign In </router-link>
+      </div>
     </Form>
-    <div class="mb-3 text-center">
-      <router-link to="/signin"> Sign In </router-link>
-      <p class="mt-5 mb-3 text-center text-muted">&copy; 2022</p>
-    </div>
   </main>
 </template>
 
