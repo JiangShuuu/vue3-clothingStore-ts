@@ -5,15 +5,17 @@ export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
     currentUser: null,
+    carts: [],
     isAuthenticated: false,
     token: ''
   }),
   actions: {
     setCurrentUser (user:any) {
-      this.currentUser = user
+      this.currentUser = user.userData
+      this.carts = user.CartProducts
       this.isAuthenticated = true
       this.token = `${localStorage.getItem('token')}`
-      console.log('currentUser', user.name)
+      console.log('currentUser', user.userData.name)
     },
     revokeAuthentication () {
       this.currentUser = null
@@ -25,6 +27,7 @@ export const useUserStore = defineStore({
       try {
         const { data } = await usersAPI.getCurrentUser()
         this.currentUser = data.data
+        this.carts = data.data.CartProducts
 
         return true
       } catch (err) {
