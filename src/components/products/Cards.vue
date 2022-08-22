@@ -6,7 +6,12 @@
         <router-link :to="`/product/${arr.id}`" class="block overflow-hidden w-44 md:w-56 aspect-3/4">
           <ImageLoad :image-url="arr.image" />
         </router-link>
-        <div class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
+        <div v-if="arr.isCart" class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
+          :class="{ ani : arr.isOpen }" @click="deleteCart(arr.id)" >
+          <div class="h-10 p-2 bg-black w-44 md:w-56 opacity-30"></div>
+          <span class="absolute text-white opacity-0" :class="{ showtext : arr.isOpen }">移除購物車</span>
+        </div>
+        <div v-else class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
           :class="{ ani : arr.isOpen }" @click="addCart(arr.id)" >
           <div class="h-10 p-2 bg-black w-44 md:w-56 opacity-30"></div>
           <span class="absolute text-white opacity-0" :class="{ showtext : arr.isOpen }">加入購物車</span>
@@ -54,6 +59,10 @@ const addCart = async (id) => {
 
   const { data } = await userAPI.addCart(id)
   console.log(data)
+}
+
+const deleteCart = async (id) => {
+  const { data } = await userAPI.deleteCart(id)
 }
 
 </script>

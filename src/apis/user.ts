@@ -15,5 +15,8 @@ export default {
   },
   addCart (id:number) {
     return apiHelper.post(`/cart/${id}`)
+  },
+  deleteCart (id:number) {
+    return apiHelper.delete(`/cart/${id}`)
   }
 }
