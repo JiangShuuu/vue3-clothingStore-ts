@@ -39,7 +39,7 @@
           <router-link to="/cart" class="relative hidden mx-2 md:block">
             <Icon icon="eva:shopping-cart-outline" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
             <div class="absolute w-4 h-4 rounded-full -top-0.5 -right-1 bg-primary flex-center">
-              <p class="text-[1px] text-white">{{user.carts.length}}</p>
+              <p class="text-[1px] text-white">{{user.carts.length || 0}}</p>
             </div>
           </router-link>
           <li class="hidden mr-2 md:block">

@@ -25,11 +25,14 @@ const signIn = () => {
 
       userAPI.thirdPartyLogin(user)
         .then((data) => {
+          console.log(data)
+          console.log(data.data.data.token)
+          console.log(data.data.data.user)
           // 將伺服器回傳的token 保存在 localStorage 中
           localStorage.setItem('token', data.data.data.token)
 
           // pinia user
-          mainStore.setCurrentUser(data.data.data.user)
+          mainStore.setCurrentUser(data.data.data)
 
           // Toast
           toast.success('登入成功', {
@@ -38,7 +41,7 @@ const signIn = () => {
           // 成功登入後進行轉址
           route.push('/member')
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err)
         })
     })

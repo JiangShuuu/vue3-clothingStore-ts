@@ -17,7 +17,7 @@
         <Icon icon="eva:shopping-cart-outline" class="w-5 h-5 my-1" />
         <span>購物車</span>
         <div class="absolute w-4 h-4 rounded-full -top-0.5 right-0 bg-primary flex-center">
-          <p class="text-[1px] text-white">{{user.carts.length}}</p>
+          <p class="text-[1px] text-white">{{user.carts.length || 0}}</p>
         </div>
       </router-link>
     </ul>
