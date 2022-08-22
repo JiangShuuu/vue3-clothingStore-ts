@@ -7,12 +7,12 @@
           <ImageLoad :image-url="arr.image" />
         </router-link>
         <div v-if="arr.isCart" class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
-          :class="{ ani : arr.isOpen }" @click="deleteCart(arr.id)" >
+          :class="{ ani : arr.isOpen }" @click="deleteCart(arr)" >
           <div class="h-10 p-2 bg-black w-44 md:w-56 opacity-30"></div>
           <span class="absolute text-white opacity-0" :class="{ showtext : arr.isOpen }">移除購物車</span>
         </div>
         <div v-else class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
-          :class="{ ani : arr.isOpen }" @click="addCart(arr.id)" >
+          :class="{ ani : arr.isOpen }" @click="addCart(arr)" >
           <div class="h-10 p-2 bg-black w-44 md:w-56 opacity-30"></div>
           <span class="absolute text-white opacity-0" :class="{ showtext : arr.isOpen }">加入購物車</span>
         </div>
@@ -48,8 +48,8 @@ props.cards.forEach((element:any) => {
   element.isOpen = false
 })
 
-const addCart = async (id) => {
-  console.log('id', id)
+const addCart = async (product) => {
+  console.log('id', product.id)
   console.log(mainUser.currentUser)
 
   if (!mainUser.currentUser) {
@@ -57,12 +57,14 @@ const addCart = async (id) => {
     return route.push('/signIn')
   }
 
-  const { data } = await userAPI.addCart(id)
+  const { data } = await userAPI.addCart(product.id)
   console.log(data)
+  product.isCart = true
 }
 
-const deleteCart = async (id) => {
-  const { data } = await userAPI.deleteCart(id)
+const deleteCart = async (product) => {
+  const { data } = await userAPI.deleteCart(product.id)
+  product.isCart = false
 }
 
 </script>
