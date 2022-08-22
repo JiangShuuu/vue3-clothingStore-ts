@@ -13,9 +13,12 @@
         <Icon icon="clarity:heart-line" class="w-5 h-5 my-1" />
         <span>我的收藏</span>
       </router-link>
-      <router-link to="/cart" class="flex-center" :class="['icon', { active: $route.path === '/cart' }]">
+      <router-link to="/cart" class="relative flex-center" :class="['icon', { active: $route.path === '/cart' }]">
         <Icon icon="eva:shopping-cart-outline" class="w-5 h-5 my-1" />
         <span>購物車</span>
+        <div class="absolute w-4 h-4 rounded-full -top-0.5 right-0 bg-primary flex-center">
+          <p class="text-[1px] text-white">{{user.carts.length}}</p>
+        </div>
       </router-link>
     </ul>
   </div>
@@ -61,6 +64,12 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useUserStore } from '~/stores/user'
+
+const user = useUserStore()
+</script>
 
 <style lang="postcss" scoped>
 .text_title {
