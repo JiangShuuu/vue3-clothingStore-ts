@@ -59,11 +59,15 @@ const addCart = async (product) => {
 
   const { data } = await userAPI.addCart(product.id)
   console.log(data)
+
+  mainUser.carts.push(product)
   product.isCart = true
 }
 
 const deleteCart = async (product) => {
   const { data } = await userAPI.deleteCart(product.id)
+
+  mainUser.carts = mainUser.carts.filter(item => item.id !== product.id)
   product.isCart = false
 }
 
