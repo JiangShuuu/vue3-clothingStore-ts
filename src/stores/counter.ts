@@ -8,11 +8,6 @@ export const useCounterStore = defineStore({
       circle2: false,
       circle3: false
     },
-    cartProduct: {
-      price: 450,
-      count: 0,
-      total: 0
-    },
     order: {
       price: 0,
       fee: 200,

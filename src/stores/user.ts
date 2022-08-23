@@ -3,9 +3,6 @@ import { useToast } from 'vue-toastification'
 import { useRouter } from 'vue-router'
 import usersAPI from '~/apis/user'
 
-const toast = useToast()
-const route = useRouter()
-
 interface Product {
   Category: Object,
   categoryId: number,
@@ -19,7 +16,9 @@ interface Product {
   price: number,
   short_intro: string,
   title: string,
-  viewCounts: number
+  viewCounts: number,
+  count: number,
+  total: number
 }
 interface User {
   currentUser: object|null,
@@ -55,7 +54,13 @@ export const useUserStore = defineStore({
       try {
         const { data } = await usersAPI.getCurrentUser()
         this.currentUser = data.data
-        this.carts = data.data.CartProducts
+
+        const cartProducts = data.data.CartProducts
+        cartProducts.forEach((element: any) => {
+          element.total = 0
+          element.count = 0
+        })
+        this.carts = cartProducts
 
         return true
       } catch (err) {
@@ -65,6 +70,8 @@ export const useUserStore = defineStore({
       }
     },
     async addCart (product:Product) {
+      const toast = useToast()
+      const route = useRouter()
       console.log('id', product.id)
       console.log(this.currentUser)
 

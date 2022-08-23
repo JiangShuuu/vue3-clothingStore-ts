@@ -1,5 +1,5 @@
 <template>
-  <section class="relative flex-col hidden md:flex">
+  <section class="flex-col hidden md:flex">
     <div class="hidden grid-flow-row grid-cols-5 py-3 text-sm border md:grid">
       <p>商品資料</p>
       <p>原價</p>
@@ -7,8 +7,8 @@
       <p>數量</p>
       <p>小計</p>
     </div>
-    <template v-for="item in userCarts" :key="item.id">
-      <div class="hidden grid-flow-row grid-cols-5 p-2 text-sm border md:grid">
+    <div v-for="item in userCarts" :key="item.id">
+      <div class="relative hidden grid-flow-row grid-cols-5 p-2 text-sm border md:grid">
         <div class="grid grid-flow-row grid-cols-2 ml-12 w-36 flex-center">
           <div class="w-16 h-16 overflow-hidden border">
             <img :src="item.image" class="object-cover" alt="">
@@ -24,19 +24,19 @@
         </div>
         <div class="flex-center">
           <div class="justify-between w-32 p-2 border flex-center">
-            <Icon icon="fa-solid:minus" @click="mainStore.reduceCount(testProduct)" class="w-4 h-4 cursor-pointer " />
-            <p class="text-sm">{{ mainStore.cartProduct.count }}</p>
-            <Icon icon="fa-solid:plus" @click="mainStore.addCount(testProduct)" class="w-4 h-4 cursor-pointer" />
+            <Icon icon="fa-solid:minus" @click="mainStore.reduceCount(item)" class="w-4 h-4 cursor-pointer " />
+            <p class="text-sm">{{ item.count }}</p>
+            <Icon icon="fa-solid:plus" @click="mainStore.addCount(item)" class="w-4 h-4 cursor-pointer" />
           </div>
         </div>
         <div class="flex-center">
-          <p>NT${{ testProduct.total }}</p>
+          <p>NT${{ item.total }}</p>
         </div>
-        <div class="absolute right-5 top-[4.8rem]">
+        <div class="absolute top-7 right-8" @click="userStore.deleteCart(item)">
           <Icon icon="icon-park-outline:delete-five" class="w-5 h-5 text-gray-500 cursor-pointer" />
         </div>
       </div>
-    </template>
+    </div>
   </section>
   <section class="md:hidden">
     <div class="flex justify-between p-2">
@@ -69,7 +69,8 @@ import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
 const userStore = useUserStore()
 const mainStore = useCounterStore()
-const testProduct = mainStore.cartProduct
+// const testProduct = mainStore.cartProduct
 
 const userCarts = userStore.carts
+
 </script>

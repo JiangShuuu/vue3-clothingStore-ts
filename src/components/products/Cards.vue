@@ -23,26 +23,8 @@
 
 <script setup lang="ts">
 import { useUserStore } from '~/stores/user'
-import { useRouter } from 'vue-router'
-import { useToast } from 'vue-toastification'
-import userAPI from '~/apis/user'
-
-interface Products {
-  Category: Object,
-  categoryID: Number,
-  description: String,
-  id: Number,
-  image: String,
-  isOpen: Boolean,
-  og_price: Number,
-  price: Number,
-  short_intro: String,
-  title: String
-}
 
 const mainUser = useUserStore()
-const toast = useToast()
-const route = useRouter()
 const props = defineProps<{ cards: any }>()
 props.cards.forEach((element:any) => {
   element.isOpen = false
