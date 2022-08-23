@@ -7,12 +7,12 @@
           <ImageLoad :image-url="arr.image" />
         </router-link>
         <div v-if="arr.isCart" class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
-          :class="{ ani : arr.isOpen }" @click="deleteCart(arr)" >
+          :class="{ ani : arr.isOpen }" @click="mainUser.deleteCart(arr)" >
           <div class="h-10 p-2 bg-black w-44 md:w-56 opacity-30"></div>
           <span class="absolute text-white opacity-0" :class="{ showtext : arr.isOpen }">移除購物車</span>
         </div>
         <div v-else class="absolute bottom-0 origin-bottom scale-y-0 opacity-0 cursor-pointer flex-center hover:bg-black"
-          :class="{ ani : arr.isOpen }" @click="addCart(arr)" >
+          :class="{ ani : arr.isOpen }" @click="mainUser.addCart(arr)" >
           <div class="h-10 p-2 bg-black w-44 md:w-56 opacity-30"></div>
           <span class="absolute text-white opacity-0" :class="{ showtext : arr.isOpen }">加入購物車</span>
         </div>
@@ -47,30 +47,6 @@ const props = defineProps<{ cards: any }>()
 props.cards.forEach((element:any) => {
   element.isOpen = false
 })
-
-const addCart = async (product) => {
-  console.log('id', product.id)
-  console.log(mainUser.currentUser)
-
-  if (!mainUser.currentUser) {
-    toast.error('請先登入')
-    return route.push('/signIn')
-  }
-
-  const { data } = await userAPI.addCart(product.id)
-  console.log(data)
-
-  mainUser.carts.push(product)
-  product.isCart = true
-}
-
-const deleteCart = async (product) => {
-  const { data } = await userAPI.deleteCart(product.id)
-
-  mainUser.carts = mainUser.carts.filter(item => item.id !== product.id)
-  product.isCart = false
-}
-
 </script>
 
 <style lang="postcss" scoped>
