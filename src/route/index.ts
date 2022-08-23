@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import SignIn from '~/views/signIn.vue'
 import SignUp from '~/views/signUp.vue'
 import { useUserStore } from '~/stores/user'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const authorizeIsUser = async (to:any, from:any, next:any) => {
   // store
@@ -23,6 +26,9 @@ const authorizeIsUser = async (to:any, from:any, next:any) => {
 
   // 如果 token 無效，則轉址到登入頁
   if (!isAuthenticated && !pathsWithoutAuthentication.includes(to.name)) {
+    toast.warning('請先登入', {
+      timeout: 1000
+    })
     next('/signin')
     return
   }
@@ -30,6 +36,42 @@ const authorizeIsUser = async (to:any, from:any, next:any) => {
   // 如果 token 有效，則允許到會員頁
   if (isAuthenticated && pathsWithoutAuthentication.includes(to.name)) {
     next('/member')
+    return
+  }
+
+  next()
+}
+
+const authorizeUserCart = async (to:any, from:any, next:any) => {
+  // store
+  const userStore = useUserStore()
+
+  // 從locoalStorage 取出 token
+  const token = localStorage.getItem('token')
+  const tokenInStore = userStore.token
+
+  let isAuthenticated = userStore.isAuthenticated
+
+  // 有 token 的情況下，才向後端驗證
+  if (token && token !== tokenInStore) {
+    isAuthenticated = await userStore.fetchCurrentUser()
+  }
+
+  // 如果 token 有效，則無法進入signUp 跟 signIn
+  const pathsWithoutAuthentication = ['cart']
+
+  // 如果 token 無效，則轉址到登入頁
+  if (!isAuthenticated && !pathsWithoutAuthentication.includes(to.name)) {
+    toast.warning('請先登入', {
+      timeout: 1000
+    })
+    next('/signin')
+    return
+  }
+
+  // 如果 token 有效，則允許到會員頁
+  if (isAuthenticated && pathsWithoutAuthentication.includes(to.name)) {
+    next('/cart')
     return
   }
 
@@ -96,9 +138,10 @@ const router = createRouter({
     },
     {
       path: '/cart',
-      name: 'Cart',
+      name: 'cart',
       component: () => import('../views/cart.vue'),
       redirect: '/cart/order',
+      beforeEnter: authorizeUserCart,
       children: [
         {
           path: '/cart/order',
