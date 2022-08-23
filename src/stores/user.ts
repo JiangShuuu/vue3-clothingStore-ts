@@ -11,7 +11,7 @@ interface Product {
   categoryId: number,
   description: string,
   id: number,
-  img: string,
+  image: string,
   isCart: boolean,
   isFavorited: boolean,
   isOpen: false,
