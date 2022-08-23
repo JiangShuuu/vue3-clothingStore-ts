@@ -1,7 +1,7 @@
 <template>
   <section class="flex-col block w-full h-full mb-24 space-y-3 flex-center">
     <h2 class="text-2xl underline underline-offset-4 text-primary">購物車</h2>
-    <CartLogin />
+    <!-- <CartLogin /> -->
     <section class="border">
       <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
         <p>購物車</p>
@@ -10,7 +10,7 @@
       <section class="relative flex-col hidden md:flex">
         <div class="hidden grid-flow-row grid-cols-5 py-3 text-sm border md:grid">
           <p>商品資料</p>
-          <p>優惠</p>
+          <p>原價</p>
           <p>單件價格</p>
           <p>數量</p>
           <p>小計</p>
@@ -24,7 +24,9 @@
             </div>
             <p class="text-sm">防風上衣</p>
           </div>
-          <div></div>
+          <div class="flex-center">
+            <s>NT$500</s>
+          </div>
           <div class="flex-center">
             <p>NT${{ mainStore.cartProduct.price }}</p>
           </div>
@@ -129,7 +131,7 @@
 </template>
 
 <script setup lang="ts">
-import CartLogin from './CartLogin.vue'
+// import CartLogin from './CartLogin.vue'
 import { useCounterStore } from '../../stores/counter'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'

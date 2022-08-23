@@ -1,7 +1,7 @@
 <template>
   <section class="flex-col block w-full h-full mb-24 space-y-3 flex-center">
     <h2 class="text-2xl underline underline-offset-4 text-primary">填寫資料</h2>
-    <CartLogin />
+    <!-- <CartLogin /> -->
     <CartInfo />
     <section class="space-y-3 md:space-y-0 md:flex md:space-x-4">
       <div class="w-full space-y-3">
@@ -111,7 +111,7 @@
 
 <script setup lang="ts">
 import CartLogin from './CartLogin.vue'
-import CartInfo from './CartInfo.vue'
+// import CartInfo from './CartInfo.vue'
 import { useCounterStore } from '../../stores/counter'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
