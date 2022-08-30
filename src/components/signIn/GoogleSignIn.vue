@@ -25,9 +25,6 @@ const signIn = () => {
 
       userAPI.thirdPartyLogin(user)
         .then((data) => {
-          console.log(data)
-          console.log(data.data.data.token)
-          console.log(data.data.data.user)
           // 將伺服器回傳的token 保存在 localStorage 中
           localStorage.setItem('token', data.data.data.token)
 

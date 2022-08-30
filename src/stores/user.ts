@@ -38,7 +38,7 @@ export const useUserStore = defineStore({
   actions: {
     setCurrentUser (user:any) {
       this.currentUser = user.userData
-      this.carts = user.CartProducts
+      this.carts = user.userData.CartProducts
       this.isAuthenticated = true
       this.token = `${localStorage.getItem('token')}`
       console.log('currentUser', user.userData.name)
