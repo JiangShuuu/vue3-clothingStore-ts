@@ -25,8 +25,7 @@ interface User {
   currentUser: object|null,
   carts: Product[],
   isAuthenticated: boolean,
-  token: string,
-  orderTotal: number
+  token: string
 }
 
 export const useUserStore = defineStore({
@@ -35,8 +34,7 @@ export const useUserStore = defineStore({
     currentUser: null,
     carts: [],
     isAuthenticated: false,
-    token: '',
-    orderTotal: 0
+    token: ''
   }),
   actions: {
     setCurrentUser (user:any) {

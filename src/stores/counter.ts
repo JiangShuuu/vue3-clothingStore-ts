@@ -16,10 +16,10 @@ export const useCounterStore = defineStore({
   }),
   actions: {
     addOrderCount (item:any) {
-      this.order.price += item.total
+      this.order.price += item.price
     },
     reduceOrderCount (item:any) {
-      this.order.price -= item.total
+      this.order.price -= item.price
     }
   },
   getters: {
