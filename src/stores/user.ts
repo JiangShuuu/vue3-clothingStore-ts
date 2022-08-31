@@ -56,7 +56,9 @@ export const useUserStore = defineStore({
         this.currentUser = data.data
 
         const cartProducts = data.data.CartProducts
-
+        cartProducts.forEach((element: any) => {
+          element.total = element.price * element.Cart.productCount
+        })
         this.carts = cartProducts
 
         return true

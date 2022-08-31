@@ -79,6 +79,7 @@ async function addCount (item:any) {
   await userAPI.addCount(item.id)
     .then(data => {
       item.Cart.productCount += 1
+      item.total = item.Cart.productCount * item.price
       console.log(data)
     })
     .catch(err => console.log(err))
@@ -88,6 +89,7 @@ async function reduceCount (item:any) {
   await userAPI.reduceCount(item.id)
     .then(data => {
       item.Cart.productCount -= 1
+      item.total = item.Cart.productCount * item.price
       console.log(data)
     })
     .catch(err => console.log(err))
