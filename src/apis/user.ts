@@ -18,5 +18,11 @@ export default {
   },
   deleteCart (id:number) {
     return apiHelper.delete(`/cart/${id}`)
+  },
+  addCount (id:number) {
+    return apiHelper.post(`/cart-add-count/${id}`)
+  },
+  reduceCount (id:number) {
+    return apiHelper.post(`/cart-reduce-count/${id}`)
   }
 }
