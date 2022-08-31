@@ -15,19 +15,11 @@ export const useCounterStore = defineStore({
     }
   }),
   actions: {
-    addCount (item:any) {
-      if (item.count >= 0) {
-        item.count++
-        item.total = item.count * item.price
-        this.order.price += item.price
-      }
+    addOrderCount (item:any) {
+      this.order.price += item.total
     },
-    reduceCount (item:any) {
-      if (item.count > 0) {
-        item.count--
-        item.total = item.count * item.price
-        this.order.price -= item.price
-      }
+    reduceOrderCount (item:any) {
+      this.order.price -= item.total
     }
   },
   getters: {

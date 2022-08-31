@@ -50,6 +50,10 @@ const authorizeUserCart = async (to:any, from:any, next:any) => {
   const token = localStorage.getItem('token')
   const tokenInStore = userStore.token
 
+  console.log(token === tokenInStore)
+  console.log(token)
+  console.log(tokenInStore)
+
   let isAuthenticated = userStore.isAuthenticated
 
   // 有 token 的情況下，才向後端驗證
@@ -174,22 +178,22 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(async (to, from, next) => {
-  // store
-  const userStore = useUserStore()
+// router.beforeEach(async (to, from, next) => {
+//   // store
+//   const userStore = useUserStore()
 
-  // 從locoalStorage 取出 token
-  const token = localStorage.getItem('token')
-  const tokenInStore = userStore.token
+//   // 從locoalStorage 取出 token
+//   const token = localStorage.getItem('token')
+//   const tokenInStore = userStore.token
 
-  let isAuthenticated = userStore.isAuthenticated
+//   let isAuthenticated = userStore.isAuthenticated
 
-  // 有 token 的情況下，才向後端驗證
-  if (token && token !== tokenInStore) {
-    isAuthenticated = await userStore.fetchCurrentUser()
-  }
+//   // 有 token 的情況下，才向後端驗證
+//   if (token && token !== tokenInStore) {
+//     isAuthenticated = await userStore.fetchCurrentUser()
+//   }
 
-  next()
-})
+//   next()
+// })
 
 export default router

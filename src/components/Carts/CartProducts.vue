@@ -67,11 +67,9 @@
 <script setup lang="ts">
 import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
-import { computed, ref } from 'vue'
 import userAPI from '~/apis/user'
 const userStore = useUserStore()
 const mainStore = useCounterStore()
-// const testProduct = mainStore.cartProduct
 
 const userCarts = userStore.carts
 
@@ -80,6 +78,7 @@ async function addCount (item:any) {
     .then(data => {
       item.Cart.productCount += 1
       item.total = item.Cart.productCount * item.price
+      mainStore.addOrderCount(item)
       console.log(data)
     })
     .catch(err => console.log(err))
@@ -90,6 +89,7 @@ async function reduceCount (item:any) {
     .then(data => {
       item.Cart.productCount -= 1
       item.total = item.Cart.productCount * item.price
+      mainStore.reduceOrderCount(item)
       console.log(data)
     })
     .catch(err => console.log(err))

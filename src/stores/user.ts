@@ -24,7 +24,8 @@ interface User {
   currentUser: object|null,
   carts: Product[],
   isAuthenticated: boolean,
-  token: string
+  token: string,
+  orderTotal: number
 }
 
 export const useUserStore = defineStore({
@@ -33,7 +34,8 @@ export const useUserStore = defineStore({
     currentUser: null,
     carts: [],
     isAuthenticated: false,
-    token: ''
+    token: '',
+    orderTotal: 0
   }),
   actions: {
     setCurrentUser (user:any) {
@@ -58,7 +60,9 @@ export const useUserStore = defineStore({
         const cartProducts = data.data.CartProducts
         cartProducts.forEach((element: any) => {
           element.total = element.price * element.Cart.productCount
+          this.orderTotal += element.total
         })
+        console.log('orderTotal', this.orderTotal)
         this.carts = cartProducts
 
         return true
