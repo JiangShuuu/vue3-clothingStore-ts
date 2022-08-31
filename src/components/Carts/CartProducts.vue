@@ -24,9 +24,9 @@
         </div>
         <div class="flex-center">
           <div class="justify-between w-32 p-2 border flex-center">
-            <Icon icon="fa-solid:minus" @click="mainStore.reduceCount(item)" class="w-4 h-4 cursor-pointer " />
-            <p class="text-sm">{{ item.count }}</p>
-            <Icon icon="fa-solid:plus" @click="mainStore.addCount(item)" class="w-4 h-4 cursor-pointer" />
+            <Icon icon="fa-solid:minus" @click="reduceCount(item)" class="w-4 h-4 cursor-pointer " />
+            <p class="text-sm">{{ item.Cart.productCount }}</p>
+            <Icon icon="fa-solid:plus" @click="addCount(item)" class="w-4 h-4 cursor-pointer" />
           </div>
         </div>
         <div class="flex-center">
@@ -67,10 +67,29 @@
 <script setup lang="ts">
 import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
+import { computed, ref } from 'vue'
+import userAPI from '~/apis/user'
 const userStore = useUserStore()
 const mainStore = useCounterStore()
 // const testProduct = mainStore.cartProduct
 
 const userCarts = userStore.carts
 
+async function addCount (item:any) {
+  await userAPI.addCount(item.id)
+    .then(data => {
+      item.Cart.productCount += 1
+      console.log(data)
+    })
+    .catch(err => console.log(err))
+}
+
+async function reduceCount (item:any) {
+  await userAPI.reduceCount(item.id)
+    .then(data => {
+      item.Cart.productCount -= 1
+      console.log(data)
+    })
+    .catch(err => console.log(err))
+}
 </script>
