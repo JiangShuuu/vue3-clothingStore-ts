@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { useToast } from 'vue-toastification'
 import { useRouter } from 'vue-router'
 import usersAPI from '~/apis/user'
+import { useCounterStore } from '~/stores/counter'
 
 interface Product {
   Category: Object,
@@ -39,9 +40,18 @@ export const useUserStore = defineStore({
   }),
   actions: {
     setCurrentUser (user:any) {
-      console.log(user)
       this.currentUser = user.userData
-      this.carts = user.CartProducts
+
+      // CartProduct
+      const mainCount = useCounterStore()
+      const cartProducts = user.CartProducts
+      cartProducts.forEach((element: any) => {
+        element.total = element.price * element.Cart.productCount
+        mainCount.order.price += element.total
+      })
+      this.carts = cartProducts
+
+      // auth & token
       this.isAuthenticated = true
       this.token = `${localStorage.getItem('token')}`
       console.log('currentUser', user.userData.name)
@@ -56,17 +66,8 @@ export const useUserStore = defineStore({
     async fetchCurrentUser () {
       try {
         const { data } = await usersAPI.getCurrentUser()
-        console.log(data)
-        this.setCurrentUser(data.user)
-        // this.currentUser = data.data
 
-        // const cartProducts = data.data.CartProducts
-        // cartProducts.forEach((element: any) => {
-        //   element.total = element.price * element.Cart.productCount
-        //   this.orderTotal += element.total
-        // })
-        // console.log('orderTotal', this.orderTotal)
-        // this.carts = cartProducts
+        this.setCurrentUser(data.data.user)
 
         return true
       } catch (err) {
