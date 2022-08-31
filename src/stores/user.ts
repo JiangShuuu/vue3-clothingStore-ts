@@ -39,8 +39,9 @@ export const useUserStore = defineStore({
   }),
   actions: {
     setCurrentUser (user:any) {
+      console.log(user)
       this.currentUser = user.userData
-      this.carts = user.userData.CartProducts
+      this.carts = user.CartProducts
       this.isAuthenticated = true
       this.token = `${localStorage.getItem('token')}`
       console.log('currentUser', user.userData.name)
@@ -55,15 +56,17 @@ export const useUserStore = defineStore({
     async fetchCurrentUser () {
       try {
         const { data } = await usersAPI.getCurrentUser()
-        this.currentUser = data.data
+        console.log(data)
+        this.setCurrentUser(data.user)
+        // this.currentUser = data.data
 
-        const cartProducts = data.data.CartProducts
-        cartProducts.forEach((element: any) => {
-          element.total = element.price * element.Cart.productCount
-          this.orderTotal += element.total
-        })
-        console.log('orderTotal', this.orderTotal)
-        this.carts = cartProducts
+        // const cartProducts = data.data.CartProducts
+        // cartProducts.forEach((element: any) => {
+        //   element.total = element.price * element.Cart.productCount
+        //   this.orderTotal += element.total
+        // })
+        // console.log('orderTotal', this.orderTotal)
+        // this.carts = cartProducts
 
         return true
       } catch (err) {

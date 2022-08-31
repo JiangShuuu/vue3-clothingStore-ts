@@ -62,7 +62,7 @@ const schema = yup.object().shape({
 async function onSubmit (values:any) {
   try {
     const { data } = await userAPI.signIn({ email: values.email_vaildate, password: values.password_vaildate })
-    console.log(data)
+
     // 將伺服器回傳的token 保存在 localStorage 中
     localStorage.setItem('token', data.data.token)
 
