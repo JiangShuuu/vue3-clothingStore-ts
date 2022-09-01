@@ -16,15 +16,16 @@ const authorizeIsUser = async (to:any, from:any, next:any) => {
 
   let isAuthenticated = userStore.isAuthenticated
 
-  // 有 token 的情況下，才向後端驗證
+  // 有 token 並且不等於 storeToken，向後端驗證
   if (token && token !== tokenInStore) {
     isAuthenticated = await userStore.fetchCurrentUser()
   }
 
   // 如果 token 有效，則無法進入signUp 跟 signIn
   const pathsWithoutAuthentication = ['sign-in', 'sign-up']
+  const pathWithoutCartPage = ['cart']
 
-  // 如果 token 無效，則轉址到登入頁
+  // 如果 驗證 無效，並且路由不是在登入、註冊頁，則轉址到登入頁
   if (!isAuthenticated && !pathsWithoutAuthentication.includes(to.name)) {
     toast.warning('請先登入', {
       timeout: 1000
@@ -33,49 +34,12 @@ const authorizeIsUser = async (to:any, from:any, next:any) => {
     return
   }
 
-  // 如果 token 有效，則允許到會員頁
+  // 如果 驗證 有效，並且路由是從登入頁，則轉址到會員頁
   if (isAuthenticated && pathsWithoutAuthentication.includes(to.name)) {
     next('/member')
     return
-  }
-
-  next()
-}
-
-const authorizeUserCart = async (to:any, from:any, next:any) => {
-  // store
-  const userStore = useUserStore()
-
-  // 從locoalStorage 取出 token
-  const token = localStorage.getItem('token')
-  const tokenInStore = userStore.token
-
-  console.log(token === tokenInStore)
-  console.log(token)
-  console.log(tokenInStore)
-
-  let isAuthenticated = userStore.isAuthenticated
-
-  // 有 token 的情況下，才向後端驗證
-  if (token && token !== tokenInStore) {
-    isAuthenticated = await userStore.fetchCurrentUser()
-  }
-
-  // 如果 token 有效，則無法進入signUp 跟 signIn
-  const pathsWithoutAuthentication = ['cart']
-
-  // 如果 token 無效，則轉址到登入頁
-  if (!isAuthenticated && !pathsWithoutAuthentication.includes(to.name)) {
-    toast.warning('請先登入', {
-      timeout: 1000
-    })
-    next('/signin')
-    return
-  }
-
-  // 如果 token 有效，則允許到會員頁
-  if (isAuthenticated && pathsWithoutAuthentication.includes(to.name)) {
-    next('/cart')
+  } else if (isAuthenticated && pathWithoutCartPage.includes(to.name)) {
+    next('cart')
     return
   }
 
@@ -145,7 +109,7 @@ const router = createRouter({
       name: 'cart',
       component: () => import('../views/cart.vue'),
       redirect: '/cart/order',
-      beforeEnter: authorizeUserCart,
+      beforeEnter: authorizeIsUser,
       children: [
         {
           path: '/cart/order',
@@ -178,22 +142,29 @@ const router = createRouter({
   ]
 })
 
-// router.beforeEach(async (to, from, next) => {
-//   // store
-//   const userStore = useUserStore()
+router.beforeEach(async (to:any, from:any, next:any) => {
+  const pathsWithoutAuthentication = ['sign-in', 'sign-up', 'cart']
 
-//   // 從locoalStorage 取出 token
-//   const token = localStorage.getItem('token')
-//   const tokenInStore = userStore.token
+  if (pathsWithoutAuthentication.includes(to.name)) {
+    next()
+    return
+  }
 
-//   let isAuthenticated = userStore.isAuthenticated
+  // store
+  const userStore = useUserStore()
 
-//   // 有 token 的情況下，才向後端驗證
-//   if (token && token !== tokenInStore) {
-//     isAuthenticated = await userStore.fetchCurrentUser()
-//   }
+  // 從locoalStorage 取出 token
+  const token = localStorage.getItem('token')
+  const tokenInStore = userStore.token
 
-//   next()
-// })
+  let isAuthenticated = userStore.isAuthenticated
+
+  // 有 token 並且不等於 storeToken，向後端驗證
+  if (token && token !== tokenInStore) {
+    isAuthenticated = await userStore.fetchCurrentUser()
+  }
+
+  next()
+})
 
 export default router
