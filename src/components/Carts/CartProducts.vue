@@ -19,7 +19,6 @@
           <s>{{item.og_price}}</s>
         </div>
         <div class="flex-center">
-          <!-- <p>NT${{ mainStore.cartProduct.price }}</p> -->
           <p>NT${{ item.price }}</p>
         </div>
         <div class="flex-center">

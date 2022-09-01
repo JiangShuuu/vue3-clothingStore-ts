@@ -5,6 +5,10 @@ import usersAPI from '~/apis/user'
 import { useCounterStore } from '~/stores/counter'
 
 interface Product {
+  Cart: {
+    id: number,
+    productCount: Number,
+  },
   Category: Object,
   categoryId: number,
   description: string,
