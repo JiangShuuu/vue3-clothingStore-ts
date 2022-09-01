@@ -23,20 +23,25 @@
         </div>
         <div class="flex-center">
           <div class="justify-between w-32 p-2 border flex-center">
-            <Icon icon="fa-solid:minus" @click="reduceCount(item)" class="w-4 h-4 cursor-pointer " />
+            <button @click="reduceCount(item)" :disabled="isLoading">
+              <Icon icon="fa-solid:minus" class="w-4 h-4" />
+            </button>
             <p class="text-sm">{{ item.Cart.productCount }}</p>
-            <Icon icon="fa-solid:plus" @click="addCount(item)" class="w-4 h-4 cursor-pointer" />
+            <button @click="addCount(item)" :disabled="isLoading">
+              <Icon icon="fa-solid:plus" class="w-4 h-4" />
+            </button>
           </div>
         </div>
         <div class="flex-center">
           <p>NT${{ item.total }}</p>
         </div>
-        <div class="absolute top-7 right-8" @click="userStore.deleteCart(item)">
+        <dev class="absolute top-7 right-8" @click="userStore.deleteCart(item)">
           <Icon icon="icon-park-outline:delete-five" class="w-5 h-5 text-gray-500 cursor-pointer" />
-        </div>
+        </dev>
       </div>
     </div>
   </section>
+  <button>按我</button>
   <section class="md:hidden">
     <div class="flex justify-between p-2">
       <div class="flex space-x-2">
@@ -66,31 +71,46 @@
 <script setup lang="ts">
 import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
+import { ref } from 'vue'
 import userAPI from '~/apis/user'
+
+// store
 const userStore = useUserStore()
 const mainStore = useCounterStore()
-
 const userCarts = userStore.carts
+
+// ref
+const isLoading = ref(false)
 
 async function addCount (item:any) {
   await userAPI.addCount(item.id)
-    .then(data => {
+    .then(() => {
+      isLoading.value = true
+
       item.Cart.productCount += 1
       item.total = item.Cart.productCount * item.price
       mainStore.addOrderCount(item)
-      console.log(data)
+
+      isLoading.value = false
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err)
+    })
 }
 
 async function reduceCount (item:any) {
   await userAPI.reduceCount(item.id)
-    .then(data => {
+    .then(() => {
+      isLoading.value = true
+
       item.Cart.productCount -= 1
       item.total = item.Cart.productCount * item.price
       mainStore.reduceOrderCount(item)
-      console.log(data)
+
+      isLoading.value = false
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err)
+    })
 }
 </script>
