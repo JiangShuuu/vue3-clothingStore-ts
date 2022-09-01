@@ -41,7 +41,6 @@
       </div>
     </div>
   </section>
-  <button>按我</button>
   <section class="md:hidden">
     <div class="flex justify-between p-2">
       <div class="flex space-x-2">
