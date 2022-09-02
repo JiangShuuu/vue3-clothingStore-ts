@@ -2,7 +2,6 @@ import { DirectiveBinding } from 'vue'
 
 export function defaultImg (el:HTMLImageElement, binding:DirectiveBinding) {
   if (el.src === binding.value) {
-    console.log('get')
     return
   }
 

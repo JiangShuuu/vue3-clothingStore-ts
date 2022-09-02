@@ -7,14 +7,12 @@ import { createPinia } from 'pinia'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import Loading from '~/components/global/Loading.vue'
-import ImageLoad from '~/components/global/ImageLoad.vue'
 import { defaultImg } from './plugins/directive'
 
 const app = createApp(App)
 app.directive('src', defaultImg)
 app.component('Icon', Icon)
 app.component('Loading', Loading)
-app.component('ImageLoad', ImageLoad)
 app.use(router)
 app.use(createPinia())
 app.use(Toast)
