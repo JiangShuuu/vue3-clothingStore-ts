@@ -1,17 +1,19 @@
 <template>
-  <main class="relative justify-between flex-center" @mouseenter="isOpen = true" @mouseleave="isOpen = false">
+  <main class="justify-between flex-center" >
     <span class="text-xl">{{ categoryName }}</span>
-    <button  class="space-x-2 text-sm flex-center">
-      <span>{{ name }}</span>
-      <i class="w-2.5 h-2.5 fa-solid fa-chevron-down"></i>
-    </button>
-    <div class="absolute z-10 hidden w-40 h-auto p-2 space-y-1 bg-white border shadow-md right-2 top-7"
-      :class="{ open: isOpen }">
-      <router-link to="Products" class="item">預設</router-link>
-      <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'DESC' } }" class="item">上架時間: 由新到舊</router-link>
-      <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'ASC' } }" class="item">上架時間: 由舊到新</router-link>
-      <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'DESC' } }" class="item">價格: 由高至低</router-link>
-      <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'ASC' } }" class="item">價格: 由低至高</router-link>
+    <div @mouseenter="isOpen = true" @mouseleave="isOpen = false" class="relative">
+      <button  class="space-x-2 text-sm flex-center">
+        <span>{{ name }}</span>
+        <i class="w-2.5 h-2.5 fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="absolute z-10 hidden w-40 h-auto p-2 space-y-1 bg-white border shadow-md right-2 "
+        :class="{ open: isOpen }">
+        <router-link to="Products" class="item">預設</router-link>
+        <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'DESC' } }" class="item">上架時間: 由新到舊</router-link>
+        <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'ASC' } }" class="item">上架時間: 由舊到新</router-link>
+        <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'DESC' } }" class="item">價格: 由高至低</router-link>
+        <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'ASC' } }" class="item">價格: 由低至高</router-link>
+      </div>
     </div>
   </main>
 </template>
