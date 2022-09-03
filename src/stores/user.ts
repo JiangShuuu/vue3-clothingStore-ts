@@ -1,6 +1,4 @@
 import { defineStore } from 'pinia'
-import { useToast } from 'vue-toastification'
-import { useRouter } from 'vue-router'
 import usersAPI from '~/apis/user'
 import { useCounterStore } from '~/stores/counter'
 
@@ -77,29 +75,6 @@ export const useUserStore = defineStore({
         this.revokeAuthentication()
         return false
       }
-    },
-    async addCart (product:Product) {
-      const toast = useToast()
-      const route = useRouter()
-      console.log('id', product.id)
-      console.log(this.currentUser)
-
-      if (!this.currentUser) {
-        toast.error('請先登入')
-        return route.push('/signIn')
-      }
-
-      const { data } = await usersAPI.addCart(product.id)
-      console.log(data)
-
-      this.carts.push(product)
-      product.isCart = true
-    },
-    async deleteCart (product:Product) {
-      const { data } = await usersAPI.deleteCart(product.id)
-
-      this.carts = this.carts.filter(item => item.id !== product.id)
-      product.isCart = false
     }
   }
 })
