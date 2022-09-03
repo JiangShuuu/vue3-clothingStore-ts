@@ -45,6 +45,9 @@ async function addCart (product) {
     }
 
     const { data } = await usersAPI.addCart(product.id)
+    product.Cart = {
+      productCount: 0
+    }
     mainUser.carts.push(product)
     product.isCart = true
   } catch (error) {
@@ -55,7 +58,7 @@ async function addCart (product) {
 async function deleteCart (product) {
   try {
     const { data } = await usersAPI.deleteCart(product.id)
-    this.carts = this.carts.filter(item => item.id !== product.id)
+    mainUser.carts = mainUser.carts.filter(item => item.id !== product.id)
     product.isCart = false
   } catch (error) {
     console.log(error)

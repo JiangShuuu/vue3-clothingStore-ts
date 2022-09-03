@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="flex-center">
-          <p>NT${{ item.total }}</p>
+          <p>NT${{ item.total || 0 }}</p>
         </div>
         <div class="absolute top-7 right-8" @click="userStore.deleteCart(item)">
           <Icon icon="icon-park-outline:delete-five" class="w-5 h-5 text-gray-500 cursor-pointer" />
