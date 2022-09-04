@@ -1,6 +1,7 @@
 <template>
   <section class="flex-col block w-full h-full mb-24 space-y-3 flex-center">
     <h2 class="text-2xl underline underline-offset-4 text-primary">填寫資料</h2>
+    {{mainCount.order.total}}
     <!-- <CartLogin /> -->
     <!-- <CartInfo /> -->
     <section class="space-y-3 md:space-y-0 md:flex md:space-x-4">
@@ -113,20 +114,25 @@
 import CartLogin from './CartLogin.vue'
 // import CartInfo from './CartInfo.vue'
 import { useCounterStore } from '~/stores/counter'
+import { useUserStore } from '~/stores/user'
 import { useRouter } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, ref, reactive } from 'vue'
 
-const mainStore = useCounterStore()
+const mainCount = useCounterStore()
+const mainUser = useUserStore()
+const orderCarts = reactive(mainUser.carts)
 const router = useRouter()
 
 onMounted(() => {
-  mainStore.progress.progressNum = '50%'
-  mainStore.progress.circle2 = true
-  mainStore.progress.circle3 = false
+  mainCount.progress.progressNum = '50%'
+  mainCount.progress.circle2 = true
+  mainCount.progress.circle3 = false
 })
 
 const nextStep = () => {
-  router.push('/cart/confirm')
+  console.log(orderCarts)
+  console.log(mainCount.order.total)
+  // router.push('/cart/confirm')
 }
 
 const prevStep = () => {
