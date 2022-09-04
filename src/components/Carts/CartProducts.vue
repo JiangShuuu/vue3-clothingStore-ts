@@ -76,7 +76,7 @@ import userAPI from '~/apis/user'
 // store
 const userStore = useUserStore()
 const mainStore = useCounterStore()
-let userCarts = userStore.carts
+const userCarts = ref(userStore.carts)
 
 // ref
 const isLoading = ref(false)
@@ -116,7 +116,7 @@ async function reduceCount (item:any) {
 async function deleteCart (product) {
   try {
     const { data } = await userAPI.deleteCart(product.id)
-    userCarts = userCarts.filter(item => item.id !== product.id)
+    userCarts.value = userCarts.value.filter(item => item.id !== product.id)
     product.isCart = false
   } catch (error) {
     console.log(error)
