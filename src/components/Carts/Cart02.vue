@@ -112,7 +112,7 @@
 <script setup lang="ts">
 import CartLogin from './CartLogin.vue'
 // import CartInfo from './CartInfo.vue'
-import { useCounterStore } from '../../stores/counter'
+import { useCounterStore } from '~/stores/counter'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 

@@ -80,7 +80,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useCounterStore } from '../../stores/counter'
+import { useCounterStore } from '~/stores/counter'
 const mainStore = useCounterStore()
 const menuOpen = ref(false)
 const orderCountHeight = ref('0px')
