@@ -74,9 +74,9 @@ import { ref } from 'vue'
 import userAPI from '~/apis/user'
 
 // store
-const userStore = useUserStore()
-const mainStore = useCounterStore()
-const userCarts = ref(userStore.carts)
+const mainUser = useUserStore()
+const mainCount = useCounterStore()
+const userCarts = ref(mainUser.carts)
 
 // ref
 const isLoading = ref(false)
@@ -88,7 +88,7 @@ async function addCount (item:any) {
 
       item.Cart.productCount += 1
       item.total = item.Cart.productCount * item.price
-      mainStore.addOrderCount(item)
+      mainCount.addOrderCount(item)
 
       isLoading.value = false
     })
@@ -104,7 +104,7 @@ async function reduceCount (item:any) {
 
       item.Cart.productCount -= 1
       item.total = item.Cart.productCount * item.price
-      mainStore.reduceOrderCount(item)
+      mainCount.reduceOrderCount(item)
 
       isLoading.value = false
     })
@@ -117,6 +117,8 @@ async function deleteCart (product) {
   try {
     const { data } = await userAPI.deleteCart(product.id)
     userCarts.value = userCarts.value.filter(item => item.id !== product.id)
+    const producTotal = product.price * product.Cart.productCount
+    mainCount.order.price -= producTotal
     product.isCart = false
   } catch (error) {
     console.log(error)

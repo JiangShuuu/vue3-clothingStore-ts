@@ -45,6 +45,7 @@ export const useUserStore = defineStore({
       // CartProduct
       const mainCount = useCounterStore()
       const cartProducts = user.CartProducts
+      mainCount.order.price = 0
       cartProducts.forEach((element: any) => {
         element.total = element.price * element.Cart.productCount
         mainCount.order.price += element.total
