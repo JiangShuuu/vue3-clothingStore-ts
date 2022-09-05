@@ -7,6 +7,9 @@
       <span class="text-sm font-extralight">每一件商品都經過嚴格篩選</span>
       <span class="text-sm font-extralight">- 力求時尚兼具好品質 -</span>
     </div>
+    <div>
+      test01
+    </div>
     <Menu />
     <ShopNow />
     <Subscribe />
