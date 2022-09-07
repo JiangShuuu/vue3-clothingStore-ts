@@ -7,6 +7,7 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 const authorizeIsUser = async (to:any, from:any, next:any) => {
+  // console.log(to.path)
   // store
   const userStore = useUserStore()
 
@@ -19,6 +20,10 @@ const authorizeIsUser = async (to:any, from:any, next:any) => {
   // 有 token 並且不等於 storeToken，向後端驗證
   if (token && token !== tokenInStore) {
     isAuthenticated = await userStore.fetchCurrentUser()
+  }
+
+  if (to.path === ('/cart/info')) {
+    userStore.fetchCurrentUser()
   }
 
   // 如果 token 有效，則無法進入signUp 跟 signIn

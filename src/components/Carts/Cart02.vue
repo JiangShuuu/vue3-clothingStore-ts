@@ -87,10 +87,6 @@
         <section class="p-2 space-y-1 text-sm border">
           <div class="justify-start space-x-1 flex-center">
             <input type="checkbox" class="" name="">
-            <span>收件人資料與顧客資料相同</span>
-          </div>
-          <div class="justify-start space-x-1 flex-center">
-            <input type="checkbox" class="" name="">
             <span>成為 LifeStyle 官方網站的會員</span>
           </div>
           <div class="justify-start space-x-1 flex-center">
