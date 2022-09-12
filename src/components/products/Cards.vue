@@ -37,7 +37,7 @@ props.cards.forEach((element:any) => {
   element.isOpen = false
 })
 
-async function addCart (product) {
+async function addCart (product:any) {
   try {
     if (!mainUser.currentUser) {
       toast.error('請先登入')
@@ -46,7 +46,7 @@ async function addCart (product) {
 
     const { data } = await usersAPI.addCart(product.id)
     product.Cart = {
-      productCount: 0
+      productCount: 1
     }
     mainUser.carts.push(product)
     product.isCart = true
@@ -55,7 +55,7 @@ async function addCart (product) {
   }
 }
 
-async function deleteCart (product) {
+async function deleteCart (product:any) {
   try {
     const { data } = await usersAPI.deleteCart(product.id)
     mainUser.carts = mainUser.carts.filter(item => item.id !== product.id)
