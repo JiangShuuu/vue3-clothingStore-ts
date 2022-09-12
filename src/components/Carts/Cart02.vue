@@ -4,7 +4,7 @@
     {{mainCount.order.total}}
     <!-- <CartLogin /> -->
     <!-- <CartInfo /> -->
-    <section class="space-y-3 md:space-y-0 md:flex md:space-x-4">
+    <Form class="space-y-3 md:space-y-0 md:flex md:space-x-4" @submit="handleSubmit" :validation-schema="simpleSchema">
       <div class="w-full space-y-3">
         <section class="border">
           <div class="flex p-2 pl-4 space-x-3 text-lg bg-gray-200 text-start">
@@ -13,15 +13,27 @@
           <div class="w-full p-2 space-y-3 text-sm text-start">
             <div class="space-y-1">
               <span>顧客名稱</span>
-              <input type="name" v-model="member.name" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <Field v-model="member.name" name="name" v-slot="{ field }">
+                <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              </Field>
+              <ErrorMessage name="name" class="error-style" />
+              <!-- <input type="name" v-model="member.name" name="" id="" > -->
             </div>
             <div class="space-y-1">
               <span>電子信箱</span>
-              <input type="email" v-model="member.email" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <Field v-model="member.email" name="email" v-slot="{ field }">
+                <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              </Field>
+              <ErrorMessage name="email" class="error-style" />
+              <!-- <input type="email" v-model="member.email" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm"> -->
             </div>
             <div class="space-y-1">
               <span>電話號碼</span>
-              <input type="text" v-model="member.phone" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <Field v-model.number="member.phone" name="phone" v-slot="{ field }">
+                <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              </Field>
+              <ErrorMessage name="phone" class="error-style" />
+              <!-- <input type="text" v-model="member.phone" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm"> -->
             </div>
           </div>
         </section>
@@ -38,32 +50,42 @@
             </div>
           </div>
           <div class="p-2 space-y-4 text-sm text-start">
-            <div class="space-y-1">
+            <div class="flex flex-col space-y-1">
               <span>收件人名稱</span>
-              <input type="name" :value="custom.name" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <Field v-model="custom.name" name="customName" v-slot="{ field }">
+                <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              </Field>
               <span class="text-gray-400">請填入收件人真實姓名, 以確保順利收件</span>
+              <ErrorMessage name="customName" class="error-style" />
             </div>
             <div class="space-y-1">
               <span>收件人電話號碼</span>
-              <input type="name" :value="custom.phone" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <Field v-model.number="custom.phone" name="customPhone" v-slot="{ field }">
+                <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              </Field>
+              <ErrorMessage name="customPhone" class="error-style" />
             </div>
             <hr>
             <div class="flex flex-col">
               <span>地址</span>
               <span>送貨地點: 台灣</span>
               <div class="grid grid-cols-2 gap-4">
-                <select v-model="cityName" @change="reArea" name="" id="" class="w-full p-2 border rounded-md">
+                <select name="" v-model="cityName" @change="reArea" class="w-full p-2 border rounded-md">
                   <option disabled selected>--城市/縣--</option>
                   <option v-for="(city, index) in cities" :key="index" :value="city.name" >{{city.name}}</option>
                 </select>
                 <template v-for="(city, index) in cities" :key="index">
-                  <select v-model="areaName" v-if="cityName === city.name" name="" id="" class="w-full p-2 border rounded-md">
+                  <select name="field" as="select" v-model="areaName" v-if="cityName === city.name" class="w-full p-2 border rounded-md">
                     <option disabled selected>--地區--</option>
                     <option v-for="(area, index) in city.districts" :key="index" :value="area.name" default>{{area.name}}</option>
                   </select>
                 </template>
-                <input type="text" v-model="custom.address" placeholder="地址" name="" id=""
-                  class="col-span-2 p-2 border border-gray-300 rounded-sm">
+                <Field v-model="custom.address" name="address" placeholder="地址" v-slot="{ field }">
+                  <input v-bind="field" class="col-span-2 p-2 border border-gray-300 rounded-sm">
+                </Field>
+                <ErrorMessage name="address" class="error-style" />
+                <!-- <input type="text"  name="" id=""
+                  class="col-span-2 p-2 border border-gray-300 rounded-sm"> -->
               </div>
             </div>
           </div>
@@ -97,14 +119,14 @@
           </div>
           <hr>
           <div class="space-y-3">
-            <button @click="nextStep"
+            <button type="submit"
               class="w-full mt-3 md:mt-8 p-2.5 bg-green-600 border rounded-md text-white hover:brightness-110">提交訂單
             </button>
             <button @click="prevStep" class="font-medium text-blue-500 text-md hover:brightness-110"> &lt 返回購物車</button>
           </div>
         </section>
       </div>
-    </section>
+    </Form>
   </section>
 </template>
 
@@ -116,6 +138,10 @@ import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
 import { useRouter } from 'vue-router'
 import { onMounted, ref, reactive } from 'vue'
+import { Field, Form, ErrorMessage } from 'vee-validate'
+import * as yup from 'yup'
+import lang from '~/plugins/yup/zhTW.json'
+yup.setLocale(lang)
 
 const mainCount = useCounterStore()
 const mainUser = useUserStore()
@@ -128,7 +154,7 @@ const areaName = ref('中正區')
 const member = ref({
   name: '李小白',
   email: 'abcd@example.com',
-  phone: 9126007888
+  phone: 886912687888
 })
 
 const custom = ref({
@@ -151,6 +177,24 @@ function checkInfo () {
     custom.value.name = member.value.name
     custom.value.phone = member.value.phone
   }
+}
+
+const simpleSchema = yup.object().shape({
+  name: yup.string().required().label('名字'),
+  email: yup.string().required().email().label('信箱'),
+  phone: yup.number().required().integer().label('電話'),
+  customName: yup.string().required().label('收件人名字'),
+  customPhone: yup.number().required().integer().label('收件人電話'),
+  address: yup.string().required().label('地址')
+})
+
+function handleSubmit () {
+  orderCarts.forEach((item) => {
+    custom.value.total += item.total
+    custom.value.productsId.push(item.id)
+  })
+  custom.value.total += mainCount.order.fee
+  custom.value.address = `${cityName.value}${areaName.value}${custom.value.address}`
 }
 
 onMounted(() => {
