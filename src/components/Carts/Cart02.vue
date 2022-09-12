@@ -134,7 +134,9 @@ const member = ref({
 const custom = ref({
   name: '',
   phone: '',
-  address: ''
+  address: '',
+  productsId: [],
+  total: mainCount.order.total
 })
 
 const reArea = () => {
@@ -158,8 +160,13 @@ onMounted(() => {
 })
 
 const nextStep = () => {
-  console.log(orderCarts)
-  console.log(mainCount.order.total)
+  orderCarts.forEach((item) => {
+    console.log(item.id)
+    custom.value.productsId.push(item.id)
+  })
+  custom.value.address = `${cityName.value}${areaName.value}${custom.value.address}`
+  console.log(custom)
+  console.log(custom.value.address)
   // router.push('/cart/confirm')
 }
 
