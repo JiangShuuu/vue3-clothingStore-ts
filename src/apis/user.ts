@@ -24,5 +24,8 @@ export default {
   },
   reduceCount (id:number) {
     return apiHelper.post(`/cart-reduce-count/${id}`)
+  },
+  addOrder (data:any) {
+    return apiHelper.post('/order', data)
   }
 }

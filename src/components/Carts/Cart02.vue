@@ -1,9 +1,6 @@
 <template>
   <section class="flex-col block w-full h-full mb-24 space-y-3 flex-center">
     <h2 class="text-2xl underline underline-offset-4 text-primary">填寫資料</h2>
-    {{mainCount.order.total}}
-    <!-- <CartLogin /> -->
-    <!-- <CartInfo /> -->
     <Form class="space-y-3 md:space-y-0 md:flex md:space-x-4" @submit="handleSubmit" :validation-schema="simpleSchema">
       <div class="w-full space-y-3">
         <section class="border">
@@ -17,7 +14,6 @@
                 <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
               </Field>
               <ErrorMessage name="name" class="error-style" />
-              <!-- <input type="name" v-model="member.name" name="" id="" > -->
             </div>
             <div class="space-y-1">
               <span>電子信箱</span>
@@ -25,7 +21,6 @@
                 <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
               </Field>
               <ErrorMessage name="email" class="error-style" />
-              <!-- <input type="email" v-model="member.email" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm"> -->
             </div>
             <div class="space-y-1">
               <span>電話號碼</span>
@@ -33,7 +28,6 @@
                 <input v-bind="field" class="block w-full p-1.5 border border-gray-300 rounded-sm">
               </Field>
               <ErrorMessage name="phone" class="error-style" />
-              <!-- <input type="text" v-model="member.phone" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm"> -->
             </div>
           </div>
         </section>
@@ -84,8 +78,6 @@
                   <input v-bind="field" class="col-span-2 p-2 border border-gray-300 rounded-sm">
                 </Field>
                 <ErrorMessage name="address" class="error-style" />
-                <!-- <input type="text"  name="" id=""
-                  class="col-span-2 p-2 border border-gray-300 rounded-sm"> -->
               </div>
             </div>
           </div>
@@ -131,13 +123,12 @@
 </template>
 
 <script setup lang="ts">
-// import CartLogin from './CartLogin.vue'
-// import CartInfo from './CartInfo.vue'
 import cities from '~/assets/twCity.json'
 import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
 import { useRouter } from 'vue-router'
 import { onMounted, ref, reactive } from 'vue'
+import userAPI from '~/apis/user'
 import { Field, Form, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
 import lang from '~/plugins/yup/zhTW.json'
@@ -154,12 +145,12 @@ const areaName = ref('中正區')
 const member = ref({
   name: '李小白',
   email: 'abcd@example.com',
-  phone: 886912687888
+  phone: 912687888
 })
 
 const custom = ref({
   name: '',
-  phone: '',
+  phone: NaN,
   address: '',
   productsId: [],
   total: mainCount.order.total
@@ -172,7 +163,7 @@ const reArea = () => {
 function checkInfo () {
   if (custom.value.name) {
     custom.value.name = ''
-    custom.value.phone = ''
+    custom.value.phone = 0
   } else {
     custom.value.name = member.value.name
     custom.value.phone = member.value.phone
@@ -188,13 +179,15 @@ const simpleSchema = yup.object().shape({
   address: yup.string().required().label('地址')
 })
 
-function handleSubmit () {
-  orderCarts.forEach((item) => {
-    custom.value.total += item.total
-    custom.value.productsId.push(item.id)
-  })
-  custom.value.total += mainCount.order.fee
-  custom.value.address = `${cityName.value}${areaName.value}${custom.value.address}`
+async function handleSubmit () {
+  try {
+    customInfo()
+    const { data } = await userAPI.addOrder(custom.value)
+    router.push('/cart/confirm')
+    console.log(data)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 onMounted(() => {
@@ -203,15 +196,13 @@ onMounted(() => {
   mainCount.progress.circle3 = false
 })
 
-const nextStep = () => {
+function customInfo () {
   orderCarts.forEach((item) => {
-    console.log(item.id)
+    custom.value.total += item.total
     custom.value.productsId.push(item.id)
   })
+  custom.value.total += mainCount.order.fee
   custom.value.address = `${cityName.value}${areaName.value}${custom.value.address}`
-  console.log(custom)
-  console.log(custom.value.address)
-  // router.push('/cart/confirm')
 }
 
 const prevStep = () => {
