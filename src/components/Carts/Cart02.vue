@@ -13,15 +13,15 @@
           <div class="w-full p-2 space-y-3 text-sm text-start">
             <div class="space-y-1">
               <span>顧客名稱</span>
-              <input type="name" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <input type="name" v-model="member.name" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
             </div>
             <div class="space-y-1">
               <span>電子信箱</span>
-              <input type="email" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <input type="email" v-model="member.email" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
             </div>
             <div class="space-y-1">
               <span>電話號碼</span>
-              <input type="text" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <input type="text" v-model="member.phone" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
             </div>
           </div>
         </section>
@@ -33,19 +33,19 @@
           <div class="p-2 text-sm text-start">
             <span>已選擇的送貨方式: 新竹物流</span>
             <div class="justify-start space-x-1 flex-center">
-              <input type="checkbox" class="" name="">
+              <input type="checkbox" @change="checkInfo" class="" name="">
               <span>收件人資料與顧客資料相同</span>
             </div>
           </div>
           <div class="p-2 space-y-4 text-sm text-start">
             <div class="space-y-1">
               <span>收件人名稱</span>
-              <input type="name" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <input type="name" :value="custom.name" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
               <span class="text-gray-400">請填入收件人真實姓名, 以確保順利收件</span>
             </div>
             <div class="space-y-1">
               <span>收件人電話號碼</span>
-              <input type="name" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
+              <input type="name" :value="custom.phone" name="" id="" class="block w-full p-1.5 border border-gray-300 rounded-sm">
             </div>
             <hr>
             <div class="flex flex-col">
@@ -118,6 +118,29 @@ const mainCount = useCounterStore()
 const mainUser = useUserStore()
 const orderCarts = reactive(mainUser.carts)
 const router = useRouter()
+const checked = false
+
+const member = ref({
+  name: '李小白',
+  email: 'abcd@example.com',
+  phone: 9126007888
+})
+
+const custom = ref({
+  name: '',
+  phone: '',
+  address: ''
+})
+
+function checkInfo () {
+  if (custom.value.name) {
+    custom.value.name = ''
+    custom.value.phone = ''
+  } else {
+    custom.value.name = member.value.name
+    custom.value.phone = member.value.phone
+  }
+}
 
 onMounted(() => {
   mainCount.progress.progressNum = '50%'
