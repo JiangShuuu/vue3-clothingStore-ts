@@ -46,11 +46,14 @@ export const useUserStore = defineStore({
       const mainCount = useCounterStore()
       const cartProducts = user.CartProducts
       mainCount.order.price = 0
-      cartProducts.forEach((element: any) => {
-        element.total = element.price * element.Cart.productCount
-        mainCount.order.price += element.total
-      })
-      this.carts = cartProducts
+
+      if (cartProducts) {
+        cartProducts.forEach((element: any) => {
+          element.total = element.price * element.Cart.productCount
+          mainCount.order.price += element.total
+        })
+        this.carts = cartProducts
+      }
 
       // auth & token
       this.isAuthenticated = true
