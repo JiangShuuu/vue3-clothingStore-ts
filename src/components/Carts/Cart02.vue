@@ -52,15 +52,17 @@
               <span>地址</span>
               <span>送貨地點: 台灣</span>
               <div class="grid grid-cols-2 gap-4">
-                <select name="" id="" class="w-full p-2 border rounded-md">
-                  <option value="" default>城市/縣</option>
-                  <option value="" default>信用卡 (支援國內外Visa、Master、JCB)</option>
+                <select v-model="cityName" @change="reArea" name="" id="" class="w-full p-2 border rounded-md">
+                  <option disabled selected>--城市/縣--</option>
+                  <option v-for="(city, index) in cities" :key="index" :value="city.name" >{{city.name}}</option>
                 </select>
-                <select name="" id="" class="w-full p-2 border rounded-md">
-                  <option value="" default>地區</option>
-                  <option value="" default>信用卡 (支援國內外Visa、Master、JCB)</option>
-                </select>
-                <input type="name" placeholder="地址" name="" id=""
+                <template v-for="(city, index) in cities" :key="index">
+                  <select v-model="areaName" v-if="cityName === city.name" name="" id="" class="w-full p-2 border rounded-md">
+                    <option disabled selected>--地區--</option>
+                    <option v-for="(area, index) in city.districts" :key="index" :value="area.name" default>{{area.name}}</option>
+                  </select>
+                </template>
+                <input type="text" v-model="custom.address" placeholder="地址" name="" id=""
                   class="col-span-2 p-2 border border-gray-300 rounded-sm">
               </div>
             </div>
@@ -107,8 +109,9 @@
 </template>
 
 <script setup lang="ts">
-import CartLogin from './CartLogin.vue'
+// import CartLogin from './CartLogin.vue'
 // import CartInfo from './CartInfo.vue'
+import cities from '~/assets/twCity.json'
 import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
 import { useRouter } from 'vue-router'
@@ -118,7 +121,9 @@ const mainCount = useCounterStore()
 const mainUser = useUserStore()
 const orderCarts = reactive(mainUser.carts)
 const router = useRouter()
-const checked = false
+
+const cityName = ref('臺北市')
+const areaName = ref('中正區')
 
 const member = ref({
   name: '李小白',
@@ -131,6 +136,10 @@ const custom = ref({
   phone: '',
   address: ''
 })
+
+const reArea = () => {
+  areaName.value = ''
+}
 
 function checkInfo () {
   if (custom.value.name) {
