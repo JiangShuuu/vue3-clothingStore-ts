@@ -24,7 +24,7 @@
           <td>{{item.phone}}</td>
           <td>{{item.address}}</td>
           <td>{{item.total}}</td>
-          <td>{{item.createdAt}}</td>
+          <td>{{dateFormat(item.createdAt)}}</td>
         </tr>
       </tbody>
     </table>
@@ -61,4 +61,20 @@ async function getOrder () {
     console.log(err)
   }
 }
+
+const dateFormat = (dateStr: string): string => {
+  const date = dateStr.replace(/ /g, 'T')
+  const dateObj = new Date(date)
+
+  if (dateObj.toString() === 'Invalid Date') {
+    return ''
+  }
+
+  return dateObj.toLocaleDateString('zh-TW', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  }).replace(/\//g, '-')
+}
+
 </script>
