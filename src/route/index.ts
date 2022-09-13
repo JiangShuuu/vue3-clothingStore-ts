@@ -136,8 +136,21 @@ const router = createRouter({
     {
       path: '/member',
       name: 'member',
-      component: () => import('../views/member/member.vue'),
-      beforeEnter: authorizeIsUser
+      component: () => import('../views/member.vue'),
+      redirect: '/member/info',
+      beforeEnter: authorizeIsUser,
+      children: [
+        {
+          path: '/member/info',
+          name: 'info',
+          component: () => import('../components/member/Info.vue')
+        },
+        {
+          path: '/member/order',
+          name: 'order',
+          component: () => import('../components/member/Order.vue')
+        }
+      ]
     },
     {
       path: '/:pathMatch(.*)*',
