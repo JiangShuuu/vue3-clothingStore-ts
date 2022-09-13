@@ -38,44 +38,33 @@
         </tr>
         <tr>
           <td colspan="8" class="menu" :class="{ 'menu-open': item.isOpen }">
-            <section v-for="order in item.OrderProducts" :key="order.id" class="mt-2 border-b">
-              <div class="flex justify-between px-2">
-                <div class="flex space-x-2">
-                  <div class="w-16 h-16 overflow-hidden border">
-                    <img
-                      :src="order.image"
-                      class="object-cover" alt="">
+            <section class="grid grid-cols-3 gap-4">
+              <section v-for="order in item.OrderProducts" :key="order.id" class="py-2 border-b">
+                <div class="flex justify-between px-2 ">
+                  <div class="flex space-x-2">
+                    <div class="w-16 h-16 overflow-hidden border">
+                      <img
+                        :src="order.image"
+                        class="object-cover" alt="">
+                    </div>
+                    <p class="text-sm">防風上衣</p>
                   </div>
-                  <p class="text-sm">防風上衣</p>
+                  <div class="flex flex-col items-end text-sm">
+                    <div class="flex">
+                      <p>數量:{{order.Orderlist.productCount}}</p>
+                    </div>
+                    <div class="flex">
+                      <p class="mr-1">單價</p>
+                      <p>NT${{order.price}}</p>
+                    </div>
+                    <div class="flex">
+                      <p class="mr-1">總計</p>
+                      <p>NT${{order.price * order.Orderlist.productCount}}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex items-end text-sm">
-                  <p>NT${{order.price}}</p>
-                </div>
-              </div>
-              <div class="justify-between p-2 text-sm flex-center">
-                <div class="justify-between w-32 flex-center">
-                  <p>數量:{{order.Orderlist.productCount}}</p>
-                </div>
-                <p>NT${{order.price * order.Orderlist.productCount}}</p>
-              </div>
+              </section>
             </section>
-            <!-- <div class="p-2">
-              <div class="space-y-2">
-                <div class="justify-between text-sm flex-center">
-                  <p>小計</p>
-                  <p>NT$900</p>
-                </div>
-                <div class="justify-between text-sm flex-center">
-                  <p>運費</p>
-                  <p>免費</p>
-                </div>
-                <div class="justify-between text-sm font-bold flex-center">
-                  <p>合計 (1件)</p>
-                  <p>NT$900</p>
-                </div>
-              </div>
-            </div> -->
-            <hr>
             <div class="w-full p-4 cursor-pointer flex-center" @click="item.isOpen = !item.isOpen">
               <Icon icon="ant-design:up-outlined" class="w-4 h-4" />
             </div>
