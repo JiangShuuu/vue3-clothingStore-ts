@@ -73,6 +73,8 @@
 // import CartLogin from './CartLogin.vue'
 import CartProducts from '~/components/carts/CartProducts.vue'
 import { useCounterStore } from '~/stores/counter'
+import { useToast } from 'vue-toastification'
+import { useUserStore } from '~/stores/user'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 
@@ -83,10 +85,16 @@ onMounted(() => {
 })
 
 const mainStore = useCounterStore()
+const userStore = useUserStore()
 const router = useRouter()
+const toast = useToast()
 
 const nextStep = () => {
-  router.push('/cart/info')
+  if (userStore.carts.length < 1) {
+    toast.warning('購物車目前沒有商品, 請至商品區添加商品!')
+  } else {
+    router.push('/cart/info')
+  }
 }
 
 </script>

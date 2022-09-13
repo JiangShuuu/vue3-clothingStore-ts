@@ -182,6 +182,7 @@ async function handleSubmit () {
   try {
     customInfo()
     const { data } = await userAPI.addOrder(custom.value)
+    mainUser.carts = []
     router.push('/cart/confirm')
     console.log(data)
   } catch (err) {
