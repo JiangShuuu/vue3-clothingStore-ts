@@ -1,8 +1,8 @@
 <template>
   <h1 class="mb-4 text-xl text-primary">訂單記錄</h1>
-  <main v-if="!orderData" class="w-full h-[400px] flex-center">
+  <main v-if="orderData && orderData.length < 1" class="w-full h-[400px] flex-center">
     <section>
-      尚未有訂單, 請至<router-link to="/products" class="text-2xl text-primary">商品區</router-link>選購
+      尚未新增任何訂單, 請至<router-link to="/products" class="text-2xl text-primary">商品區</router-link>選購
     </section>
   </main>
   <main v-else class="min-h-[400px]">
