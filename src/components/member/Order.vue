@@ -27,15 +27,13 @@
           <td class="text-center align-middle">{{item.address}}</td>
           <td class="text-center align-middle">{{item.total}}</td>
           <td class="text-center align-middle">{{dateFormat(item.createdAt)}}</td>
-          <td class="text-center align-middle" @click="deleteOrder(item.id)">
-            <Icon icon="icon-park-outline:delete-five" class="w-5 h-5 ml-5 text-center text-gray-500 cursor-pointer" />
+          <td class="relative" @click="deleteOrder(item.id)">
+            <Icon icon="icon-park-outline:delete-five" class="absolute w-5 h-5 text-gray-500 cursor-pointer top-0.5 right-14" />
           </td>
-          <td class="justify-between p-3 flex-center">
-            <div class="flex items-center h-full">
-              <button class="focus:outline-none" @click="item.isOpen = !item.isOpen ">
-                <Icon icon="ant-design:down-outlined" :class="{ 'burger-menu--active': item.isOpen }" />
-              </button>
-            </div>
+          <td class="relative">
+            <button class="absolute focus:outline-none top-1 right-6" @click="item.isOpen = !item.isOpen ">
+              <Icon icon="ant-design:down-outlined" :class="{ 'burger-menu--active': item.isOpen }" />
+            </button>
           </td>
         </tr>
         <tr>
