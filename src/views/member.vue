@@ -1,7 +1,7 @@
 <template>
-  <main class="grid grid-cols-4 gap-4">
+  <main class="grid grid-cols-6 gap-4">
     <NavBar />
-    <section class="col-span-3 p-4">
+    <section class="col-span-5 p-4">
       <router-view />
     </section>
   </main>
