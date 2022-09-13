@@ -152,7 +152,6 @@ const custom = ref({
   name: '',
   phone: NaN,
   address: '',
-  productsId: [],
   total: mainCount.order.total
 })
 
@@ -199,7 +198,6 @@ onMounted(() => {
 function customInfo () {
   orderCarts.forEach((item) => {
     custom.value.total += item.total
-    custom.value.productsId.push(item.id)
   })
   custom.value.total += mainCount.order.fee
   custom.value.address = `${cityName.value}${areaName.value}${custom.value.address}`
