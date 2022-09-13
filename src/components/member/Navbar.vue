@@ -2,14 +2,12 @@
   <main class="flex-col py-10 space-y-10 border flex-center">
     <router-link to="/member/info" :class="['available',{ active: $route.name === 'info' }]">基本資料</router-link>
     <router-link to="/member/order" :class="['available',{ active: $route.name === 'order' }]">訂單紀錄</router-link>
-    <!-- <router-link :to="{ name: 'description'}" :class="['available',{ active: $route.name === 'description' }]">
-      商品描述</router-link> -->
     <button @click="logout" class="text-lg hover:text-primary">登出</button>
   </main>
 </template>
 <script lang="ts" setup>
 import { useUserStore } from '~/stores/user'
-import { useRouter, onBeforeRouteUpdate } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const mainStore = useUserStore()
 const router = useRouter()

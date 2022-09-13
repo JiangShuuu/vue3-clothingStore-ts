@@ -9,10 +9,4 @@
 
 <script setup lang="ts">
 import NavBar from '~/components/member/Navbar.vue'
-import { useUserStore } from '~/stores/user'
-import { useRouter, onBeforeRouteUpdate } from 'vue-router'
-
-const mainStore = useUserStore()
-const router = useRouter()
-
 </script>
