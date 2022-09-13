@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="flex-center">
-          <p>NT${{ item.total || 0 }}</p>
+          <p>NT${{ item.Cart.productCount * item.price }}</p>
         </div>
         <div class="absolute top-7 right-8" @click="deleteCart(item)">
           <Icon icon="icon-park-outline:delete-five" class="w-5 h-5 text-gray-500 cursor-pointer" />
@@ -87,7 +87,6 @@ async function addCount (item:any) {
       isLoading.value = true
 
       item.Cart.productCount += 1
-      item.total = item.Cart.productCount * item.price
       mainCount.addOrderCount(item)
 
       isLoading.value = false
@@ -101,11 +100,10 @@ async function reduceCount (item:any) {
   await userAPI.reduceCount(item.id)
     .then(() => {
       isLoading.value = true
-
-      item.Cart.productCount -= 1
-      item.total = item.Cart.productCount * item.price
-      mainCount.reduceOrderCount(item)
-
+      if (item.Cart.productCount > 1) {
+        item.Cart.productCount -= 1
+        mainCount.reduceOrderCount(item)
+      }
       isLoading.value = false
     })
     .catch(err => {
