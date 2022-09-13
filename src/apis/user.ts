@@ -27,5 +27,11 @@ export default {
   },
   addOrder (data:any) {
     return apiHelper.post('/order', data)
+  },
+  getOrders () {
+    return apiHelper.get('/orders')
+  },
+  deleteOrder (id:number) {
+    return apiHelper.delete(`/order/${id}`)
   }
 }

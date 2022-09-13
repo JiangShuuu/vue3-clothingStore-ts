@@ -1,7 +1,7 @@
 <template>
-  <main class="flex-col py-10 space-y-10 border flex-center">
-    <router-link to="/member/info" :class="['available',{ active: $route.name === 'info' }]">基本資料</router-link>
-    <router-link to="/member/order" :class="['available',{ active: $route.name === 'order' }]">訂單紀錄</router-link>
+  <main class="flex-col justify-start py-10 space-y-10 border flex-center">
+    <router-link to="/member/info" :class="['available',{ active: $route.name === 'memberInfo' }]">基本資料</router-link>
+    <router-link to="/member/order" :class="['available',{ active: $route.name === 'memberOrder' }]">訂單紀錄</router-link>
     <button @click="logout" class="text-lg hover:text-primary">登出</button>
   </main>
 </template>

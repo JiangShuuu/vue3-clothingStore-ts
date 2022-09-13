@@ -142,12 +142,12 @@ const router = createRouter({
       children: [
         {
           path: '/member/info',
-          name: 'info',
+          name: 'memberInfo',
           component: () => import('../components/member/Info.vue')
         },
         {
           path: '/member/order',
-          name: 'order',
+          name: 'memberOrder',
           component: () => import('../components/member/Order.vue')
         }
       ]
