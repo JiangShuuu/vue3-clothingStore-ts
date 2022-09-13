@@ -77,9 +77,6 @@ async function get (page:any, categoryId:any, sort:any, value:any) {
 
     itemName ? categoryName.value = itemName.name : categoryName.value = '全部商品'
 
-    // toast.success('成功獲取所有商品', {
-    //   timeout: 2000
-    // })
     loading.value = false
   } catch (err) {
     loading.value = false

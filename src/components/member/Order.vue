@@ -6,7 +6,7 @@
     </section>
   </main>
   <main v-else class="min-h-[400px]">
-    <table class="border-separate border-spacing-5">
+    <table class="w-full border-separate border-spacing-5">
       <thead>
         <tr>
           <th>id</th>
@@ -32,59 +32,59 @@
           </td>
           <td class="justify-between p-3 flex-center">
             <div class="flex items-center h-full">
-              <button class="focus:outline-none" @click="menuOpen = !menuOpen">
-                <Icon icon="ant-design:down-outlined" :class="{ 'burger-menu--active': menuOpen }" />
+              <button class="focus:outline-none" @click="item.isOpen = !item.isOpen ">
+                <Icon icon="ant-design:down-outlined" :class="{ 'burger-menu--active': item.isOpen }" />
               </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="8" class="menu" :class="{ 'menu-open': item.isOpen }">
+            <section class="mt-2 border-b">
+              <div class="flex justify-between px-2">
+                <div class="flex space-x-2">
+                  <div class="w-16 h-16 overflow-hidden border">
+                    <img
+                      src="https://images.unsplash.com/photo-1657879005446-fd4563beddb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                      class="object-cover" alt="">
+                  </div>
+                  <p class="text-sm">防風上衣</p>
+                </div>
+                <div class="flex items-end text-sm">
+                  <p>NT$450</p>
+                </div>
+              </div>
+              <div class="justify-between p-2 text-sm flex-center">
+                <div class="justify-between w-32 flex-center">
+                  <p>數量: 2</p>
+                </div>
+                <p>NT$900</p>
+              </div>
+            </section>
+            <div class="p-2">
+              <div class="space-y-2">
+                <div class="justify-between text-sm flex-center">
+                  <p>小計</p>
+                  <p>NT$900</p>
+                </div>
+                <div class="justify-between text-sm flex-center">
+                  <p>運費</p>
+                  <p>免費</p>
+                </div>
+                <div class="justify-between text-sm font-bold flex-center">
+                  <p>合計 (1件)</p>
+                  <p>NT$900</p>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="w-full p-4 cursor-pointer flex-center" @click="item.isOpen = !item.isOpen">
+              <Icon icon="ant-design:up-outlined" class="w-4 h-4" />
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="menu" :class="{ 'menu-open': menuOpen }">
-      <!-- product -->
-      <section class="mt-2 border-b">
-        <div class="flex justify-between px-2">
-          <div class="flex space-x-2">
-            <div class="w-16 h-16 overflow-hidden border">
-              <img
-                src="https://images.unsplash.com/photo-1657879005446-fd4563beddb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                class="object-cover" alt="">
-            </div>
-            <p class="text-sm">防風上衣</p>
-          </div>
-          <div class="flex items-end text-sm">
-            <p>NT$450</p>
-          </div>
-        </div>
-        <div class="justify-between p-2 text-sm flex-center">
-          <div class="justify-between w-32 flex-center">
-            <p>數量: 2</p>
-          </div>
-          <p>NT$900</p>
-        </div>
-      </section>
-      <!--  -->
-      <div class="p-2">
-        <div class="space-y-2">
-          <div class="justify-between text-sm flex-center">
-            <p>小計</p>
-            <p>NT$900</p>
-          </div>
-          <div class="justify-between text-sm flex-center">
-            <p>運費</p>
-            <p>免費</p>
-          </div>
-          <div class="justify-between text-sm font-bold flex-center">
-            <p>合計 (1件)</p>
-            <p>NT$900</p>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="w-full p-4 cursor-pointer flex-center" @click="menuOpen = !menuOpen">
-        <Icon icon="ant-design:up-outlined" class="w-4 h-4" />
-      </div>
-    </div>
   </main>
 </template>
 
@@ -95,8 +95,6 @@ import { ref, onMounted } from 'vue'
 
 const toast = useToast()
 const orderData = ref()
-const menuOpen = ref(false)
-const orderCountHeight = ref('0px')
 
 interface OrderInfo {
   id: number,
@@ -108,19 +106,17 @@ interface OrderInfo {
 
 onMounted(() => {
   getOrder()
-  count(2)
 })
-
-function count (num: number) {
-  const height = (104 * num) + 150
-  // 把單位加回去
-  orderCountHeight.value = `${height}px`
-}
 
 async function getOrder () {
   try {
     const { data } = await userAPI.getOrders()
     orderData.value = data.data.orders as OrderInfo
+
+    orderData.value.forEach((element: any) => {
+      element.isOpen = false
+    })
+
     console.log(orderData.value)
   } catch (err) {
     toast.error('系統錯誤請稍後再試')
@@ -157,40 +153,17 @@ const dateFormat = (dateStr: string): string => {
 </script>
 
 <style lang="postcss" scoped>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 .menu {
-  height: v-bind(orderCountHeight);
-  max-height: 0;
-  width: 90%;
-  overflow: hidden;
-  transition: max-height .25s;
+  height: 100%;
+  display: none;
 }
 
 .menu-open {
-  @apply transition duration-700 ease-in-out;
-  max-height: v-bind(orderCountHeight);
-  transition: max-height .25s;
-}
-
-@keyframes icon-rotate {
-  0% {
-    transform: rotate(0deg)
-  }
-
-  25% {
-    transform: rotate(45deg)
-  }
-
-  50% {
-    transform: rotate(90deg)
-  }
-
-  75% {
-    transform: rotate(120deg)
-  }
-
-  100% {
-    transform: rotate(180deg)
-  }
+  display: table-cell;
 }
 
 .burger-menu--active {
