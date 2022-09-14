@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="flex-center">
-          <p>NT${{ item.Cart.productCount * item.price }}</p>
+          <p>NT${{ countTotal(item) }}</p>
         </div>
         <div class="absolute top-7 right-8" @click="deleteCart(item)">
           <Icon icon="icon-park-outline:delete-five" class="w-5 h-5 text-gray-500 cursor-pointer" />
@@ -81,6 +81,10 @@ const userCarts = ref(mainUser.carts)
 // ref
 const isLoading = ref(false)
 
+function countTotal (item:any) {
+  return item.Cart.productCount * item.price
+}
+
 async function addCount (item:any) {
   await userAPI.addCount(item.id)
     .then(() => {
@@ -111,7 +115,7 @@ async function reduceCount (item:any) {
     })
 }
 
-async function deleteCart (product) {
+async function deleteCart (product:any) {
   try {
     const { data } = await userAPI.deleteCart(product.id)
     userCarts.value = userCarts.value.filter(item => item.id !== product.id)
