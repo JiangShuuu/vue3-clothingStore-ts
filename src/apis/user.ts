@@ -10,6 +10,9 @@ export default {
   signUp (data:any) {
     return apiHelper.post('/users/register', data)
   },
+  putUser (id:number, data:any) {
+    return apiHelper.put(`/users/${id}`, data)
+  },
   getCurrentUser () {
     return apiHelper.get('/current_user')
   },
