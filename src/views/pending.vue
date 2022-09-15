@@ -6,7 +6,7 @@
       <p class="mb-3 text-base text-center lg:text-xl">目前的頁面尚未規劃，可點選下方部落格連結觀看其他作品。</p>
     </div>
     <div class="flex flex-col space-y-3">
-      <a href="#" class="px-8 py-4 text-2xl text-center text-white rounded bg-primary">JohnShu Blog</a>
+      <a href="https://www.jiangshuuu.com/" target="_blank" class="px-8 py-4 text-2xl text-center text-white rounded bg-primary">JohnShu Blog</a>
       <div class="flex justify-between space-x-3">
         <router-link to="/" class="px-4 py-2 text-white bg-blue-300 rounded">回首頁</router-link>
         <a href="#" class="px-4 py-2 text-white bg-blue-300 rounded" @click.prevent="$router.back()">上一頁</a>

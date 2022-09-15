@@ -26,28 +26,28 @@
     <div class="flex-col w-full bg-white flex-center">
       <div class="items-start justify-around w-[90%] flex-center">
         <div class="flex-center">
-          <img class="w-40 h-40" src="../../assets/Icon/logo.png" alt="" />
+          <img class="w-40 h-40" src="/image/logo.png" alt="" />
         </div>
-        <ul>
+        <ul class="flex flex-col">
           <li class="text_title">客戶服務</li>
-          <li class="text_item">運送說明</li>
-          <li class="text_item">退換貨相關</li>
-          <li class="text_item">付款資訊</li>
-          <li class="text_item">FAQ</li>
+          <router-link to="/pending" class="text_item">運送說明</router-link>
+          <router-link to="/pending" class="text_item">退換貨相關</router-link>
+          <router-link to="/pending" class="text_item">付款資訊</router-link>
+          <router-link to="/pending" class="text_item">FAQ</router-link>
         </ul>
-        <ul>
+        <ul class="flex flex-col">
           <li class="text_title">關於我們</li>
-          <li class="text_item">品牌故事</li>
-          <li class="text_item">媒體連繫</li>
-          <li class="text_item">Press kit</li>
+          <router-link to="/pending" class="text_item">品牌故事</router-link>
+          <router-link to="/pending" class="text_item">媒體連繫</router-link>
+          <router-link to="/pending" class="text_item">Press kit</router-link>
         </ul>
-        <ul>
+        <ul class="flex flex-col">
           <li class="text_title">隱私政策</li>
-          <li class="text_item">隱私權政策</li>
-          <li class="text_item">Cookie</li>
-          <li class="text_item">GDPR</li>
+          <router-link to="/pending" class="text_item">隱私權政策</router-link>
+          <router-link to="/pending" class="text_item">Cookie</router-link>
+          <router-link to="/pending" class="text_item">GDPR</router-link>
         </ul>
-        <ul>
+        <ul class="flex flex-col">
           <li class="text_title">追蹤Life Style</li>
           <li class="text_item">+886 0912697801</li>
           <div class="space-x-2 flex-center">

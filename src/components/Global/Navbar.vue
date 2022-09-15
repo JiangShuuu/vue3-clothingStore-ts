@@ -2,7 +2,7 @@
   <div class="fixed z-10 w-full -mt-2 bg-white shadow-md">
     <div class="relative flex-col flex-center">
       <div class="w-[200px]">
-        <img class="w-[200px]" src="../../assets/Icon/LogoBA.png" alt="" />
+        <img class="w-[200px]" src="/image/LogoBA.png" alt="" />
       </div>
       <div class="main">
         <div class="w-full md:hidden">
@@ -12,7 +12,7 @@
           <input type="checkbox" class="navbar-toggle" id="navbar-toggle" v-model="isOpen" />
           <div class="content_list">
             <div class="content_list_background" @click="checkClose"></div>
-            <ul class="content_list_items">
+            <ul class="flex flex-col content_list_items">
               <router-link to="/" class="content_list_item font-extralight">首頁</router-link>
               <router-link to="/products" class="content_list_item font-extralight">所有商品</router-link>
               <router-link to="/pending" class="content_list_item font-extralight">關於我們</router-link>
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="hidden w-full md:block">
-          <ul class="mb-2 space-x-8 flex-center">
+          <ul class="flex-col mb-2 space-x-8">
             <router-link to="/" class="item">首頁</router-link>
             <router-link to="/products" class="item">所有商品</router-link>
             <router-link to="/pending" class="item">關於我們</router-link>
