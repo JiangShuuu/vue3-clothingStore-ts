@@ -15,9 +15,9 @@
             <ul class="content_list_items">
               <router-link to="/" class="content_list_item font-extralight">首頁</router-link>
               <router-link to="/products" class="content_list_item font-extralight">所有商品</router-link>
-              <li class="content_list_item font-extralight">關於我們</li>
-              <li class="content_list_item font-extralight">聯絡我們</li>
-              <li class="content_list_item font-extralight">Facebook專頁</li>
+              <router-link to="/pending" class="content_list_item font-extralight">關於我們</router-link>
+              <router-link to="/pending" class="content_list_item font-extralight">聯絡我們</router-link>
+              <router-link to="/pending" class="content_list_item font-extralight">Facebook專頁</router-link>
             </ul>
           </div>
         </div>
@@ -25,9 +25,9 @@
           <ul class="mb-2 space-x-8 flex-center">
             <router-link to="/" class="item">首頁</router-link>
             <router-link to="/products" class="item">所有商品</router-link>
-            <li class="item">關於我們</li>
-            <li class="item">聯絡我們</li>
-            <li class="item">Facebook專頁</li>
+            <router-link to="/pending" class="item">關於我們</router-link>
+            <router-link to="/pending" class="item">聯絡我們</router-link>
+            <router-link to="/pending" class="item">Facebook專頁</router-link>
           </ul>
         </div>
       </div>
@@ -42,9 +42,6 @@
               <p class="text-[1px] text-white">{{user.carts.length || 0}}</p>
             </div>
           </router-link>
-          <li class="hidden mr-2 md:block">
-            <Icon icon="clarity:heart-line" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
-          </li>
           <li class="hidden md:block">
             <Icon icon="fa-solid:search" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
           </li>

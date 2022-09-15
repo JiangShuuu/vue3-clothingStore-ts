@@ -153,6 +153,11 @@ const router = createRouter({
       ]
     },
     {
+      path: '/pending',
+      name: 'pending',
+      component: () => import('../views/pending.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: () => import('../views/notFound.vue')
