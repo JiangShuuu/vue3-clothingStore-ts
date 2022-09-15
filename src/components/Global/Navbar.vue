@@ -13,8 +13,8 @@
           <div class="content_list">
             <div class="content_list_background" @click="checkClose"></div>
             <ul class="content_list_items">
-              <li class="content_list_item font-extralight">首頁</li>
-              <li class="content_list_item font-extralight">所有商品</li>
+              <router-link to="/" class="content_list_item font-extralight">首頁</router-link>
+              <router-link to="/products" class="content_list_item font-extralight">所有商品</router-link>
               <li class="content_list_item font-extralight">關於我們</li>
               <li class="content_list_item font-extralight">聯絡我們</li>
               <li class="content_list_item font-extralight">Facebook專頁</li>
@@ -24,7 +24,7 @@
         <div class="hidden w-full md:block">
           <ul class="mb-2 space-x-8 flex-center">
             <router-link to="/" class="item">首頁</router-link>
-            <router-link to="/Products" class="item">所有商品</router-link>
+            <router-link to="/products" class="item">所有商品</router-link>
             <li class="item">關於我們</li>
             <li class="item">聯絡我們</li>
             <li class="item">Facebook專頁</li>
