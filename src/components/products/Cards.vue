@@ -1,5 +1,5 @@
 <template>
-  <main class="grid grid-cols-2 gap-3 mt-4 md:grid-cols-3 justify-items-center lg:gap-4 lg:grid-cols-4 lg:px-14">
+  <main class="grid grid-cols-2 gap-3 mt-4 lg:grid-cols-3 justify-items-center xl:gap-8 xl:grid-cols-4 xl:px-14">
     <template v-for="arr in cards" :key="arr.id">
       <section class="relative cursor-pointer" @mouseenter="arr.isOpen = true" @mouseleave="arr.isOpen = false">
           <router-link :to="`/product/${arr.id}`" class="block overflow-hidden w-44 md:w-56 aspect-3/4">

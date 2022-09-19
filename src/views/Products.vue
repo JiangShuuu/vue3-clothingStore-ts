@@ -8,7 +8,7 @@
       </section>
       <section class="flex-1">
         <Sort v-if="categories" :category-name="categoryName" />
-        <div>
+        <div class="space-y-20">
           <Cards v-if="result" :cards="result" />
           <Pagination v-if="pagination && pagination.pages.length > 1" :category-num="categoryNum"
             :current-page="pagination.currentPage" :total-page="pagination.pages" :previous-page="pagination.prev"
