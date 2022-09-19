@@ -45,9 +45,16 @@
         </div> -->
         <div class="space-x-2 flex-center">
           <p class="">分享到</p>
-          <Icon icon="bi:line" class="text-[#06C755] w-7 h-7" />
-          <Icon @click="shareOnFacebook" icon="akar-icons:facebook-fill" class="text-[#4267B2] w-7 h-7" />
-          <Icon icon="akar-icons:instagram-fill" class="text-[#E1306C] w-7 h-7" />
+          <ShareNetwork network="line" :url="url" :title="data.product.title" :description="data.product.description"
+            :quote="data.product.short_intro" hashtags="clothes">
+            <Icon icon="bi:line" class="text-[#06C755] w-7 h-7" />
+          </ShareNetwork>
+          <ShareNetwork network="facebook" :url="url"
+            :title="data.product.title"
+            :description="data.product.description"
+            :quote="data.product.short_intro" hashtags="clothes">
+            <Icon icon="akar-icons:facebook-fill" class="text-[#4267B2] w-7 h-7" />
+          </ShareNetwork>
           <button v-clipboard:copy="url" v-clipboard:success="onSuccess">
             <Icon icon="akar-icons:link-chain" class="text-[#4267a1] w-7 h-7" />
           </button>
@@ -115,21 +122,5 @@ async function deleteCart (product: any) {
     console.log(error)
   }
 }
-
-function shareOnFacebook () {
-  const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + 'https://profile.jiangshuuu.com/products'
-  window.open(navUrl, '_blank')
-}
-
-// function shareCopy () {
-//   // eslint-disable-next-line no-new
-//   // new $clipboard({
-//   //   text: () => {
-//   //     return 'https://profile.jiangshuuu.com/products' + '?utm_medium=album&utm_campaign=share&utm_source=copy'
-//   //   }
-//   // })
-//   // const navUrl =
-//   // window.open(navUrl, '_blank')
-// }
 
 </script>

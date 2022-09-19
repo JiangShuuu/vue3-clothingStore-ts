@@ -18,6 +18,7 @@
     "vee-validate": "^4.6.6",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16",
+    "vue-social-sharing": "^4.0.0-alpha4",
     "vue-toastification": "^2.0.0-rc.5",
     "yup": "^0.32.11"
   },
