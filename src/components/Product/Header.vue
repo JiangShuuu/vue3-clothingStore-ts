@@ -37,12 +37,6 @@
         </div>
       </div>
       <div class="space-y-5">
-        <div class="space-x-6 flex-center">
-          <Icon icon="akar-icons:minus" />
-          <p>1</p>
-          <Icon icon="akar-icons:plus" />
-        </div>
-        {{data.isCart}}
         <button @click="addCart(data)" :disabled="isLoading" v-if="!data.isCart" class="w-full p-2 px-4 text-white rounded-lg bg-secondary">加入購物車</button>
         <button @click="deleteCart(data)" :disabled="isLoading" v-else class="w-full p-2 px-4 text-white bg-red-500 rounded-lg">移出購物車</button>
         <!-- <div class="space-x-1 flex-center">
@@ -84,6 +78,7 @@ async function addCart (product: any) {
     }
 
     const { data } = await usersAPI.addCart(product.product.id)
+
     product.product.Cart = {
       productCount: 1
     }
