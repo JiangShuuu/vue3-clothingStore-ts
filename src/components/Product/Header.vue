@@ -19,7 +19,7 @@
         </div>
       </div> -->
       <div class="w-48 overflow-hidden aspect-3/4 md:w-72">
-        <img class="object-cover" :src="data.product.image" alt="">
+        <img class="object-cover" v-src="data.product.image" src="/image/loading.gif" alt="">
       </div>
     </section>
     <section class="flex flex-col justify-around w-full lg:w-1/2">
