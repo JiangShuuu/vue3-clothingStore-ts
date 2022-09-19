@@ -1,6 +1,6 @@
 <template>
   顧客評價
-  {{ data.Comments }}
+  {{ data.product.Comments }}
 </template>
 
 <script setup lang="ts">

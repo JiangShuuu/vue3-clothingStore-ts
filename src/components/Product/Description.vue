@@ -1,6 +1,6 @@
 <template>
   <main>
-    <p>{{data?.description}}</p>
+    <p>{{data.product?.description}}</p>
   </main>
 </template>
 

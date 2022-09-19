@@ -43,8 +43,7 @@ async function get (id:any) {
   try {
     loading.value = true
     const { data } = await productsAPI.getProduct(id)
-    result.value = data.data.product
-    console.log(result.value)
+    result.value = data.data
     loading.value = false
   } catch (err) {
     loading.value = false
