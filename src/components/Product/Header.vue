@@ -46,9 +46,11 @@
         <div class="space-x-2 flex-center">
           <p class="">分享到</p>
           <Icon icon="bi:line" class="text-[#06C755] w-7 h-7" />
-          <Icon icon="akar-icons:facebook-fill" class="text-[#4267B2] w-7 h-7" />
+          <Icon @click="shareOnFacebook" icon="akar-icons:facebook-fill" class="text-[#4267B2] w-7 h-7" />
           <Icon icon="akar-icons:instagram-fill" class="text-[#E1306C] w-7 h-7" />
-          <Icon icon="akar-icons:link-chain" class="text-[#4267a1] w-7 h-7" />
+          <button v-clipboard:copy="url" v-clipboard:success="onSuccess">
+            <Icon icon="akar-icons:link-chain" class="text-[#4267a1] w-7 h-7" />
+          </button>
         </div>
       </div>
     </section>
@@ -61,12 +63,18 @@ import { ref } from 'vue'
 import usersAPI from '~/apis/user'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
+
 defineProps<{ data:any }>()
 
 const mainUser = useUserStore()
 const isLoading = ref(false)
 const toast = useToast()
 const route = useRouter()
+const url = `https://profile.jiangshuuu.com${route.currentRoute.value.fullPath}`
+
+function onSuccess () {
+  toast.success('成功複製連結！')
+}
 
 async function addCart (product: any) {
   try {
@@ -107,5 +115,21 @@ async function deleteCart (product: any) {
     console.log(error)
   }
 }
+
+function shareOnFacebook () {
+  const navUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + 'https://profile.jiangshuuu.com/products'
+  window.open(navUrl, '_blank')
+}
+
+// function shareCopy () {
+//   // eslint-disable-next-line no-new
+//   // new $clipboard({
+//   //   text: () => {
+//   //     return 'https://profile.jiangshuuu.com/products' + '?utm_medium=album&utm_campaign=share&utm_source=copy'
+//   //   }
+//   // })
+//   // const navUrl =
+//   // window.open(navUrl, '_blank')
+// }
 
 </script>

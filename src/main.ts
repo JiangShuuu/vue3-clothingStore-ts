@@ -8,11 +8,13 @@ import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import Loading from '~/components/global/Loading.vue'
 import { defaultImg } from './plugins/directive'
+import { VueClipboard } from '@soerenmartius/vue3-clipboard'
 
 const app = createApp(App)
 app.directive('src', defaultImg)
 app.component('Icon', Icon)
 app.component('Loading', Loading)
+app.use(VueClipboard)
 app.use(router)
 app.use(createPinia())
 app.use(Toast)
