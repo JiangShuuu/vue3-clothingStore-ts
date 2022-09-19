@@ -82,6 +82,7 @@ const router = createRouter({
       name: 'Product',
       component: () => import('../views/product.vue'),
       meta: { title: '產品資訊' },
+      redirect: { name: 'description' },
       children: [
         {
           path: '/product/:id/description',

@@ -1,7 +1,7 @@
 <template>
   <section class="w-full pt-6 md:flex md:space-x-6">
     <section class="lg:w-1/2 flex-center">
-      <div class="mr-2 space-y-1">
+      <!-- <div class="mr-2 space-y-1">
         <div class="w-10 overflow-hidden aspect-3/4 md:w-16">
           <img class="object-cover"
             src="https://images.unsplash.com/photo-1656143269388-e65183fac19f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
@@ -17,7 +17,7 @@
             src="https://images.unsplash.com/photo-1656143269388-e65183fac19f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
             alt="">
         </div>
-      </div>
+      </div> -->
       <div class="w-48 overflow-hidden aspect-3/4 md:w-72">
         <img class="object-cover" :src="data.image" alt="">
       </div>
