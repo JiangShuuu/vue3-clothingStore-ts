@@ -72,6 +72,11 @@ const router = createRouter({
       beforeEnter: authorizeIsUser
     },
     {
+      path: '/search',
+      name: 'search',
+      component: () => import('../views/search.vue')
+    },
+    {
       path: '/products',
       name: 'Products',
       component: () => import('../views/products.vue'),

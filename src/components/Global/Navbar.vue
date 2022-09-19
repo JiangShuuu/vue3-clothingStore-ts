@@ -42,9 +42,9 @@
               <p class="text-[1px] text-white">{{user.carts.length || 0}}</p>
             </div>
           </router-link>
-          <li class="hidden md:block">
-            <Icon icon="fa-solid:search" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" />
-          </li>
+          <router-link to="/search" class="hidden md:block">
+            <Icon icon="fa-solid:search" class="w-6 h-6 text-gray-400 cursor-pointer hover:text-primary" />
+          </router-link>
         </ul>
       </div>
     </div>
