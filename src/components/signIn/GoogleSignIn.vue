@@ -21,7 +21,6 @@ const signIn = () => {
   signInWithPopup(firebaseAuth, provider)
     .then((result) => {
       const user = result.user
-      // const accessToken = result.user.accessToken
 
       userAPI.thirdPartyLogin(user)
         .then((data) => {

@@ -21,9 +21,10 @@ const signIn = () => {
   signInWithPopup(firebaseAuth, provider)
     .then((result) => {
       const user = result.user
-      // const accessToken = result.user.accessToken
+      const email = user.providerData[0].email
+      const displayName = 'Github'
 
-      userAPI.thirdPartyLogin(user)
+      userAPI.thirdPartyLogin({ email, displayName })
         .then((data) => {
           // 將伺服器回傳的token 保存在 localStorage 中
           localStorage.setItem('token', data.data.data.token)
