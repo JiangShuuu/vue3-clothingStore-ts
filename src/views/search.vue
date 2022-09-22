@@ -58,7 +58,7 @@ onMounted(() => {
 
 const mainCount = useCounterStore()
 const keyword = ref('')
-const products = ref([])
+const products = ref()
 
 async function get () {
   try {
@@ -67,7 +67,7 @@ async function get () {
     }
     const { data } = await productAPI.searchProducts(keyword.value)
 
-    products.value = data.data.products as SearchItem
+    products.value = data.data.products as Products
 
     mainCount.searchText = keyword.value
   } catch (err) {
