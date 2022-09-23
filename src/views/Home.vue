@@ -1,5 +1,15 @@
 <template>
   <main class="w-full max-w-[1280px] mx-auto mb-8">
+    <Head>
+      <title>Life Style SEO Page</title>
+      <meta key="description" name="description" content="我是內容！">
+      <meta key="og:title" property="og:title" content="Life Style SEO Page">
+      <meta key="og:description" property="og:description" content="我是內容！">
+      <meta key="og:site_name" property="og:site_name" content="Life Style SEO Page" />
+      <meta key="og:type" property="og:type" content="activity" />
+      <meta key="og:image:width" property="og:image:width" content="1200">
+      <meta key="og:image:height" property="og:image:height" content="630">
+    </Head>
     <Banner />
     <div class="flex-col w-full p-2 my-2 bg-gray-200 flex-center">
       <span class="text-xl font-light">HIGH QUALITY ASSURANCE</span>
@@ -18,6 +28,7 @@ import Banner from '~/components/indexPage/Banner.vue'
 import Menu from '~/components/indexPage/Menu.vue'
 import ShopNow from '~/components/indexPage/ShopNow.vue'
 import Subscribe from '~/components/indexPage/Subscribe.vue'
+import { Head } from '@vueuse/head'
 </script>
 
 <style lang="postcss" scoped>

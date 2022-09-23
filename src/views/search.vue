@@ -6,7 +6,7 @@
       <button class="p-2 ml-5 text-white border rounded-lg bg-primary" type="submit" >Search</button>
     </form>
     <section class="w-full h-full flex-center">
-      <div v-if="products.length < 1" class="h-[500px] flex-center">
+      <div v-if="!products" class="h-[500px] flex-center">
         <h1 class="text-3xl">查不到此商品，請輸入其他關鍵字！</h1>
       </div>
       <div v-else class="my-10">

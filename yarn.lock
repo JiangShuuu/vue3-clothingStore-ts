@@ -780,12 +780,32 @@
     "@vueuse/shared" "9.2.0"
     vue-demi "*"
 
-"@vueuse/shared@9.2.0":
+"@vueuse/head@^0.7.12":
+  version "0.7.12"
+  resolved "https://registry.yarnpkg.com/@vueuse/head/-/head-0.7.12.tgz#bdb2185654399d10b10c4e94b52f6129e9ca4f67"
+  integrity sha512-sRcrE6VohiHInQR0sB0U8H8x2hAKdo+AIhd5PWBLx1jUp2vwyeQyA/4rlCzP5CMDB8z61MLvsOCApFJrRMRtTQ==
+  dependencies:
+    "@zhead/schema-vue" "^0.7.3"
+
+"@vueuse/shared@9.2.0", "@vueuse/shared@^9.2.0":
   version "9.2.0"
   resolved "https://registry.npmjs.org/@vueuse/shared/-/shared-9.2.0.tgz"
   integrity sha512-NnRp/noSWuXW0dKhZK5D0YLrDi0nmZ18UeEgwXQq7Ul5TTP93lcNnKjrHtd68j2xFB/l59yPGFlCryL692bnrA==
   dependencies:
     vue-demi "*"
+
+"@zhead/schema-vue@^0.7.3":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@zhead/schema-vue/-/schema-vue-0.7.4.tgz#dab303e372e4cd491eb292081c109f677d39039a"
+  integrity sha512-Q7wPUly3ZWbPYQ5SEJBUuD6Mw3wiUfPMPquGfqsR2KF6sxQKRF8oaHnRLuu2uxpjuXjkzpBlZBPu1JgQX+Lf6Q==
+  dependencies:
+    "@vueuse/shared" "^9.2.0"
+    "@zhead/schema" "0.7.4"
+
+"@zhead/schema@0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@zhead/schema/-/schema-0.7.4.tgz#73e87110468dbe416b70df86e4cc95fdec4978ee"
+  integrity sha512-18gfgmZL8gM64JdcT11d1rYLnCaY2mOtbDDSAXtCySanPGpkA1r+w01LCssEI/OfLdoZPS/kYCIW09d1PmUFfQ==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
