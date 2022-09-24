@@ -19,21 +19,21 @@
         </div>
       </div> -->
       <div class="w-48 overflow-hidden aspect-3/4 md:w-72">
-        <img class="object-cover" v-src="data.product.image" src="/image/loading.gif" alt="">
+        <img class="object-cover" v-src="data.image" src="/image/loading.gif" alt="">
       </div>
     </section>
     <section class="flex flex-col justify-around w-full lg:w-1/2">
       <div class="border-b-[1px] space-y-2">
-        <h2 class="text-2xl font-bold">{{ data.product.title }}</h2>
+        <h2 class="text-2xl font-bold">{{ data.title }}</h2>
         <p class="text-sm line-clamp-6 line-clamp">
-          {{ data.product.short_intro }}
+          {{ data.short_intro }}
         </p>
         <br>
       </div>
       <div>
         <div class="flex items-end pt-4 space-x-2">
-          <p class="text-xl text-primary">NT${{ data.product.price }}</p>
-          <p class="pb-1 text-sm text-gray-400 line-through">NT${{ data.product.og_price }}</p>
+          <p class="text-xl text-primary">NT${{ data.price }}</p>
+          <p class="pb-1 text-sm text-gray-400 line-through">NT${{ data.og_price }}</p>
         </div>
       </div>
       <div class="space-y-5">
@@ -45,14 +45,14 @@
         </div> -->
         <div class="space-x-2 flex-center">
           <p class="">分享到</p>
-          <ShareNetwork network="line" :url="url" :title="data.product.title" :description="data.product.description"
-            :quote="data.product.short_intro" hashtags="clothes">
+          <ShareNetwork network="line" :url="url" :title="data.title" :description="data.description"
+            :quote="data.short_intro" hashtags="clothes">
             <Icon icon="bi:line" class="text-[#06C755] w-7 h-7" />
           </ShareNetwork>
           <ShareNetwork network="facebook" :url="url"
-            :title="data.product.title"
-            :description="data.product.description"
-            :quote="data.product.short_intro" hashtags="clothes">
+            :title="data.title"
+            :description="data.description"
+            :quote="data.short_intro" hashtags="clothes">
             <Icon icon="akar-icons:facebook-fill" class="text-[#4267B2] w-7 h-7" />
           </ShareNetwork>
           <button v-clipboard:copy="url" v-clipboard:success="onSuccess">
@@ -70,8 +70,9 @@ import { ref } from 'vue'
 import usersAPI from '~/apis/user'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
+import { Product } from '~/plugins/type'
 
-defineProps<{ data:any }>()
+defineProps<{ data:Product }>()
 
 const mainUser = useUserStore()
 const isLoading = ref(false)
@@ -83,7 +84,7 @@ function onSuccess () {
   toast.success('成功複製連結！')
 }
 
-async function addCart (product: any) {
+async function addCart (product: Product) {
   try {
     isLoading.value = true
 
@@ -92,13 +93,13 @@ async function addCart (product: any) {
       return route.push('/signIn')
     }
 
-    const { data } = await usersAPI.addCart(product.product.id)
+    const { data } = await usersAPI.addCart(product.id)
 
-    product.product.Cart = {
+    product.Cart = {
       productCount: 1
     }
 
-    mainUser.carts.push(product.product)
+    mainUser.carts.push(product)
     product.isCart = true
 
     isLoading.value = false
@@ -108,12 +109,12 @@ async function addCart (product: any) {
   }
 }
 
-async function deleteCart (product: any) {
+async function deleteCart (product: Product) {
   try {
     isLoading.value = true
 
-    const { data } = await usersAPI.deleteCart(product.product.id)
-    mainUser.carts = mainUser.carts.filter(item => item.id !== product.product.id)
+    const { data } = await usersAPI.deleteCart(product.id)
+    mainUser.carts = mainUser.carts.filter(item => item.id !== product.id)
     product.isCart = false
 
     isLoading.value = false

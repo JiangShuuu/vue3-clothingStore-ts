@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { Product } from '~/plugins/type'
 
 export const useCounterStore = defineStore({
   id: 'counter',
@@ -16,10 +17,10 @@ export const useCounterStore = defineStore({
     }
   }),
   actions: {
-    addOrderCount (item:any) {
+    addOrderCount (item:Product) {
       this.order.price += item.price
     },
-    reduceOrderCount (item:any) {
+    reduceOrderCount (item:Product) {
       this.order.price -= item.price
     }
   },

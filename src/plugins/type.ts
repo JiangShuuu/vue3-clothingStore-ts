@@ -1,4 +1,5 @@
 export interface Products {
+[x: string]: any
   Category: object,
   categoryId: number,
   description: string,
@@ -12,7 +13,7 @@ export interface Products {
 }
 export interface Product {
   Cart: {
-    id: number,
+    id?: number,
     productCount: number,
   },
   Comments: {

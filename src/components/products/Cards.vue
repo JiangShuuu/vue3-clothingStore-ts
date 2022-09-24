@@ -27,17 +27,18 @@ import { useUserStore } from '~/stores/user'
 import { useToast } from 'vue-toastification'
 import { useRouter } from 'vue-router'
 import usersAPI from '~/apis/user'
+import { Product, Products } from '~/plugins/type'
 
 const mainUser = useUserStore()
 const route = useRouter()
 const toast = useToast()
-const props = defineProps<{ cards: any }>()
+const props = defineProps<{ cards:any }>()
 
-props.cards.forEach((element:any) => {
+props.cards.forEach((element:Product) => {
   element.isOpen = false
 })
 
-async function addCart (product:any) {
+async function addCart (product:Product) {
   console.log(123)
   try {
     if (!mainUser.currentUser) {
@@ -56,7 +57,7 @@ async function addCart (product:any) {
   }
 }
 
-async function deleteCart (product:any) {
+async function deleteCart (product: Product) {
   try {
     const { data } = await usersAPI.deleteCart(product.id)
     mainUser.carts = mainUser.carts.filter(item => item.id !== product.id)

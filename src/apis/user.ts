@@ -1,16 +1,16 @@
 import { apiHelper } from '~/plugins/axios'
 
 export default {
-  thirdPartyLogin (data:any) {
+  thirdPartyLogin (data:object) {
     return apiHelper.post('/auth/third-party-login', data)
   },
-  signIn (data:any) {
+  signIn (data:object) {
     return apiHelper.post('/signin', data)
   },
-  signUp (data:any) {
+  signUp (data:object) {
     return apiHelper.post('/users/register', data)
   },
-  putUser (id:number, data:any) {
+  putUser (id:number, data:object) {
     return apiHelper.put(`/users/${id}`, data)
   },
   getCurrentUser () {
@@ -28,7 +28,7 @@ export default {
   reduceCount (id:number) {
     return apiHelper.post(`/cart-reduce-count/${id}`)
   },
-  addOrder (data:any) {
+  addOrder (data:object) {
     return apiHelper.post('/order', data)
   },
   getOrders () {

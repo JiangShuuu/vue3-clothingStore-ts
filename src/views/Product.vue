@@ -3,7 +3,7 @@
   <template v-else>
     <BreadCrumb />
     <main class="w-full h-full px-4 space-y-6 md:px-6 lg:max-w-[1280px] lg:mx-auto">
-      <Header v-if="result" :data="result" />
+      <Header v-if="result" :data="result.product" />
       <section>
         <div class="justify-around text-lg flex-center ">
           <router-link :to="{ name: 'description'}" :class="['available',{ active: $route.name === 'description' }]">
