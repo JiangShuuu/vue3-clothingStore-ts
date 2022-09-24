@@ -60,3 +60,13 @@ export interface SearchItem {
 export interface SearchProducts {
   products: SearchItem[]
 }
+export interface CurrentUser {
+  CartProducts?: [],
+  userData: {
+    avatar: string,
+    email: string,
+    id: number,
+    isAdmin: number,
+    name: string
+  }
+}

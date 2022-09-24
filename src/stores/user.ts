@@ -1,18 +1,18 @@
 import { defineStore } from 'pinia'
 import usersAPI from '~/apis/user'
 import { useCounterStore } from '~/stores/counter'
-import { User } from '~/plugins/type'
+import { CurrentUser, User } from '~/plugins/type'
 
 export const useUserStore = defineStore({
   id: 'user',
   state: ():User => ({
-    currentUser: null,
+    currentUser: {} as CurrentUser['userData'],
     carts: [],
     isAuthenticated: false,
     token: ''
   }),
   actions: {
-    setCurrentUser (user:any) {
+    setCurrentUser (user:CurrentUser) {
       this.currentUser = user.userData
 
       // CartProduct
@@ -34,7 +34,7 @@ export const useUserStore = defineStore({
       console.log('currentUser', user.userData.name)
     },
     revokeAuthentication () {
-      this.currentUser = null
+      this.currentUser = { avatar: '' }
       this.isAuthenticated = false
       this.carts = []
       this.token = ''
@@ -43,9 +43,7 @@ export const useUserStore = defineStore({
     async fetchCurrentUser () {
       try {
         const { data } = await usersAPI.getCurrentUser()
-
         this.setCurrentUser(data.data.user)
-
         return true
       } catch (err) {
         console.log('err', err)

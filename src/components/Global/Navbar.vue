@@ -33,7 +33,12 @@
       </div>
       <div class="absolute right-4 top-3.5">
         <ul class="flex-center">
-          <router-link to="/signIn" class="pt-1 md:pt-0">
+          <router-link v-if="avatar" to="/signIn" class="pt-1 md:pt-0">
+            <div class="object-cover overflow-hidden rounded-full w-7 h-7">
+              <img class="w-7 h-7" :src="avatar" />
+            </div>
+          </router-link>
+          <router-link v-else to="/signIn" class="pt-1 md:pt-0">
             <Icon icon="carbon:user-avatar" class="text-gray-400 cursor-pointer w-7 h-7 hover:text-primary" :class="{ color: user.currentUser }"/>
           </router-link>
           <router-link to="/cart" class="relative hidden mx-2 md:block">
@@ -52,11 +57,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useUserStore } from '~/stores/user'
+import { CurrentUser, User } from '~/plugins/type'
 
 const isOpen = ref(false)
 const user = useUserStore()
+const avatar = ref()
+
+watch(user, (curVal, preVal) => {
+  const userInfo = user.currentUser as CurrentUser['userData']
+  avatar.value = userInfo.avatar
+})
 
 function checkClose () {
   isOpen.value = !isOpen.value
