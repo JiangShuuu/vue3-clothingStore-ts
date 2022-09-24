@@ -78,13 +78,13 @@ const router = createRouter({
     },
     {
       path: '/products',
-      name: 'Products',
+      name: 'products',
       component: () => import('../views/products.vue'),
       meta: { title: '產品目錄' }
     },
     {
       path: '/product/:id',
-      name: 'Product',
+      name: 'product',
       component: () => import('../views/product.vue'),
       meta: { title: '產品資訊' },
       redirect: { name: 'description' },

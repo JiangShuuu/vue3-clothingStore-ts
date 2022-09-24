@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center px-2 py-10">
     <div class="flex-col mb-4 flex-center">
-      <img src="/image/build.png" class="w-1/2 max-w-lg mb-10" />
+      <img src="/image/build.png" class="w-1/2 max-w-lg mb-10" alt=""/>
       <h1 class="mb-3 text-xl text-center lg:text-4xl">建構中...</h1>
       <p class="mb-3 text-base text-center lg:text-xl">目前的頁面尚未規劃，可點選下方部落格連結觀看其他作品。</p>
     </div>
