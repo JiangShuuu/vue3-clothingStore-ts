@@ -1,16 +1,57 @@
-# Vue 3 + TypeScript + Vite
+# clothesStore全端專案(前後分離)
+Demo: https://profile.jiangshuuu.com/
+後端repo: https://github.com/JiangShuuu/express-clothing-store
+## 瀏覽專案
+### 使用者測試帳號:
+  
+account: user1
+  
+email: user1@example.com
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+password: 12345678
 
-## Recommended IDE Setup
+## 產品功能
+- 訪客能創建/登入帳戶(含第三方登入)
+- 訪客能收尋商品
+- 訪客能分享連結
+- 會員能將商品加入購物車
+- 會員能新增/刪除訂單
+- 會員能修改資訊
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## 環境
+- vue3(Composition) + typeScript
+- Oracle + Docker 部署
+## 使用套件
+- iconfly
+- firebase
+- axios
+- pinia
+- swiper
+- taliwindCss
+- vue-validate
+- vue-toast
+- vue-router
+- vue-useHead
+## 如何啟動專案
+### 1. 本機需安裝 node.js 與 npm
+### 2. 開啟終端機建立資料夾或到指定存放位置
+### 3. 在該資料夾位置，將專案 clone 到本地
+```
+git clone https://github.com/JiangShuuu/twitter_project.git
+```
+### 4. 透過終端機進入資料夾位置後，輸入：
+```
+- npm install 
+- yarn
+```
 
-## Type Support For `.vue` Imports in TS
+### 安裝完成後，繼續輸入：
+```
+- npm run dev
+- yarn dev
+```
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
-
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
-
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+### 終端機顯示此行訊息代表成功運行，打開瀏覽器進入網址：
+```
+Listening on http://localhost:3000
+```
