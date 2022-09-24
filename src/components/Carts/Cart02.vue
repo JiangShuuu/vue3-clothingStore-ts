@@ -145,12 +145,12 @@ const areaName = ref('中正區')
 const member = ref({
   name: '李小白',
   email: 'abcd@example.com',
-  phone: 912687888
+  phone: '0912687888'
 })
 
 const custom = ref({
   name: '',
-  phone: NaN,
+  phone: '',
   address: '',
   total: mainCount.order.total
 })
@@ -162,7 +162,7 @@ const reArea = () => {
 function checkInfo () {
   if (custom.value.name) {
     custom.value.name = ''
-    custom.value.phone = 0
+    custom.value.phone = ''
   } else {
     custom.value.name = member.value.name
     custom.value.phone = member.value.phone

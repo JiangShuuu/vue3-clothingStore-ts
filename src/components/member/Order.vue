@@ -28,7 +28,7 @@
           <td class="text-center align-middle">{{item.total}}</td>
           <td class="text-center align-middle">{{dateFormat(item.createdAt)}}</td>
           <td class="relative" @click="deleteOrder(item.id)">
-            <Icon icon="icon-park-outline:delete-five" class="absolute w-5 h-5 text-gray-500 cursor-pointer top-0.5 right-14" />
+            <Icon icon="icon-park-outline:delete-five" class="absolute w-5 h-5 text-gray-500 cursor-pointer top-0.5 right-12" />
           </td>
           <td class="relative">
             <button class="absolute focus:outline-none top-1 right-6" @click="item.isOpen = !item.isOpen ">

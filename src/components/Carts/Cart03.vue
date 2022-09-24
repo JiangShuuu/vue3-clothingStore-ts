@@ -2,7 +2,7 @@
   <main class="w-full">
     <div class="space-y-4 py-44">
       <h2 class="text-3xl text-primary">成功完成訂單！</h2>
-      <h3 class="text-lg">前往<span class="text-primary">會員專區</span>查看訂單</h3>
+      <router-link to="/member/order" class="text-lg">前往<span class="text-primary">會員專區</span>查看訂單</router-link>
       <router-link to="/products" class="block text-lg">選購更多商品</router-link>
     </div>
   </main>
