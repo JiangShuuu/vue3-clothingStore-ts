@@ -1,16 +1,13 @@
 # clothesStore全端專案(前後分離)
-Demo: https://profile.jiangshuuu.com/
+Demo: https://profile.jiangshuuu.com/  
 後端repo: https://github.com/JiangShuuu/express-clothing-store
 ## 瀏覽專案
 ### 使用者測試帳號:
-  
-account: user1
-  
-email: user1@example.com
 
+email: user1@example.com
 password: 12345678
 
-## 產品功能
+### 產品功能
 - 訪客能創建/登入帳戶(含第三方登入)
 - 訪客能收尋商品
 - 訪客能分享連結
@@ -19,9 +16,11 @@ password: 12345678
 - 會員能修改資訊
 
 ## 環境
+### 框架
 - vue3(Composition) + typeScript
+### 部署
 - Oracle + Docker 部署
-## 使用套件
+### 使用套件
 - iconfly
 - firebase
 - axios
