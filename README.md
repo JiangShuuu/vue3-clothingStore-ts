@@ -4,7 +4,7 @@ Demo: https://profile.jiangshuuu.com/
 ## 瀏覽專案
 ### 使用者測試帳號:
 
-email: user1@example.com
+email: user1@example.com  
 password: 12345678
 
 ### 產品功能
