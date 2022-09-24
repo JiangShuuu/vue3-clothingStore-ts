@@ -38,6 +38,7 @@ props.cards.forEach((element:any) => {
 })
 
 async function addCart (product:any) {
+  console.log(123)
   try {
     if (!mainUser.currentUser) {
       toast.error('請先登入')

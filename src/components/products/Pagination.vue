@@ -9,7 +9,7 @@
         },
       ]">
         <router-link class="page-link" aria-label="Previous" :to="{
-          name: 'Products',
+          name: 'products',
   query: { page: previousPage, categoryId: categoryNum, sort: sortName, value: valueName },
         }">
           <span aria-hidden="true">&laquo;</span>
@@ -19,7 +19,7 @@
       <!-- 頁籤 -->
       <li :class="['page-item', { active: currentPage === page }]" v-for="(page, index) in totalPage" :key="index">
         <router-link class="page-link"
-          :to="{ name: 'Products', query: { page, categoryId: categoryNum, sort: sortName, value: valueName } }">
+          :to="{ name: 'products', query: { page, categoryId: categoryNum, sort: sortName, value: valueName } }">
           {{ page }}
         </router-link>
       </li>
@@ -32,7 +32,7 @@
         },
       ]">
         <router-link class="page-link" aria-label="Next"
-          :to="{ name: 'Products', query: { page: nextPage, categoryId: categoryNum, sort: sortName, value: valueName } }">
+          :to="{ name: 'products', query: { page: nextPage, categoryId: categoryNum, sort: sortName, value: valueName } }">
           <span aria-hidden="true">&raquo;</span>
         </router-link>
       </li>

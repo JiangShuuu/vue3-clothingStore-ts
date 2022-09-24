@@ -8,11 +8,11 @@
         }
       }">
         <swiper-slide>
-          <router-link :to="{ name: 'Products'}" class="item">全部商品</router-link>
+          <router-link :to="{ name: 'products'}" class="item">全部商品</router-link>
         </swiper-slide>
         <template v-for="item in categories" :key="item.id">
           <swiper-slide>
-            <router-link :to="{ name: 'Products', query: { categoryId: item.id } }" class="item">
+            <router-link :to="{ name: 'products', query: { categoryId: item.id } }" class="item">
               {{item.name}}
             </router-link>
           </swiper-slide>
@@ -21,9 +21,9 @@
     </section>
     <section
       class="hidden p-2 my-2 border rounded-lg md:justify-around md:flex-center lg:flex-col lg:border-none lg:space-y-4">
-      <router-link :to="{ name: 'Products'}" class="item">全部商品</router-link>
+      <router-link :to="{ name: 'products'}" class="item">全部商品</router-link>
       <template v-for="item in categories" :key="item.id">
-        <router-link :to="{ name: 'Products', query: { categoryId: item.id, sort: sortName, value: valueName } }" class="item">
+        <router-link :to="{ name: 'products', query: { categoryId: item.id, sort: sortName, value: valueName } }" class="item">
           {{item.name}}</router-link>
       </template>
       <!-- <router-link :to="{name: 'new-product'}" class="item">新上市</router-link>

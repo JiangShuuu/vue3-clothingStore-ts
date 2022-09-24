@@ -8,11 +8,11 @@
       </button>
       <div class="absolute z-10 hidden w-40 h-auto p-2 space-y-1 bg-white border shadow-md right-2 "
         :class="{ open: isOpen }">
-        <router-link to="Products" class="item">預設</router-link>
-        <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'DESC' } }" class="item">上架時間: 由新到舊</router-link>
-        <router-link :to="{ name: 'Products', query: { value: 'createdAt', sort: 'ASC' } }" class="item">上架時間: 由舊到新</router-link>
-        <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'DESC' } }" class="item">價格: 由高至低</router-link>
-        <router-link :to="{ name: 'Products', query: { value: 'price', sort: 'ASC' } }" class="item">價格: 由低至高</router-link>
+        <router-link to="products" class="item">預設</router-link>
+        <router-link :to="{ name: 'products', query: { value: 'createdAt', sort: 'DESC' } }" class="item">上架時間: 由新到舊</router-link>
+        <router-link :to="{ name: 'products', query: { value: 'createdAt', sort: 'ASC' } }" class="item">上架時間: 由舊到新</router-link>
+        <router-link :to="{ name: 'products', query: { value: 'price', sort: 'DESC' } }" class="item">價格: 由高至低</router-link>
+        <router-link :to="{ name: 'products', query: { value: 'price', sort: 'ASC' } }" class="item">價格: 由低至高</router-link>
       </div>
     </div>
   </main>
