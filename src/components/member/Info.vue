@@ -87,7 +87,6 @@ async function handleSubmit (values: any) {
       password: values.password_vaildate
     })
 
-    console.log(data)
     toast.success('更新成功', {
       timeout: 1000
     })

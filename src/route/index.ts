@@ -7,7 +7,6 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 const authorizeIsUser = async (to:any, from:any, next:any) => {
-  // console.log(to.path)
   // store
   const userStore = useUserStore()
 

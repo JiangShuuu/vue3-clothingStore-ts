@@ -73,7 +73,6 @@ async function handleSubmit (values: any) {
       passwordCheck: values.passwordConfirmation
     })
 
-    console.log(data)
     toast.success('註冊成功', {
       timeout: 1000
     })

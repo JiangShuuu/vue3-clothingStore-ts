@@ -57,8 +57,6 @@ async function get (page:any, categoryId:any, sort:any, value:any) {
     sortName.value = sort
     valueName.value = value
 
-    console.log(result.value)
-
     // SortTitle
     const routeId = Number(route.query.categoryId)
     const itemName = categories.value.find((item: any) => {

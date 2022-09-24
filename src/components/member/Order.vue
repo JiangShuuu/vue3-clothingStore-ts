@@ -96,8 +96,6 @@ async function getOrder () {
     orderData.value.forEach((element:OrderInfo) => {
       element.isOpen = false
     })
-
-    console.log(orderData.value)
   } catch (err) {
     toast.error('系統錯誤請稍後再試')
     console.log(err)
@@ -108,7 +106,6 @@ async function deleteOrder (id:number) {
   try {
     const { data } = await userAPI.deleteOrder(id)
     orderData.value = orderData.value.filter((item:OrderInfo) => item.id !== id)
-    console.log(data)
   } catch (err) {
     toast.error('系統錯誤請稍後再試')
     console.log(err)
