@@ -79,17 +79,10 @@
 import userAPI from '~/apis/user'
 import { useToast } from 'vue-toastification'
 import { ref, onMounted } from 'vue'
+import { OrderInfo } from '~/plugins/type'
 
 const toast = useToast()
 const orderData = ref()
-
-interface OrderInfo {
-  id: number,
-  name: string,
-  phone: number,
-  address: string,
-  total: number,
-}
 
 onMounted(() => {
   getOrder()
@@ -100,7 +93,7 @@ async function getOrder () {
     const { data } = await userAPI.getOrders()
     orderData.value = data.data.orders as OrderInfo
 
-    orderData.value.forEach((element: any) => {
+    orderData.value.forEach((element:OrderInfo) => {
       element.isOpen = false
     })
 

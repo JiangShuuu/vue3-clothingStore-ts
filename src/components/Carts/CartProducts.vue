@@ -71,6 +71,7 @@
 import { useCounterStore } from '~/stores/counter'
 import { useUserStore } from '~/stores/user'
 import { ref } from 'vue'
+import { Product } from '~/plugins/type'
 import userAPI from '~/apis/user'
 
 // store
@@ -81,11 +82,11 @@ const userCarts = ref(mainUser.carts)
 // ref
 const isLoading = ref(false)
 
-function countTotal (item:any) {
+function countTotal (item:Product) {
   return item.Cart.productCount * item.price
 }
 
-async function addCount (item:any) {
+async function addCount (item:Product) {
   await userAPI.addCount(item.id)
     .then(() => {
       isLoading.value = true
@@ -100,7 +101,7 @@ async function addCount (item:any) {
     })
 }
 
-async function reduceCount (item:any) {
+async function reduceCount (item:Product) {
   await userAPI.reduceCount(item.id)
     .then(() => {
       isLoading.value = true
@@ -115,7 +116,7 @@ async function reduceCount (item:any) {
     })
 }
 
-async function deleteCart (product:any) {
+async function deleteCart (product:Product) {
   try {
     const { data } = await userAPI.deleteCart(product.id)
     userCarts.value = userCarts.value.filter(item => item.id !== product.id)

@@ -1,34 +1,7 @@
 import { defineStore } from 'pinia'
 import usersAPI from '~/apis/user'
 import { useCounterStore } from '~/stores/counter'
-
-interface Product {
-  Cart: {
-    id: number,
-    productCount: Number,
-  },
-  Category: Object,
-  categoryId: number,
-  description: string,
-  id: number,
-  image: string,
-  isCart: boolean,
-  isFavorited: boolean,
-  isOpen: false,
-  og_price: number,
-  price: number,
-  short_intro: string,
-  title: string,
-  viewCounts: number,
-  count: number,
-  total: number
-}
-interface User {
-  currentUser: object|null,
-  carts: Product[],
-  isAuthenticated: boolean,
-  token: string
-}
+import { User } from '~/plugins/type'
 
 export const useUserStore = defineStore({
   id: 'user',

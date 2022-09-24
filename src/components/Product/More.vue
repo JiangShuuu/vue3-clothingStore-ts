@@ -3,5 +3,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ data:any }>()
+import { Product } from '~/plugins/type'
+defineProps<{ data:Product }>()
 </script>

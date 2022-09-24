@@ -37,19 +37,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useCounterStore } from '~/stores/counter'
+import { SearchProducts } from '~/plugins/type'
 import productAPI from '~/apis/product'
-
-interface SearchItem {
-  id: number,
-  title: string,
-  short_intro: string,
-  image: string,
-  price: number,
-  og_price: number
-}
-interface Products {
-  products: SearchItem[]
-}
 
 onMounted(() => {
   keyword.value = mainCount.searchText
@@ -67,7 +56,7 @@ async function get () {
     }
     const { data } = await productAPI.searchProducts(keyword.value)
 
-    products.value = data.data.products as Products
+    products.value = data.data.products as SearchProducts
 
     mainCount.searchText = keyword.value
   } catch (err) {

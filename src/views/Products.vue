@@ -29,19 +29,7 @@ import productsAPI from '~/apis/product'
 import { ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { useToast } from 'vue-toastification'
-
-interface Products {
-  Category: Object,
-  categoryID: Number,
-  description: String,
-  id: Number,
-  image: String,
-  isOpen: Boolean,
-  og_price: Number,
-  price: Number,
-  short_intro: String,
-  title: String
-}
+import { Products } from '~/plugins/type'
 
 const route = useRoute()
 const result = ref()

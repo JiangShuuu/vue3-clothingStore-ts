@@ -1,8 +1,9 @@
 <template>
   顧客評價
-  {{ data.product.Comments }}
+  {{ data.Comments }}
 </template>
 
 <script setup lang="ts">
-defineProps<{ data:any }>()
+import { Product } from '~/plugins/type'
+defineProps<{ data:Product }>()
 </script>

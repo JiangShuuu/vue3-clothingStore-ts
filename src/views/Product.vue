@@ -17,7 +17,7 @@
           </router-link>
         </div>
         <div class="p-4 my-4 flex-center">
-          <router-view v-if="result" :data="result" />
+          <router-view v-if="result" :data="result.product" />
         </div>
       </section>
     </main>
