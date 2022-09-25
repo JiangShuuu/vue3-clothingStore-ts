@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-COPY .env.production /app/.env.production
+COPY .env.production .env.production
 
 RUN yarn
 
