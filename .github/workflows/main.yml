@@ -6,24 +6,8 @@ on:
     - main
 
 
-jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3 # git clone
-
-  #     - name: Use Node.js
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16.14.2
-
-  #     - name: Install & build
-  #       run: |
-  #         npm install
-  #         npm run build
-      
+jobs:   
   docker:
-    # needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -41,10 +25,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          # context: ./
-          # file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/appsss:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clothes:latest
 
       - name: Run Deploy
         uses: appleboy/ssh-action@master
@@ -55,3 +37,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo mkdir testtt
+            ${{secrets.DOCKER_SCRIPT}}
