@@ -26,6 +26,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
+          platforms: linux/arm64
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clothes:latest
 
       - name: Run Deploy
@@ -36,5 +37,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo mkdir testtt
             ${{secrets.DOCKER_SCRIPT}}
