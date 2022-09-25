@@ -20,7 +20,7 @@ password: 12345678
 ### 框架
 - vue3(Composition) + typeScript
 ### 部署
-- Oracle + Docker 部署
+- Oracle + Docker + GithubAction
 ### 使用套件
 - iconfly
 - firebase

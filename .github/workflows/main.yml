@@ -26,7 +26,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          platforms: linux/arm64
           build-args: |
             VITE_APIURL=${{ secrets.VITE_APIURL }}
             VITE_FIREBASE_API_KEY=${{ secrets.VITE_FIREBASE_API_KEY }}
@@ -35,14 +34,14 @@ jobs:
             VITE_FIREBASE_STORAGE_BUCKET=${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
             VITE_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
             VITE_FIREBASE_APP_ID=${{ secrets.VITE_FIREBASE_APP_ID }}
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clothes:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/testtt:latest
 
-      - name: Run Deploy
-        uses: appleboy/ssh-action@master
-        with:
-          command_timeout: 4m
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            ${{secrets.DOCKER_SCRIPT}}
+      # - name: Run Deploy
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     command_timeout: 4m
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       ${{secrets.DOCKER_SCRIPT}}
