@@ -30,12 +30,15 @@ onMounted(() => {
   margin: 5px;
   font-size: 14px;
 }
+
 .btn:active {
   transform: scale(0.98);
 }
+
 .btn:focus {
   outline: 0;
 }
+
 .btn:disabled {
   background-color: #e0e0e0;
   cursor: not-allowed;

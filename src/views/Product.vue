@@ -39,7 +39,7 @@ onMounted(() => {
   get(id)
 })
 
-async function get (id:any) {
+async function get (id: any) {
   try {
     loading.value = true
     const { data } = await productsAPI.getProduct(id)
@@ -57,7 +57,8 @@ async function get (id:any) {
 .active {
   @apply text-primary underline underline-offset-4
 }
+
 .available {
-  @apply hover:text-primary hover:underline hover:underline-offset-4;
+  @apply hover: text-primary hover:underline hover:underline-offset-4;
 }
 </style>

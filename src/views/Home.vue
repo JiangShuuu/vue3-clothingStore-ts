@@ -1,5 +1,6 @@
 <template>
   <main class="w-full max-w-[1280px] mx-auto mb-8">
+
     <Head>
       <title>Life Style SEO Page</title>
       <meta key="description" name="description" content="我是內容！">
@@ -32,4 +33,5 @@ import { Head } from '@vueuse/head'
 </script>
 
 <style lang="postcss" scoped>
+
 </style>
