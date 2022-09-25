@@ -16,11 +16,11 @@ jobs:
         with:
           node-version: 16.14.2
 
-      - name: Install & build
-        with:
-          script: |
-            npm install
-            npm run build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        run: npm run build
       
   docker:
     runs-on: ubuntu-latest
