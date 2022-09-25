@@ -56,7 +56,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/home.vue')
+      component: () => import('~/views/home.vue')
     },
     {
       path: '/signIn',
@@ -73,43 +73,43 @@ const router = createRouter({
     {
       path: '/search',
       name: 'search',
-      component: () => import('../views/search.vue')
+      component: () => import('~/views/search.vue')
     },
     {
       path: '/products',
       name: 'products',
-      component: () => import('../views/products.vue'),
+      component: () => import('~/views/products.vue'),
       meta: { title: '產品目錄' }
     },
     {
       path: '/product/:id',
       name: 'product',
-      component: () => import('../views/product.vue'),
+      component: () => import('~/views/product.vue'),
       meta: { title: '產品資訊' },
       redirect: { name: 'description' },
       children: [
         {
           path: '/product/:id/description',
           name: 'description',
-          component: () => import('../components/product/Description.vue'),
+          component: () => import('~/components/product/Description.vue'),
           meta: { title: '商品描述' }
         },
         {
           path: '/product/:id/more',
           name: 'more',
-          component: () => import('../components/product/More.vue'),
+          component: () => import('~/components/product/More.vue'),
           meta: { title: '了解更多' }
         },
         {
           path: '/product/:id/payment',
           name: 'payment',
-          component: () => import('../components/product/Payment.vue'),
+          component: () => import('~/components/product/Payment.vue'),
           meta: { title: '運送方式' }
         },
         {
           path: '/product/:id/comment',
           name: 'comment',
-          component: () => import('../components/product/Comment.vue'),
+          component: () => import('~/components/product/Comment.vue'),
           meta: { title: '顧客評價' }
         }
       ]
@@ -117,55 +117,55 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'cart',
-      component: () => import('../views/cart.vue'),
+      component: () => import('~/views/cart.vue'),
       redirect: '/cart/order',
       beforeEnter: authorizeIsUser,
       children: [
         {
           path: '/cart/order',
           name: 'order',
-          component: () => import('../components/carts/Cart01.vue')
+          component: () => import('~/components/carts/Cart01.vue')
         },
         {
           path: '/cart/info',
           name: 'info',
-          component: () => import('../components/carts/Cart02.vue')
+          component: () => import('~/components/carts/Cart02.vue')
         },
         {
           path: '/cart/confirm',
           name: 'confirm',
-          component: () => import('../components/carts/Cart03.vue')
+          component: () => import('~/components/carts/Cart03.vue')
         }
       ]
     },
     {
       path: '/member',
       name: 'member',
-      component: () => import('../views/member.vue'),
+      component: () => import('~/views/member.vue'),
       redirect: '/member/info',
       beforeEnter: authorizeIsUser,
       children: [
         {
           path: '/member/info',
           name: 'memberInfo',
-          component: () => import('../components/member/Info.vue')
+          component: () => import('~/components/member/Info.vue')
         },
         {
           path: '/member/order',
           name: 'memberOrder',
-          component: () => import('../components/member/Order.vue')
+          component: () => import('~/components/member/Order.vue')
         }
       ]
     },
     {
       path: '/pending',
       name: 'pending',
-      component: () => import('../views/pending.vue')
+      component: () => import('~/views/pending.vue')
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
-      component: () => import('../views/notFound.vue')
+      component: () => import('~/views/notFound.vue')
     }
   ]
 })
