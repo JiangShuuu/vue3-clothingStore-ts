@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY . .
 
+COPY .env.production /app/.env.production
+
 RUN yarn
 
 RUN yarn build
