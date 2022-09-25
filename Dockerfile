@@ -5,7 +5,9 @@ WORKDIR /app
 
 COPY . .
 
-COPY [".env.production", /app/]
+ARG VITE_APIURL
+
+ENV VITE_APIURL $VITE_APIURL
 
 RUN yarn
 

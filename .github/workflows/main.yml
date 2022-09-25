@@ -27,6 +27,9 @@ jobs:
         with:
           push: true
           platforms: linux/arm64
+          build-args: |
+            VITE_APIURL=${{ secrets.VITE_APIURL }}
+
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clothes:latest
 
       - name: Run Deploy
