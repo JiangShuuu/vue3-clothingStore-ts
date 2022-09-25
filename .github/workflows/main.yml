@@ -44,7 +44,7 @@ jobs:
           # context: ./
           # file: ./Dockerfile
           push: true
-          tags: ${{ secrets.USERNAME }}/appsss:latest
+          tags: ${{ secrets.USERNAME }}/appsss:1.0
 
       - name: Run Deploy
         uses: appleboy/ssh-action@master
