@@ -24,6 +24,7 @@
   </template>
 </template>
 <script setup lang="ts">
+import Loading from '~/components/global/Loading.vue'
 import BreadCrumb from '~/components/global/BreadCrumb.vue'
 import Header from '~/components/product/Header.vue'
 import productsAPI from '~/apis/product'

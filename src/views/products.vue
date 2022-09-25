@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import Loading from '~/components/global/Loading.vue'
 import BreadCrumb from '~/components/global/BreadCrumb.vue'
 import Categroy from '~/components/products/Categroy.vue'
 import Sort from '~/components/products/Sort.vue'
