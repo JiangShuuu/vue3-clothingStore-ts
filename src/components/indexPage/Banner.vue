@@ -42,6 +42,9 @@ const imgs = [
 }
 
 .icon {
-  @apply flex items-center justify-center cursor-pointer w-10 h-10 border-2 opacity-25 rounded-full hover:bg-white hover:text-gray-400 hover:opacity-50
+  @apply flex items-center justify-center cursor-pointer w-10 h-10 border-2 opacity-25 rounded-full 
+}
+.icon:hover {
+  @apply bg-white text-gray-400 opacity-50;
 }
 </style>

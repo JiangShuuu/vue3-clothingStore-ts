@@ -44,6 +44,9 @@ defineProps<{ categories:any, sortName:any, valueName:any }>()
 
 <style lang="postcss" scoped>
 .item {
-  @apply w-20 cursor-pointer text-lg hover:text-primary flex-center;
+  @apply w-20 cursor-pointer text-lg flex-center;
+}
+.item:hover {
+  @apply text-primary;
 }
 </style>

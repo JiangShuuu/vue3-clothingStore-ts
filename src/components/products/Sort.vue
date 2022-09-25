@@ -54,7 +54,10 @@ if (routerName.value === 'createdAt') {
 
 <style lang="postcss" scoped>
 .item {
-  @apply block text-gray-500 hover:text-black;
+  @apply block text-gray-500;
+}
+.item:hover {
+  @apply text-black;
 }
 .open {
   @apply block;

@@ -23,7 +23,7 @@ function logout () {
   @apply text-primary text-xl underline underline-offset-4;
 }
 
-.available {
-  @apply hover:text-primary hover:underline hover:underline-offset-4;
+.available:hover {
+  @apply text-primary underline underline-offset-4;
 }
 </style>

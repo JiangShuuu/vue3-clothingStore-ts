@@ -782,7 +782,7 @@
 
 "@vueuse/head@^0.7.12":
   version "0.7.12"
-  resolved "https://registry.yarnpkg.com/@vueuse/head/-/head-0.7.12.tgz#bdb2185654399d10b10c4e94b52f6129e9ca4f67"
+  resolved "https://registry.npmjs.org/@vueuse/head/-/head-0.7.12.tgz"
   integrity sha512-sRcrE6VohiHInQR0sB0U8H8x2hAKdo+AIhd5PWBLx1jUp2vwyeQyA/4rlCzP5CMDB8z61MLvsOCApFJrRMRtTQ==
   dependencies:
     "@zhead/schema-vue" "^0.7.3"
@@ -796,7 +796,7 @@
 
 "@zhead/schema-vue@^0.7.3":
   version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@zhead/schema-vue/-/schema-vue-0.7.4.tgz#dab303e372e4cd491eb292081c109f677d39039a"
+  resolved "https://registry.npmjs.org/@zhead/schema-vue/-/schema-vue-0.7.4.tgz"
   integrity sha512-Q7wPUly3ZWbPYQ5SEJBUuD6Mw3wiUfPMPquGfqsR2KF6sxQKRF8oaHnRLuu2uxpjuXjkzpBlZBPu1JgQX+Lf6Q==
   dependencies:
     "@vueuse/shared" "^9.2.0"
@@ -804,7 +804,7 @@
 
 "@zhead/schema@0.7.4":
   version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@zhead/schema/-/schema-0.7.4.tgz#73e87110468dbe416b70df86e4cc95fdec4978ee"
+  resolved "https://registry.npmjs.org/@zhead/schema/-/schema-0.7.4.tgz"
   integrity sha512-18gfgmZL8gM64JdcT11d1rYLnCaY2mOtbDDSAXtCySanPGpkA1r+w01LCssEI/OfLdoZPS/kYCIW09d1PmUFfQ==
 
 acorn-jsx@^5.3.2:
@@ -2903,7 +2903,7 @@ vue-router@^4.0.16:
 
 vue-social-sharing@^4.0.0-alpha4:
   version "4.0.0-alpha4"
-  resolved "https://registry.yarnpkg.com/vue-social-sharing/-/vue-social-sharing-4.0.0-alpha4.tgz#48d17f4ff2828c60689f2a065df86588af2bd1fb"
+  resolved "https://registry.npmjs.org/vue-social-sharing/-/vue-social-sharing-4.0.0-alpha4.tgz"
   integrity sha512-hMbgpZkY5aRAiznSB/sgzdMVgdSbkmIHEaELX7pUbuUd6KS1Z/GAi7a/q0Qn+GFn0+6qMMvwyp3ZOE0+WYPQ1w==
 
 vue-toastification@^2.0.0-rc.5:
