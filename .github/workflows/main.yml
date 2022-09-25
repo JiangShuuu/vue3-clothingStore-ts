@@ -42,7 +42,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./dockerfile
           push: true
           tags: ${{ secrets.USERNAME }}/appsss:latest
 
