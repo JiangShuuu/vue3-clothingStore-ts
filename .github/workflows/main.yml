@@ -7,23 +7,23 @@ on:
 
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 # git clone
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3 # git clone
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.14.2
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16.14.2
 
-      - name: Install & build
-        run: |
-          npm install
-          npm run build
+  #     - name: Install & build
+  #       run: |
+  #         npm install
+  #         npm run build
       
   docker:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -41,8 +41,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./
-          file: ./Dockerfile
+          # context: ./
+          # file: ./Dockerfile
           push: true
           tags: ${{ secrets.USERNAME }}/appsss:latest
 
