@@ -5,6 +5,7 @@ on:
     branches:
     - main
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,6 +24,7 @@ jobs:
         run: npm run build
       
   docker:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
