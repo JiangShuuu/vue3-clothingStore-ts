@@ -17,15 +17,13 @@ jobs:
         with:
           node-version: 16.14.2
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run build
-        run: npm run build
+      - name: Install & build
+        run: |
+          npm install
+          npm run build
       
   docker:
     needs: build
-    source: 'build'
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -43,6 +41,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
+          context: ./
+          file: ./Dockerfile
           push: true
           tags: user/app:latest
 
