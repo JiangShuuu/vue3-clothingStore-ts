@@ -91,7 +91,7 @@ const router = createRouter({
         {
           path: '/product/:id/description',
           name: 'description',
-          component: () => import('~/components/product/description.vue'),
+          component: () => import('~/components/product/Description.vue'),
           meta: { title: '商品描述' }
         },
         {
