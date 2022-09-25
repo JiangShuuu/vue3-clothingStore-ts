@@ -13,7 +13,6 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "types": ["vite/client"],
-    "forceConsistentCasingInFileNames": false,
     "baseUrl": "./",
     "paths": {
       "~/*": ["src/*"]
