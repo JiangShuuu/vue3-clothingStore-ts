@@ -1,4 +1,5 @@
-# clothesStore全端專案(前後分離)
+# clothesStore全端專案(前後分離 & SPA含SEO)
+
 Demo: https://profile.jiangshuuu.com/  
 後端repo: https://github.com/JiangShuuu/express-clothing-store
 ## 瀏覽專案
@@ -20,7 +21,7 @@ password: 12345678
 ### 框架
 - vue3(Composition) + typeScript
 ### 部署
-- Oracle + Docker + GithubAction
+- Oracle + Docker + GithubAction + rendertron(SEO)
 ### 使用套件
 - iconfly
 - firebase
