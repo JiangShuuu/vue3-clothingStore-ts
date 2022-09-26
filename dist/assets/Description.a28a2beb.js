@@ -1,0 +1,1 @@
+import{d as a,o as t,c as n,b as o,B as s}from"./index.583c14a6.js";const p=a({__name:"Description",props:{data:null},setup(e){return(r,c)=>(t(),n("main",null,[o("p",null,s(e.data.description),1)]))}});export{p as default};
