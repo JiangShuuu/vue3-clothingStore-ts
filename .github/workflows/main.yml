@@ -12,23 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3 # git clone 專案
 
-      - name: Use Node.js Install & Run build # Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.14.2
-        env:
-          VITE_APIURL: ${{ secrets.VITE_APIURL }}
-          VITE_URL: ${{ secrets.VITE_APIURL }}
-          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
-          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
-          VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
-          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
-          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
-          VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
-
-      - run: npm install
-      - run: npm run build
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
