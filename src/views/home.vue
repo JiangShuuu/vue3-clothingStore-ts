@@ -1,6 +1,5 @@
 <template>
   <main class="w-full max-w-[1280px] mx-auto mb-8">
-
     <Head>
       <title>Life Style Home Page</title>
       <meta key="description" name="description" content="JiangShuProfile">
@@ -9,12 +8,11 @@
       <meta key="og:description" property="og:description" content="JiangShuProfile">
       <meta key="og:site_name" property="og:site_name" content="Life Style Page" />
       <meta key="og:type" property="og:type" content="Life Style type" />
-      <meta key="og:image" property="og:image" content="" />
+      <meta key="og:image" property="og:image" content="/image/clothes.jpg" />
       <meta key="og:image:width" property="og:image:width" content="1200">
       <meta key="og:image:height" property="og:image:height" content="630">
       <meta key="og:image:alt" property="og:image:alt" content="LifeStyleHomePage"/>
     </Head>
-
     <Banner />
     <div class="flex-col w-full p-2 my-2 bg-gray-200 flex-center">
       <span class="text-xl font-light">HIGH QUALITY ASSURANCE</span>

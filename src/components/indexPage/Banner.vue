@@ -1,6 +1,6 @@
 <template>
   <div>
-    <swiper :modules="modules" :slides-per-view="1" :navigation="{
+    <swiper :rewind="true" :modules="modules" :slides-per-view="1" :navigation="{
       nextEl: '.swiper-next',
       prevEl: '.swiper-prev'
     }" :pagination="{ clickable: true }" :autoplay="{ delay: 2000 }">
@@ -10,17 +10,17 @@
         </div>
       </swiper-slide>
       <div class="absolute z-10 swiper-next right-6 -translate-y-2/4 top-2/4 icon arrow_right">
-        <i class=" fa-solid fa-angle-right"></i>
+        <Icon icon="akar-icons:triangle-right" class="w-8 h-8"></Icon>
       </div>
       <div class="absolute z-10 swiper-prev left-6 -translate-y-2/4 top-2/4 icon arrow_left">
-        <i class=" fa-solid fa-angle-left"></i>
+        <Icon icon="akar-icons:triangle-left" class="w-8 h-8"></Icon>
       </div>
     </swiper>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Swiper, SwiperSlide, Navigation, Pagination, Autoplay } from '../../plugins/swiper'
+import { Swiper, SwiperSlide, Navigation, Pagination, Autoplay } from '~/plugins/swiper'
 
 const modules = [Navigation, Pagination, Autoplay]
 
