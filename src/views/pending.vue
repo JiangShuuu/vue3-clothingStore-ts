@@ -14,3 +14,15 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Life Style - pending',
+  meta: [
+    { name: 'description', content: 'pending...' }
+  ]
+})
+
+</script>

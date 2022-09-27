@@ -1,6 +1,19 @@
 <template>
   <Loading v-if="loading" />
   <template v-else>
+    <Head v-if="result.product">
+      <title>{{result.product.title}} - Life Style</title>
+      <meta key="description" name="description" :content="`${result.product.description}`">
+      <meta key="og:title" property="og:title" :content="`${result.product.title} - Life Style`">
+      <meta key="og:description" property="og:description" :content="`${result.product.description}`">
+      <meta key="og:site_name" property="og:site_name" content="Life Style" />
+      <meta key="og:type" property="og:type" content="Life Style type" />
+      <meta key="og:image" property="og:image" :content="`${result.product.image}`" />
+      <meta key="og:image:width" property="og:image:width" content="1200">
+      <meta key="og:image:height" property="og:image:height" content="630">
+      <meta key="og:image:alt" property="og:image:alt" :content="`${result.product.short_intro}`">
+      <meta key="og:url" property="og:url" :content="url" />
+    </Head>
     <BreadCrumb />
     <main class="w-full h-full px-4 space-y-6 md:px-6 lg:max-w-[1280px] lg:mx-auto">
       <Header v-if="result" :data="result.product" />
@@ -30,11 +43,13 @@ import Header from '~/components/product/Header.vue'
 import productsAPI from '~/apis/product'
 import { useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'
+import { Head } from '@vueuse/head'
 
 const route = useRoute()
 const { id } = route.params
 const result = ref()
 const loading = ref()
+const url = `${import.meta.env.VITE_URL}/product/${id}`
 
 onMounted(() => {
   get(id)
