@@ -2,7 +2,7 @@
   <main class="w-full px-3 mt-2 md:px-0 md:flex md:flex-row-reverse">
     <router-link to="/products" class="imgbox">
       <img class="object-cover h-[120%] w-full scale-100 hover:scale-110 ease-in-out duration-700"
-        src="../../assets/Image/shop01.jpg" alt="">
+        src="/image/shop01.jpg" alt="">
     </router-link>
     <div class="flex-col my-5 space-y-2 flex-center md:flex-1">
       <span class="text-lg font-normol"> 質感日系時尚 </span>
