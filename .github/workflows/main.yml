@@ -10,8 +10,22 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3 # git clone 專案
+
+      - name: Use Node.js Install & Run build # Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.14.2
+      - run: npm install
+      - run: npm run build
+
+      - uses: appleboy/scp-action@master # scp 複製檔案
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: 'build'
+          target: '~/'
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
