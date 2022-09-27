@@ -19,9 +19,9 @@
 import { useHead } from '@vueuse/head'
 
 useHead({
-  title: 'Life Style - pending',
+  title: 'Life Style - 建構中...',
   meta: [
-    { name: 'description', content: 'pending...' }
+    { name: 'description', content: '頁面建構中, 可至部落格觀看其他作品。' }
   ]
 })
 
