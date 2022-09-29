@@ -5,7 +5,7 @@
       prevEl: '.swiper-prev'
     }" :pagination="{ clickable: true }" :autoplay="{ delay: 2000 }">
       <swiper-slide v-for="(img, index) in imgs" :key="index">
-        <div class="relative flex items-center justify-center w-full h-40 md:h-56 lg:h-72">
+        <div :id="`banner-${index}`" class="relative flex items-center justify-center w-full h-40 md:h-56 lg:h-72">
           <img :src="img" alt="" class="object-cover w-full h-40 md:h-56 lg:h-72">
         </div>
       </swiper-slide>
