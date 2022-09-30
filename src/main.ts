@@ -10,10 +10,14 @@ import { defaultImg } from './plugins/directive'
 import { VueClipboard } from '@soerenmartius/vue3-clipboard'
 import VueSocialSharing from 'vue-social-sharing'
 import { createHead } from '@vueuse/head'
+import DefaultLayout from '~/layout/default.vue'
+import AdminLayout from '~/layout/admin.vue'
 
 const app = createApp(App)
 app.directive('src', defaultImg)
 app.component('Icon', Icon)
+app.component('default-layout', DefaultLayout)
+app.component('admin-layout', AdminLayout)
 app.use(VueSocialSharing)
 app.use(createHead())
 app.use(VueClipboard)
