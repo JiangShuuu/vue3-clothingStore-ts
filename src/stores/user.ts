@@ -9,12 +9,13 @@ export const useUserStore = defineStore({
     currentUser: {} as CurrentUser['userData'],
     carts: [],
     isAuthenticated: false,
+    isAdmin: 0,
     token: ''
   }),
   actions: {
     setCurrentUser (user:CurrentUser) {
       this.currentUser = user.userData
-
+      this.isAdmin = user.userData.isAdmin
       // CartProduct
       const mainCount = useCounterStore()
       const cartProducts = user.CartProducts
@@ -38,6 +39,7 @@ export const useUserStore = defineStore({
       this.isAuthenticated = false
       this.carts = []
       this.token = ''
+      this.isAdmin = 0
       localStorage.removeItem('token')
     },
     async fetchCurrentUser () {

@@ -39,6 +39,7 @@ export interface User {
   currentUser: object|null,
   carts: Product[],
   isAuthenticated: boolean,
+  isAdmin: number,
   token: string
 }
 export interface OrderInfo {

@@ -10,7 +10,7 @@ const authorizeIdentity = async (to:any, from:any, next:any) => {
   // store
   const userStore = useUserStore()
   const currentUser = userStore.currentUser
-  if (!currentUser.isAdmin) {
+  if (!userStore.isAdmin) {
     next('/not-found')
     return
   }
@@ -183,8 +183,7 @@ router.beforeEach(async (to:any, from:any, next:any) => {
   }
 
   // Admin 身份無法進入其他頁
-  const currentUser = userStore.currentUser
-  if (currentUser.isAdmin && !pathIsAdmin.includes(to.name)) {
+  if (userStore.isAdmin && !pathIsAdmin.includes(to.name)) {
     next('/admin')
     return
   }
