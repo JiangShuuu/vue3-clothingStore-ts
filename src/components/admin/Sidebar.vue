@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac">
-    <el-col :span="12">
+    <el-col :span="10">
       <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
         <router-link to="/admin/products">
           <el-menu-item index="1">

@@ -5,7 +5,7 @@
   </div>
   <el-table v-loading="loading" :data="filterTableData" style="width: 100%" max-height="600">
     <el-table-column fixed prop="id" label="Id" width="50" />
-    <el-table-column prop="image" label="Thumbnail" width="90">
+    <el-table-column prop="image" label="圖片" width="90">
       <template #default="scope">
         <div style="display: flex; align-items: center">
           <img :src="scope.row.image" />
@@ -17,7 +17,7 @@
     <el-table-column prop="og_price" label="原價" width="80" />
     <el-table-column prop="price" label="特價" width="80" />
     <el-table-column prop="short_intro" label="簡介" width="250" />
-    <el-table-column prop="description" label="描述" width="400" />
+    <el-table-column prop="description" label="描述"  />
     <el-table-column fixed="right" label="Operations" width="150">
       <template #default="scope">
         <el-button link type="primary" size="small">Edit</el-button>
@@ -29,9 +29,10 @@
   </el-table>
 
   <!-- Add Item -->
-  <el-dialog v-model="dialogFormVisible" title="Shipping address">
+  <el-dialog v-model="dialogFormVisible" title="新增商品">
     <el-form :model="form">
       <el-form-item label="圖片" :label-width="formLabelWidth">
+        <img :src="form.image" class="mb-4 w-52"/>
         <el-input v-model="form.image" autocomplete="off" />
       </el-form-item>
       <el-form-item label="商品名稱" :label-width="formLabelWidth">
@@ -72,7 +73,6 @@
 <script lang="ts" setup>
 import { ref, computed, reactive } from 'vue'
 
-const now = new Date()
 const loading = ref(false)
 const search = ref('')
 const dialogFormVisible = ref(false)
@@ -95,7 +95,7 @@ const tableData = ref([
     price: 1000,
     categoryId: '上衣',
     short_intro: 'Los Angeles',
-    description: 'No. 189, Grove St, Los AngelesLos AngelesLos AngelesAngelesLos AngelesAngelesLos AngelesAngelesLos Angeles'
+    description: 'No. 189, Grove St, Los AngeLos AngLos AngLos AngLos AngLos AnglesLos AngelesLos AngelesAngelesLos AngelesAngelesLos AngelesAngelesLos Angeles'
   },
   {
     id: 1,
@@ -123,11 +123,9 @@ const deleteRow = (index: number) => {
   tableData.value.splice(index, 1)
 }
 
-now.setDate(now.getDate() + 1)
-
 const form = reactive({
   id: 1,
-  image: 'https://unsplash.com/photos/eQ49f7jKSa0',
+  image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
   title: 'sisisisis',
   og_price: 5000,
   price: 1000,

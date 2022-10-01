@@ -1,7 +1,9 @@
 <template>
-  <main class="flex">
-    <Sidebar />
-    <section class="w-full p-8">
+  <main class="flex ">
+    <section class="w-30">
+      <Sidebar />
+    </section>
+    <section class="flex-1 p-8">
       <router-view />
     </section>
   </main>
