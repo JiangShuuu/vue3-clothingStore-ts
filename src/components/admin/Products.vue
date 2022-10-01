@@ -67,57 +67,35 @@
       </span>
     </template>
   </el-dialog>
-
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, onMounted } from 'vue'
+import adminAPI from '~/apis/admin'
+import { Products, Product } from '~/plugins/type'
 
 const loading = ref(false)
 const search = ref('')
 const dialogFormVisible = ref(false)
 const formLabelWidth = '140px'
+const tableData = ref([])
 
 const filterTableData = computed(() =>
   tableData.value.filter(
-    (data) =>
+    (data:any) =>
       !search.value ||
       data.title.toLowerCase().includes(search.value.toLowerCase())
   )
 )
 
-const tableData = ref([
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-    title: 'sisisisis',
-    og_price: 5000,
-    price: 1000,
-    categoryId: '上衣',
-    short_intro: 'Los Angeles',
-    description: 'No. 189, Grove St, Los AngeLos AngLos AngLos AngLos AngLos AnglesLos AngelesLos AngelesAngelesLos AngelesAngelesLos AngelesAngelesLos Angeles'
-  },
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-    title: 'sisisisis',
-    og_price: 5000,
-    price: 1000,
-    categoryId: '上衣',
-    short_intro: 'Los Angeles',
-    description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
-  },
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-    title: 'sisisisis',
-    og_price: 5000,
-    price: 1000,
-    categoryId: '上衣',
-    short_intro: 'Los Angeles',
-    description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
-  }
-])
+onMounted(() => {
+  getProducts()
+})
+
+async function getProducts () {
+  const { data } = await adminAPI.getProducts()
+  tableData.value = data.data.products
+}
 
 const deleteRow = (index: number) => {
   tableData.value.splice(index, 1)
@@ -135,7 +113,7 @@ const form = reactive({
 })
 
 const onAddItem = () => {
-  tableData.value.push(form)
+  // tableData.value.push(form)
   dialogFormVisible.value = false
 }
 

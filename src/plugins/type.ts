@@ -1,5 +1,4 @@
 export interface Products {
-[x: string]: any
   Category: object,
   categoryId: number,
   description: string,
