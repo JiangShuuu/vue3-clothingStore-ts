@@ -25,15 +25,6 @@ const router = createRouter({
       component: () => import('~/views/home.vue')
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: () => import('~/views/admin.vue'),
-      beforeEnter: authorizeIdentity,
-      meta: {
-        layout: 'admin'
-      }
-    },
-    {
       path: '/signIn',
       name: 'sign-in',
       component: SignIn
@@ -131,6 +122,23 @@ const router = createRouter({
           path: '/member/order',
           name: 'memberOrder',
           component: () => import('~/components/member/Order.vue')
+        }
+      ]
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('~/views/admin.vue'),
+      beforeEnter: authorizeIdentity,
+      redirect: '/admin/products',
+      meta: {
+        layout: 'admin'
+      },
+      children: [
+        {
+          path: '/admin/products',
+          name: 'adminProducts',
+          component: () => import('~/components/admin/Products.vue')
         }
       ]
     },

@@ -1,5 +1,8 @@
 <template>
-  <h1>admin</h1>
+  <Navbar />
   <router-view></router-view>
-  <div>123</div>
 </template>
+<script setup lang="ts">
+
+import Navbar from '../components/admin/Navbar.vue'
+</script>

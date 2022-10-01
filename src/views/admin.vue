@@ -1,19 +1,12 @@
 <template>
-  <div>
-    adminhihihi
-    <button @click="logout">登出</button>
-  </div>
+  <main class="grid grid-cols-6 gap-4">
+    <Sidebar />
+    <section class="col-span-5 p-4">
+      <router-view />
+    </section>
+  </main>
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '~/stores/user'
-import { useRouter } from 'vue-router'
-
-const mainStore = useUserStore()
-const router = useRouter()
-
-function logout () {
-  mainStore.revokeAuthentication()
-  router.push('/signin')
-}
+import Sidebar from '~/components/admin/Sidebar.vue'
 </script>
