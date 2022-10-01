@@ -1,7 +1,7 @@
 <template>
   <main class="flex">
     <Sidebar />
-    <section class="p-8">
+    <section class="w-full p-8">
       <router-view />
     </section>
   </main>

@@ -1,5 +1,9 @@
 <template>
-  <el-table :data="filterTableData" style="width: 100%" max-height="600">
+  <div class="space-x-5">
+    <el-input v-model="search" placeholder="Type to search" style="width: 30%" />
+    <el-button max-width="500" @click="onAddItem">Add Item</el-button>
+  </div>
+  <el-table v-loading="loading" :data="filterTableData" style="width: 100%" max-height="600">
     <el-table-column fixed prop="date" label="Date" width="150" />
     <el-table-column prop="name" label="Name" width="120" />
     <el-table-column prop="state" label="State" width="120" />
@@ -7,9 +11,6 @@
     <el-table-column prop="zip" label="Zip" width="120" />
     <el-table-column prop="address" label="Address" width="500" />
     <el-table-column fixed="right" label="Operations" width="150">
-      <template #header>
-        <el-input v-model="search" size="small" placeholder="Type to search" />
-      </template>
       <template #default="scope">
         <el-button link type="primary" size="small">Edit</el-button>
         <el-button link type="danger" size="small" @click.prevent="deleteRow(scope.$index)">
@@ -18,7 +19,7 @@
       </template>
     </el-table-column>
   </el-table>
-  <el-button class="mt-4" style="width: 100%" @click="onAddItem">Add Item</el-button>
+  
 </template>
 
 <script lang="ts" setup>
@@ -26,6 +27,7 @@ import { ref, computed } from 'vue'
 import dayjs from 'dayjs'
 
 const now = new Date()
+const loading = ref(false)
 
 const search = ref('')
 const filterTableData = computed(() =>
