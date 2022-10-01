@@ -4,12 +4,20 @@
     <el-button max-width="500" text @click="dialogFormVisible = true">Add Item</el-button>
   </div>
   <el-table v-loading="loading" :data="filterTableData" style="width: 100%" max-height="600">
-    <el-table-column fixed prop="date" label="Date" width="150" />
-    <el-table-column prop="name" label="Name" width="120" />
-    <el-table-column prop="state" label="State" width="120" />
-    <el-table-column prop="city" label="City" width="120" />
-    <el-table-column prop="zip" label="Zip" width="120" />
-    <el-table-column prop="address" label="Address" width="500" />
+    <el-table-column fixed prop="id" label="Id" width="50" />
+    <el-table-column prop="image" label="Thumbnail" width="90">
+      <template #default="scope">
+        <div style="display: flex; align-items: center">
+          <img :src="scope.row.image" />
+        </div>
+      </template>
+    </el-table-column>
+    <el-table-column prop="title" label="商品名稱" width="120" />
+    <el-table-column prop="categoryId" label="類別" width="60" />
+    <el-table-column prop="og_price" label="原價" width="80" />
+    <el-table-column prop="price" label="特價" width="80" />
+    <el-table-column prop="short_intro" label="簡介" width="250" />
+    <el-table-column prop="description" label="描述" width="400" />
     <el-table-column fixed="right" label="Operations" width="150">
       <template #default="scope">
         <el-button link type="primary" size="small">Edit</el-button>
@@ -23,20 +31,26 @@
   <!-- Add Item -->
   <el-dialog v-model="dialogFormVisible" title="Shipping address">
     <el-form :model="form">
-      <el-form-item label="Promotion name" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off" />
+      <el-form-item label="圖片" :label-width="formLabelWidth">
+        <el-input v-model="form.image" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="Promotion State" :label-width="formLabelWidth">
-        <el-input v-model="form.state" autocomplete="off" />
+      <el-form-item label="商品名稱" :label-width="formLabelWidth">
+        <el-input v-model="form.title" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="Promotion City" :label-width="formLabelWidth">
-        <el-input v-model="form.city" autocomplete="off" />
+      <el-form-item label="原價" :label-width="formLabelWidth">
+        <el-input v-model="form.og_price" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="Promotion Zip" :label-width="formLabelWidth">
-        <el-input v-model="form.zip" autocomplete="off" />
+      <el-form-item label="特價" :label-width="formLabelWidth">
+        <el-input v-model="form.price" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="Promotion Address" :label-width="formLabelWidth">
-        <el-input v-model="form.address" autocomplete="off" />
+      <el-form-item label="類別" :label-width="formLabelWidth">
+        <el-input v-model="form.categoryId" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="簡介" :label-width="formLabelWidth">
+        <el-input v-model="form.short_intro" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="描述" :label-width="formLabelWidth">
+        <el-input v-model="form.description" autocomplete="off" />
       </el-form-item>
       <!-- <el-form-item label="Zones" :label-width="formLabelWidth">
         <el-select v-model="form.region" placeholder="Please select a zone">
@@ -57,7 +71,6 @@
 
 <script lang="ts" setup>
 import { ref, computed, reactive } from 'vue'
-import dayjs from 'dayjs'
 
 const now = new Date()
 const loading = ref(false)
@@ -69,34 +82,40 @@ const filterTableData = computed(() =>
   tableData.value.filter(
     (data) =>
       !search.value ||
-      data.name.toLowerCase().includes(search.value.toLowerCase())
+      data.title.toLowerCase().includes(search.value.toLowerCase())
   )
 )
 
 const tableData = ref([
   {
-    date: '2016-05-01',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036'
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+    title: 'sisisisis',
+    og_price: 5000,
+    price: 1000,
+    categoryId: '上衣',
+    short_intro: 'Los Angeles',
+    description: 'No. 189, Grove St, Los AngelesLos AngelesLos AngelesAngelesLos AngelesAngelesLos AngelesAngelesLos Angeles'
   },
   {
-    date: '2016-05-02',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036'
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+    title: 'sisisisis',
+    og_price: 5000,
+    price: 1000,
+    categoryId: '上衣',
+    short_intro: 'Los Angeles',
+    description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
   },
   {
-    date: '2016-05-03',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036'
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+    title: 'sisisisis',
+    og_price: 5000,
+    price: 1000,
+    categoryId: '上衣',
+    short_intro: 'Los Angeles',
+    description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
   }
 ])
 
@@ -107,12 +126,14 @@ const deleteRow = (index: number) => {
 now.setDate(now.getDate() + 1)
 
 const form = reactive({
-  date: dayjs(now).format('YYYY-MM-DD'),
-  name: 'AA',
-  state: 'CC',
-  city: 'DD',
-  address: 'WW',
-  zip: 'II'
+  id: 1,
+  image: 'https://unsplash.com/photos/eQ49f7jKSa0',
+  title: 'sisisisis',
+  og_price: 5000,
+  price: 1000,
+  categoryId: '上衣',
+  short_intro: 'Los Angeles',
+  description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
 })
 
 const onAddItem = () => {
