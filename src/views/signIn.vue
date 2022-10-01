@@ -62,12 +62,13 @@ const schema = yup.object().shape({
 async function onSubmit (values:any) {
   try {
     const { data } = await userAPI.signIn({ email: values.email_vaildate, password: values.password_vaildate })
-
+    const userInfo = data.data
+    console.log(userInfo)
     // 將伺服器回傳的token 保存在 localStorage 中
-    localStorage.setItem('token', data.data.token)
+    localStorage.setItem('token', userInfo.token)
 
     // 透過 setCurrentUser 把使用者資料存到 vuex 的 state 中
-    mainStore.setCurrentUser(data.data.user)
+    mainStore.setCurrentUser(userInfo.user)
 
     // Toast
     toast.success('登入成功', {
@@ -75,7 +76,7 @@ async function onSubmit (values:any) {
     })
 
     // 成功登入後進行轉址
-    route.push('/member')
+    userInfo.user.userData.isAdmin ? route.push('/admin') : route.push('/member')
   } catch (error:any) {
     console.log('err', error)
     toast.error('請重新登入', error.response.data.message)

@@ -6,47 +6,14 @@ import { useToast } from 'vue-toastification'
 
 const toast = useToast()
 
-const authorizeIsUser = async (to:any, from:any, next:any) => {
+const authorizeIdentity = async (to:any, from:any, next:any) => {
   // store
   const userStore = useUserStore()
-
-  // 從locoalStorage 取出 token
-  const token = localStorage.getItem('token')
-  const tokenInStore = userStore.token
-
-  let isAuthenticated = userStore.isAuthenticated
-
-  // 有 token 並且不等於 storeToken，向後端驗證
-  if (token && token !== tokenInStore) {
-    isAuthenticated = await userStore.fetchCurrentUser()
-  }
-
-  if (to.path === ('/cart/info')) {
-    userStore.fetchCurrentUser()
-  }
-
-  // 如果 token 有效，則無法進入signUp 跟 signIn
-  const pathsWithoutAuthentication = ['sign-in', 'sign-up']
-  const pathWithoutCartPage = ['cart']
-
-  // 如果 驗證 無效，並且路由不是在登入、註冊頁，則轉址到登入頁
-  if (!isAuthenticated && !pathsWithoutAuthentication.includes(to.name)) {
-    toast.warning('請先登入', {
-      timeout: 1000
-    })
-    next('/signin')
+  const currentUser = userStore.currentUser
+  if (!currentUser.isAdmin) {
+    next('/not-found')
     return
   }
-
-  // 如果 驗證 有效，並且路由是從登入頁，則轉址到會員頁
-  if (isAuthenticated && pathsWithoutAuthentication.includes(to.name)) {
-    next('/member')
-    return
-  } else if (isAuthenticated && pathWithoutCartPage.includes(to.name)) {
-    next('cart')
-    return
-  }
-
   next()
 }
 
@@ -62,6 +29,7 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: () => import('~/views/admin.vue'),
+      beforeEnter: authorizeIdentity,
       meta: {
         layout: 'admin'
       }
@@ -69,14 +37,12 @@ const router = createRouter({
     {
       path: '/signIn',
       name: 'sign-in',
-      component: SignIn,
-      beforeEnter: authorizeIsUser
+      component: SignIn
     },
     {
       path: '/signUp',
       name: 'sign-up',
-      component: SignUp,
-      beforeEnter: authorizeIsUser
+      component: SignUp
     },
     {
       path: '/search',
@@ -127,7 +93,9 @@ const router = createRouter({
       name: 'cart',
       component: () => import('~/views/cart.vue'),
       redirect: '/cart/order',
-      beforeEnter: authorizeIsUser,
+      meta: {
+        path: 'cart'
+      },
       children: [
         {
           path: '/cart/order',
@@ -151,7 +119,9 @@ const router = createRouter({
       name: 'member',
       component: () => import('~/views/member.vue'),
       redirect: '/member/info',
-      beforeEnter: authorizeIsUser,
+      meta: {
+        path: 'member'
+      },
       children: [
         {
           path: '/member/info',
@@ -179,12 +149,9 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to:any, from:any, next:any) => {
-  const pathsWithoutAuthentication = ['sign-in', 'sign-up', 'cart']
-
-  if (pathsWithoutAuthentication.includes(to.name)) {
-    next()
-    return
-  }
+  const pathsWithoutAuthentication = ['sign-in', 'sign-up']
+  const pathIsSignIn = ['cart', 'member']
+  const pathIsAdmin = ['admin']
 
   // store
   const userStore = useUserStore()
@@ -198,6 +165,28 @@ router.beforeEach(async (to:any, from:any, next:any) => {
   // 有 token 並且不等於 storeToken，向後端驗證
   if (token && token !== tokenInStore) {
     isAuthenticated = await userStore.fetchCurrentUser()
+  }
+
+  // 登入後無法進入 signIn & signUp
+  if (isAuthenticated && pathsWithoutAuthentication.includes(to.name)) {
+    next('/member')
+    return
+  }
+
+  // 登入前無法進入 cart & member
+  if (!isAuthenticated && pathIsSignIn.includes(to.meta.path)) {
+    toast.warning('請先登入', {
+      timeout: 1000
+    })
+    next('/signin')
+    return
+  }
+
+  // Admin 身份無法進入其他頁
+  const currentUser = userStore.currentUser
+  if (currentUser.isAdmin && !pathIsAdmin.includes(to.name)) {
+    next('/admin')
+    return
   }
 
   next()
