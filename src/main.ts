@@ -12,6 +12,8 @@ import VueSocialSharing from 'vue-social-sharing'
 import { createHead } from '@vueuse/head'
 import DefaultLayout from '~/layout/default.vue'
 import AdminLayout from '~/layout/admin.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 const app = createApp(App)
 app.directive('src', defaultImg)
@@ -19,6 +21,7 @@ app.component('Icon', Icon)
 app.component('default-layout', DefaultLayout)
 app.component('admin-layout', AdminLayout)
 app.use(VueSocialSharing)
+app.use(ElementPlus)
 app.use(createHead())
 app.use(VueClipboard)
 app.use(router)
