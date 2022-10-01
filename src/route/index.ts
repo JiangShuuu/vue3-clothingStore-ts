@@ -9,7 +9,6 @@ const toast = useToast()
 const authorizeIdentity = async (to:any, from:any, next:any) => {
   // store
   const userStore = useUserStore()
-  const currentUser = userStore.currentUser
   if (!userStore.isAdmin) {
     next('/not-found')
     return
