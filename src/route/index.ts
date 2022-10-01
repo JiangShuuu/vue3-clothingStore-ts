@@ -139,6 +139,11 @@ const router = createRouter({
           path: '/admin/products',
           name: 'adminProducts',
           component: () => import('~/components/admin/Products.vue')
+        },
+        {
+          path: '/admin/categories',
+          name: 'adminCategories',
+          component: () => import('~/components/admin/Categories.vue')
         }
       ]
     },
@@ -158,7 +163,6 @@ const router = createRouter({
 router.beforeEach(async (to:any, from:any, next:any) => {
   const pathsWithoutAuthentication = ['sign-in', 'sign-up']
   const pathIsSignIn = ['cart', 'member']
-  const pathIsAdmin = ['admin']
 
   // store
   const userStore = useUserStore()
@@ -190,7 +194,7 @@ router.beforeEach(async (to:any, from:any, next:any) => {
   }
 
   // Admin 身份無法進入其他頁
-  if (userStore.isAdmin && !pathIsAdmin.includes(to.name)) {
+  if (userStore.isAdmin && !to.name.includes('admin')) {
     next('/admin')
     return
   }

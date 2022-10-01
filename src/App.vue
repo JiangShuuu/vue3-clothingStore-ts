@@ -16,6 +16,7 @@ watch(route, () => {
   } else {
     layout.value = 'default-layout'
   }
+  console.log(123)
 })
 
 </script>
