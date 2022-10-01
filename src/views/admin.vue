@@ -1,7 +1,7 @@
 <template>
-  <main class="grid grid-cols-6 gap-4">
+  <main class="flex">
     <Sidebar />
-    <section class="col-span-5 p-4">
+    <section class="p-8">
       <router-view />
     </section>
   </main>
