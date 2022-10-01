@@ -11,12 +11,7 @@ const route = useRoute()
 const layout = ref()
 
 watch(route, () => {
-  if (route.meta.layout) {
-    layout.value = `${route.meta.layout}-layout`
-  } else {
-    layout.value = 'default-layout'
-  }
-  console.log(123)
+  layout.value = route.meta.layout ? `${route.meta.layout}-layout` : 'default-layout'
 })
 
 </script>
