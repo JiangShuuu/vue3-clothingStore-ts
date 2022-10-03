@@ -114,7 +114,6 @@ const deleteRow = async (id:number) => {
 }
 
 const form = reactive({
-  id: 1,
   image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
   title: 'sisisisis',
   og_price: 5000,
@@ -125,8 +124,26 @@ const form = reactive({
 })
 
 const onAddItem = async () => {
-  const { data } = await adminAPI.postProduct(form)
-  console.log(data)
+  const formData = new FormData()
+  formData.append('image', form.image)
+  formData.append('title', form.title)
+  formData.append('og_price', `${form.og_price}`)
+  formData.append('price', `${form.price}`)
+  formData.append('categoryId', `${form.categoryId}`)
+  formData.append('short_intro', `${form.short_intro}`)
+  formData.append('description', `${form.description}`)
+
+  // for (const [key, value] of formData) {
+  //   console.log(`${key}: ${value}`)
+  // }
+
+  const { data } = await adminAPI.postProduct(formData)
+  const newProduct = data.data.product
+
+  if (newProduct) {
+    tableData.value.push(newProduct)
+  }
+
   dialogFormVisible.value = false
 }
 
