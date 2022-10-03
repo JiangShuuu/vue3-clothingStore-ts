@@ -4,12 +4,13 @@ export default {
   getProducts () {
     return apiHelper.get('/admin/products')
   },
-  getProduct (id:string) {
-    return apiHelper.get(`/product/${id}`)
+  postProduct (form:any) {
+    return apiHelper.post('/admin/product', form)
   },
-  searchProducts (keyword:string) {
-    const searchParams = new URLSearchParams({ keyword })
-
-    return apiHelper.get(`/products/search?${searchParams.toString()}`)
+  putProdcut (id: number, data:any) {
+    return apiHelper.put('/admin/product', data)
+  },
+  deleteProduct (id: number) {
+    return apiHelper.delete(`/admin/product/${id}`)
   }
 }

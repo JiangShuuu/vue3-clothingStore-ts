@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     GlobalBreadCrumb: typeof import('./src/components/global/BreadCrumb.vue')['default']
     GlobalFooter: typeof import('./src/components/global/Footer.vue')['default']
     GlobalGoTop: typeof import('./src/components/global/GoTop.vue')['default']

@@ -21,7 +21,7 @@
     <el-table-column fixed="right" label="Operations" width="150">
       <template #default="scope">
         <el-button link type="primary" size="small">Edit</el-button>
-        <el-button link type="danger" size="small" @click.prevent="deleteRow(scope.$index)">
+        <el-button link type="danger" size="small" @click.prevent="deleteRow(scope.row.id)">
           Delete
         </el-button>
       </template>
@@ -63,7 +63,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="onAddItem">Confirm</el-button>
+        <el-button type="primary" @click="onAddItem()">Confirm</el-button>
       </span>
     </template>
   </el-dialog>
@@ -72,9 +72,11 @@
 <script lang="ts" setup>
 import { ref, computed, reactive, onMounted } from 'vue'
 import adminAPI from '~/apis/admin'
+import { useToast } from 'vue-toastification'
 import { Products, Product } from '~/plugins/type'
 
 const loading = ref(false)
+const toast = useToast()
 const search = ref('')
 const dialogFormVisible = ref(false)
 const formLabelWidth = '140px'
@@ -97,8 +99,16 @@ async function getProducts () {
   tableData.value = data.data.products
 }
 
-const deleteRow = (index: number) => {
-  tableData.value.splice(index, 1)
+const deleteRow = async (id:number) => {
+  try {
+    const { data } = await adminAPI.deleteProduct(id)
+    if (data) {
+      toast.success('成功移除')
+    }
+    tableData.value = tableData.value.filter(item => item.id !== id)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const form = reactive({
@@ -107,13 +117,14 @@ const form = reactive({
   title: 'sisisisis',
   og_price: 5000,
   price: 1000,
-  categoryId: '上衣',
+  categoryId: 1,
   short_intro: 'Los Angeles',
   description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
 })
 
-const onAddItem = () => {
-  // tableData.value.push(form)
+const onAddItem = async () => {
+  const { data } = await adminAPI.postProduct(form)
+  console.log(data)
   dialogFormVisible.value = false
 }
 
