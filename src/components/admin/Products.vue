@@ -84,7 +84,7 @@ const tableData = ref([])
 
 const filterTableData = computed(() =>
   tableData.value.filter(
-    (data:any) =>
+    (data: any) =>
       !search.value ||
       data.title.toLowerCase().includes(search.value.toLowerCase())
   )
@@ -95,8 +95,10 @@ onMounted(() => {
 })
 
 async function getProducts () {
+  loading.value = true
   const { data } = await adminAPI.getProducts()
   tableData.value = data.data.products
+  loading.value = false
 }
 
 const deleteRow = async (id:number) => {
@@ -105,7 +107,7 @@ const deleteRow = async (id:number) => {
     if (data) {
       toast.success('成功移除')
     }
-    tableData.value = tableData.value.filter(item => item.id !== id)
+    tableData.value = tableData.value.filter((item:Product) => item.id !== id)
   } catch (err) {
     console.log(err)
   }

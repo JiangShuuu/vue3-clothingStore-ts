@@ -10,6 +10,7 @@ export interface Products {
   short_intro: string,
   title: string
 }
+
 export interface Product {
   Cart: {
     id?: number,
