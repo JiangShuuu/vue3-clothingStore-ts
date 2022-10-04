@@ -3,7 +3,7 @@
     <el-input v-model="search" placeholder="Type to search" style="width: 30%" />
     <el-button max-width="500" text @click="onClickItem('add', {})">Add Item</el-button>
   </div>
-  <el-table v-loading="loading" :data="filterTableData" style="width: 100%" max-height="600">
+  <el-table :data="filterTableData" style="width: 100%" max-height="600">
     <el-table-column fixed prop="id" label="Id" width="50" />
     <el-table-column prop="image" label="圖片" width="90">
       <template #default="scope">
@@ -74,7 +74,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="onAddItem()">Confirm</el-button>
+        <el-button type="primary" @click="onAddItem()" :disabled="loading">Confirm</el-button>
       </span>
     </template>
   </el-dialog>
@@ -86,7 +86,7 @@ import adminAPI from '~/apis/admin'
 import { useToast } from 'vue-toastification'
 import { Categories, Product } from '~/plugins/type'
 
-const loading = ref(false)
+const loading = ref(true)
 const toast = useToast()
 const search = ref('')
 const dialogFormVisible = ref(false)
@@ -154,12 +154,15 @@ async function getProducts () {
 
 const deleteRow = async (id:number) => {
   try {
+    loading.value = true
     const { data } = await adminAPI.deleteProduct(id)
     if (data) {
       toast.success('成功移除')
     }
     tableData.value = tableData.value.filter((item:Product) => item.id !== id)
+    loading.value = false
   } catch (err) {
+    loading.value = false
     console.log(err)
   }
 }
@@ -177,6 +180,7 @@ const handleFileChange = (e: any) => {
 }
 
 const onAddItem = async () => {
+  loading.value = true
   const formData = new FormData()
   formData.append('image', form.imageFile)
   formData.append('title', form.title)
@@ -198,7 +202,9 @@ const onAddItem = async () => {
       console.log(data)
     }
     getProducts()
+    loading.value = false
   } catch (error) {
+    loading.value = false
     console.log(error)
   }
   dialogFormVisible.value = false
