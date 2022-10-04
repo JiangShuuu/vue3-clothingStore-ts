@@ -1,7 +1,7 @@
 <template>
   <div class="space-x-5">
     <el-input v-model="search" placeholder="Type to search" style="width: 30%" />
-    <el-button max-width="500" text @click="dialogFormVisible = true">Add Item</el-button>
+    <el-button max-width="500" text @click="onClickItem('add', {})">Add Item</el-button>
   </div>
   <el-table v-loading="loading" :data="filterTableData" style="width: 100%" max-height="600">
     <el-table-column fixed prop="id" label="Id" width="50" />
@@ -20,7 +20,7 @@
     <el-table-column prop="description" label="描述"  />
     <el-table-column fixed="right" label="Operations" width="150">
       <template #default="scope">
-        <el-button link type="primary" size="small">Edit</el-button>
+        <el-button link type="primary" size="small" @click="onClickItem('edit', scope.row)">Edit</el-button>
         <el-button link type="danger" size="small" @click.prevent="deleteRow(scope.row.id)">
           Delete
         </el-button>
@@ -33,7 +33,15 @@
     <el-form :model="form">
       <el-form-item label="圖片" :label-width="formLabelWidth">
         <img :src="form.image" class="mb-4 w-52"/>
-        <el-input v-model="form.image" autocomplete="off" />
+        <input
+          id="image"
+          type="file"
+          name="image"
+          accept="image/*"
+          @change="handleFileChange"
+          />
+        <!-- <label for="image">Image</label> -->
+        <!-- <el-input v-model="form.image" autocomplete="off" /> -->
       </el-form-item>
       <el-form-item label="商品名稱" :label-width="formLabelWidth">
         <el-input v-model="form.title" autocomplete="off" />
@@ -81,6 +89,7 @@ const search = ref('')
 const dialogFormVisible = ref(false)
 const formLabelWidth = '140px'
 const tableData = ref([])
+const typeName = ref('add')
 
 const filterTableData = computed(() =>
   tableData.value.filter(
@@ -90,6 +99,42 @@ const filterTableData = computed(() =>
   )
 )
 
+const form = reactive({
+  id: 0,
+  image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+  imageFile: '',
+  title: 'sisisisis',
+  og_price: 5000,
+  price: 1000,
+  categoryId: 1,
+  short_intro: 'Los Angeles',
+  description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
+})
+
+const onClickItem = (type: string, old: any) => {
+  dialogFormVisible.value = true
+  typeName.value = type
+
+  if (type === 'edit') {
+    form.id = old.id
+    form.image = old.image
+    form.title = old.title
+    form.og_price = old.og_price
+    form.price = old.price
+    form.categoryId = old.categoryId
+    form.short_intro = old.short_intro
+    form.description = old.description
+  } else {
+    form.image = ''
+    form.title = ''
+    form.og_price = 0
+    form.price = 0
+    form.categoryId = 1
+    form.short_intro = ''
+    form.description = ''
+  }
+}
+
 onMounted(() => {
   getProducts()
 })
@@ -98,6 +143,7 @@ async function getProducts () {
   loading.value = true
   const { data } = await adminAPI.getProducts()
   tableData.value = data.data.products
+  console.log('hihi')
   loading.value = false
 }
 
@@ -113,19 +159,21 @@ const deleteRow = async (id:number) => {
   }
 }
 
-const form = reactive({
-  image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-  title: 'sisisisis',
-  og_price: 5000,
-  price: 1000,
-  categoryId: 1,
-  short_intro: 'Los Angeles',
-  description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
-})
+const handleFileChange = (e: any) => {
+  const files = e.target.files
+
+  if (files.length === 0) {
+    return form.image = ''
+  } else {
+    const imageURL = window.URL.createObjectURL(files[0])
+    form.image = imageURL
+    form.imageFile = files[0]
+  }
+}
 
 const onAddItem = async () => {
   const formData = new FormData()
-  formData.append('image', form.image)
+  formData.append('image', form.imageFile)
   formData.append('title', form.title)
   formData.append('og_price', `${form.og_price}`)
   formData.append('price', `${form.price}`)
@@ -136,14 +184,18 @@ const onAddItem = async () => {
   // for (const [key, value] of formData) {
   //   console.log(`${key}: ${value}`)
   // }
-
-  const { data } = await adminAPI.postProduct(formData)
-  const newProduct = data.data.product
-
-  if (newProduct) {
-    tableData.value.push(newProduct)
+  try {
+    if (typeName.value === 'add') {
+      const { data } = await adminAPI.postProduct(formData)
+      console.log(data)
+    } else if (typeName.value === 'edit') {
+      const { data } = await adminAPI.putProdcut(form.id, formData)
+      console.log(data)
+    }
+    getProducts()
+  } catch (error) {
+    console.log(error)
   }
-
   dialogFormVisible.value = false
 }
 
