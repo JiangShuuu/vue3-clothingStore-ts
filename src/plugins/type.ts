@@ -11,6 +11,11 @@ export interface Products {
   title: string
 }
 
+export interface Categories {
+  id: number,
+  name: string
+}
+
 export interface Product {
   Cart: {
     id?: number,

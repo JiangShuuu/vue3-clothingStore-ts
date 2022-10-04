@@ -13,7 +13,13 @@
       </template>
     </el-table-column>
     <el-table-column prop="title" label="商品名稱" width="120" />
-    <el-table-column prop="categoryId" label="類別" width="60" />
+    <el-table-column prop="categoryId" label="類別" width="60" >
+      <template #default="scope">
+        <div v-for="item in categories" :key="item.id">
+          <p v-if="item.id === scope.row.categoryId">{{item.name}}</p>
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column prop="og_price" label="原價" width="80" />
     <el-table-column prop="price" label="特價" width="80" />
     <el-table-column prop="short_intro" label="簡介" width="250" />
@@ -53,7 +59,11 @@
         <el-input v-model="form.price" autocomplete="off" />
       </el-form-item>
       <el-form-item label="類別" :label-width="formLabelWidth">
-        <el-input v-model="form.categoryId" autocomplete="off" />
+        <el-select v-model="form.categoryId" placeholder="Please select a zone">
+          <template v-for="item in categories" :key="item.id">
+            <el-option :label="item.name" :value="item.id" />
+          </template>
+        </el-select>
       </el-form-item>
       <el-form-item label="簡介" :label-width="formLabelWidth">
         <el-input v-model="form.short_intro" autocomplete="off" />
@@ -61,12 +71,6 @@
       <el-form-item label="描述" :label-width="formLabelWidth">
         <el-input v-model="form.description" autocomplete="off" />
       </el-form-item>
-      <!-- <el-form-item label="Zones" :label-width="formLabelWidth">
-        <el-select v-model="form.region" placeholder="Please select a zone">
-          <el-option label="Zone No.1" value="shanghai" />
-          <el-option label="Zone No.2" value="beijing" />
-        </el-select>
-      </el-form-item> -->
     </el-form>
     <template #footer>
       <span class="dialog-footer">
@@ -81,7 +85,7 @@
 import { ref, computed, reactive, onMounted } from 'vue'
 import adminAPI from '~/apis/admin'
 import { useToast } from 'vue-toastification'
-import { Products, Product } from '~/plugins/type'
+import { Categories, Product } from '~/plugins/type'
 
 const loading = ref(false)
 const toast = useToast()
@@ -90,6 +94,7 @@ const dialogFormVisible = ref(false)
 const formLabelWidth = '140px'
 const tableData = ref([])
 const typeName = ref('add')
+const categories = ref()
 
 const filterTableData = computed(() =>
   tableData.value.filter(
@@ -101,14 +106,19 @@ const filterTableData = computed(() =>
 
 const form = reactive({
   id: 0,
-  image: 'https://images.unsplash.com/photo-1664448021787-7893ce42f81a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+  image: '',
   imageFile: '',
-  title: 'sisisisis',
-  og_price: 5000,
-  price: 1000,
+  title: '',
+  og_price: 0,
+  price: 0,
+  newcategory: 0,
   categoryId: 1,
-  short_intro: 'Los Angeles',
-  description: 'No. 189, Grove St, Los AngelesLos AngelesLos Angeles'
+  short_intro: '',
+  description: ''
+})
+
+onMounted(() => {
+  getProducts()
 })
 
 const onClickItem = (type: string, old: any) => {
@@ -135,15 +145,11 @@ const onClickItem = (type: string, old: any) => {
   }
 }
 
-onMounted(() => {
-  getProducts()
-})
-
 async function getProducts () {
   loading.value = true
   const { data } = await adminAPI.getProducts()
   tableData.value = data.data.products
-  console.log('hihi')
+  categories.value = data.data.categories as Categories
   loading.value = false
 }
 
