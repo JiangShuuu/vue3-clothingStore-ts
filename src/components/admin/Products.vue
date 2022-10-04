@@ -40,14 +40,13 @@
       <el-form-item label="圖片" :label-width="formLabelWidth">
         <img :src="form.image" class="mb-4 w-52"/>
         <input
+          class="ml-10"
           id="image"
           type="file"
           name="image"
           accept="image/*"
           @change="handleFileChange"
           />
-        <!-- <label for="image">Image</label> -->
-        <!-- <el-input v-model="form.image" autocomplete="off" /> -->
       </el-form-item>
       <el-form-item label="商品名稱" :label-width="formLabelWidth">
         <el-input v-model="form.title" autocomplete="off" />
