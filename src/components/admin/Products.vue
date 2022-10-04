@@ -3,7 +3,7 @@
     <el-input v-model="search" placeholder="Type to search" style="width: 30%" />
     <el-button max-width="500" text @click="onClickItem('add', {})">Add Item</el-button>
   </div>
-  <el-table :data="filterTableData" style="width: 100%" max-height="600">
+  <el-table v-loading="loading" :data="filterTableData" style="width: 100%" max-height="600">
     <el-table-column fixed prop="id" label="Id" width="50" />
     <el-table-column prop="image" label="圖片" width="90">
       <template #default="scope">
@@ -211,3 +211,13 @@ const onAddItem = async () => {
 }
 
 </script>
+
+<style scoped>
+body {
+  margin: 0;
+}
+
+.example-showcase .el-loading-mask {
+  z-index: 9;
+}
+</style>
