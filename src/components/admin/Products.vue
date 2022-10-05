@@ -51,11 +51,11 @@
       <el-form-item label="商品名稱" :label-width="formLabelWidth" prop="title">
         <el-input v-model="form.title" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="原價" :label-width="formLabelWidth">
-        <el-input v-model="form.og_price" autocomplete="off" />
+      <el-form-item label="原價" :label-width="formLabelWidth" prop="og_price">
+        <el-input v-model.number="form.og_price" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="特價" :label-width="formLabelWidth">
-        <el-input v-model="form.price" autocomplete="off" />
+      <el-form-item label="特價" :label-width="formLabelWidth" prop="price">
+        <el-input v-model.number="form.price" autocomplete="off" />
       </el-form-item>
       <el-form-item label="類別" :label-width="formLabelWidth">
         <el-select v-model="form.categoryId" placeholder="Please select a zone">
@@ -64,17 +64,16 @@
           </template>
         </el-select>
       </el-form-item>
-      <el-form-item label="簡介" :label-width="formLabelWidth">
+      <el-form-item label="簡介" :label-width="formLabelWidth" prop="short_intro">
         <el-input v-model="form.short_intro" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="描述" :label-width="formLabelWidth">
-        <el-input v-model="form.description" autocomplete="off" />
+      <el-form-item label="描述" :label-width="formLabelWidth" prop="description">
+        <el-input v-model="form.description" autocomplete="off" type="textarea"/>
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <!-- <el-button type="primary" @click="onAddItem" :disabled="loading">Confirm</el-button> -->
         <el-button type="primary" @click="submitForm(ruleFormRef)" :disabled="loading">Confirm</el-button>
       </span>
     </template>
@@ -100,64 +99,32 @@ const categories = ref()
 
 const rules = reactive<FormRules>({
   title: [
-    { required: true, message: 'Please input Activity name', trigger: 'blur' },
+    { required: true, message: '請輸入商品名稱', trigger: 'blur' },
     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+  ],
+  og_price: [
+    { required: true, message: '請輸入金額', trigger: 'blur' },
+    { type: 'number', message: '只能輸入數字', trigger: 'blur' }
+  ],
+  price: [
+    { required: true, message: '請輸入金額', trigger: 'blur' },
+    { type: 'number', message: '只能輸入數字', trigger: 'blur' }
+  ],
+  short_intro: [
+    { required: true, message: '請輸入簡介', trigger: 'blur' },
+    { max: 20, message: '請小於20個字', trigger: 'blur' }
+  ],
+  description: [
+    { required: true, message: '請輸入描述', trigger: 'blur' },
+    { min: 20, message: '請大於20個字', trigger: 'blur' }
   ]
-  // region: [
-  //   {
-  //     required: true,
-  //     message: 'Please select Activity zone',
-  //     trigger: 'change'
-  //   }
-  // ],
-  // count: [
-  //   {
-  //     required: true,
-  //     message: 'Please select Activity count',
-  //     trigger: 'change'
-  //   }
-  // ],
-  // date1: [
-  //   {
-  //     type: 'date',
-  //     required: true,
-  //     message: 'Please pick a date',
-  //     trigger: 'change'
-  //   }
-  // ],
-  // date2: [
-  //   {
-  //     type: 'date',
-  //     required: true,
-  //     message: 'Please pick a time',
-  //     trigger: 'change'
-  //   }
-  // ],
-  // type: [
-  //   {
-  //     type: 'array',
-  //     required: true,
-  //     message: 'Please select at least one activity type',
-  //     trigger: 'change'
-  //   }
-  // ],
-  // resource: [
-  //   {
-  //     required: true,
-  //     message: 'Please select activity resource',
-  //     trigger: 'change'
-  //   }
-  // ],
-  // desc: [
-  //   { required: true, message: 'Please input activity form', trigger: 'blur' }
-  // ]
 })
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      onAddItem()
     } else {
       console.log('error submit!', fields)
     }
