@@ -12,5 +12,17 @@ export default {
   },
   deleteProduct (id: number) {
     return apiHelper.delete(`/admin/product/${id}`)
+  },
+  getCategories () {
+    return apiHelper.get('/admin/categories')
+  },
+  postCategory (data:any) {
+    return apiHelper.post('/admin/categories', data)
+  },
+  putCategory (id:number, data:any) {
+    return apiHelper.put(`/admin/categories/${id}`, data)
+  },
+  deleteCategory (id:number) {
+    return apiHelper.delete(`/admin/categories/${id}`)
   }
 }

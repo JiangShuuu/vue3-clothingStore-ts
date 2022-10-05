@@ -1,7 +1,7 @@
 <template>
   <div class="space-x-5">
     <el-input v-model="search" placeholder="Type to search" style="width: 30%" />
-    <el-button max-width="500" text @click="onClickItem('add', {})">Add Item</el-button>
+    <el-button max-width="500" @click="onClickItem('add', {})">Add Item</el-button>
   </div>
   <el-table v-loading="loading" :data="filterTableData" style="width: 100%" max-height="600">
     <el-table-column fixed prop="id" label="Id" width="50" />
