@@ -70,11 +70,12 @@ import { ref } from 'vue'
 import usersAPI from '~/apis/user'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
-import { Product } from '~/plugins/type'
+import { Product, CurrentUser } from '~/plugins/type'
 
 defineProps<{ data:Product }>()
 
 const mainUser = useUserStore()
+const currentUser = mainUser.currentUser as CurrentUser['userData']
 const isLoading = ref(false)
 const toast = useToast()
 const route = useRouter()
@@ -88,7 +89,7 @@ async function addCart (product: Product) {
   try {
     isLoading.value = true
 
-    if (!mainUser.currentUser) {
+    if (!currentUser.email) {
       toast.error('請先登入')
       return route.push('/signIn')
     }
