@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AdminCategories: typeof import('./src/components/admin/Categories.vue')['default']
     AdminNavbar: typeof import('./src/components/admin/Navbar.vue')['default']
+    AdminOrders: typeof import('./src/components/admin/Orders.vue')['default']
     AdminProducts: typeof import('./src/components/admin/Products.vue')['default']
     AdminSidebar: typeof import('./src/components/admin/Sidebar.vue')['default']
     CartsCart01: typeof import('./src/components/carts/Cart01.vue')['default']

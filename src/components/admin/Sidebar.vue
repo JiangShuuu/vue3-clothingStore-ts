@@ -13,12 +13,20 @@
         <router-link to="/admin/categories">
           <el-menu-item index="2">
             <el-icon>
-              <document />
+              <Switch />
             </el-icon>
             <span>類別列表</span>
           </el-menu-item>
         </router-link>
-        <el-menu-item index="3" @click="logout">
+        <router-link to="/admin/orders">
+          <el-menu-item index="3">
+            <el-icon>
+              <document />
+            </el-icon>
+            <span>訂單列表</span>
+          </el-menu-item>
+        </router-link>
+        <el-menu-item index="4" @click="logout">
           <el-icon>
             <setting />
           </el-icon>
@@ -33,7 +41,7 @@
 import {
   Document,
   Menu as IconMenu,
-  Location,
+  Switch,
   Setting
 } from '@element-plus/icons-vue'
 import { useUserStore } from '~/stores/user'
