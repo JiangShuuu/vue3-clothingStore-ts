@@ -119,10 +119,12 @@ async function reduceCount (item:Product) {
 async function deleteCart (product:Product) {
   try {
     const { data } = await userAPI.deleteCart(product.id)
-    userCarts.value = userCarts.value.filter(item => item.id !== product.id)
-    const producTotal = product.price * product.Cart.productCount
-    mainCount.order.price -= producTotal
-    product.isCart = false
+    if (data) {
+      userCarts.value = userCarts.value.filter(item => item.id !== product.id)
+      const producTotal = product.price * product.Cart.productCount
+      mainCount.order.price -= producTotal
+      product.isCart = false
+    }
   } catch (error) {
     console.log(error)
   }
