@@ -1,7 +1,6 @@
 <template>
   <section class="flex-col block w-full h-full mb-24 space-y-3 flex-center">
     <h2 class="text-2xl underline underline-offset-4 text-primary">填寫資料</h2>
-    {{custom.total}}
     <Form class="space-y-3 md:space-y-0 md:flex md:space-x-4" @submit="handleSubmit" :validation-schema="simpleSchema">
       <div class="w-full space-y-3">
         <section class="border">
