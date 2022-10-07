@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-col justify-start py-10 space-y-10 border-b-2 border-r-2 flex-center">
+  <main class="justify-around py-3 border-b-2 border-r-2 lg:justify-start lg:flex-col lg:py-10 lg:space-y-10 flex-center">
     <router-link to="/member/info" :class="['available',{ active: $route.name === 'memberInfo' }]">基本資料</router-link>
     <router-link to="/member/order" :class="['available',{ active: $route.name === 'memberOrder' }]">訂單紀錄</router-link>
     <button @click="logout" class="text-lg hover:text-primary">登出</button>

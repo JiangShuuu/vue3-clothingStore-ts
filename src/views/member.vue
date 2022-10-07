@@ -12,9 +12,9 @@
     <meta key="og:image:height" property="og:image:height" content="630">
     <meta key="og:image:alt" property="og:image:alt" content="Life Style Member" />
   </Head>
-  <main class="grid grid-cols-6 gap-4">
+  <main class="contain">
     <NavBar />
-    <section class="col-span-5 p-4">
+    <section class="section_name">
       <router-view />
     </section>
   </main>
@@ -26,3 +26,22 @@ import { Head } from '@vueuse/head'
 
 const url = `${import.meta.env.VITE_URL}/member`
 </script>
+
+<style lang="postcss" scoped>
+.contain {
+  @apply grid grid-cols-6 gap-4;
+}
+.section_name {
+  @apply col-span-5 p-4;
+}
+
+@media screen and (max-width: 600px) {
+  .contain {
+    @apply flex flex-col;
+  }
+  .section_name {
+    @apply flex;
+  }
+
+}
+</style>
