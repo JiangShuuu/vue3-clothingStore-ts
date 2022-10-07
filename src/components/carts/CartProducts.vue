@@ -7,7 +7,7 @@
       <p>數量</p>
       <p>小計</p>
     </div>
-    <div v-for="item in userCarts" :key="item.id">
+    <div v-for="item in mainUser.carts" :key="item.id">
       <div class="relative hidden grid-flow-row grid-cols-5 p-2 text-sm border md:grid">
         <div class="grid grid-flow-row grid-cols-2 ml-12 w-36 flex-center">
           <div class="w-16 h-16 overflow-hidden border">
@@ -77,7 +77,6 @@ import userAPI from '~/apis/user'
 // store
 const mainUser = useUserStore()
 const mainCount = useCounterStore()
-const userCarts = ref(mainUser.carts)
 
 // ref
 const isLoading = ref(false)
@@ -120,7 +119,7 @@ async function deleteCart (product:Product) {
   try {
     const { data } = await userAPI.deleteCart(product.id)
     if (data) {
-      userCarts.value = userCarts.value.filter(item => item.id !== product.id)
+      mainUser.carts = mainUser.carts.filter(item => item.id !== product.id)
       const producTotal = product.price * product.Cart.productCount
       mainCount.order.price -= producTotal
       product.isCart = false
