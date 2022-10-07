@@ -12,7 +12,7 @@ export const useCounterStore = defineStore({
     },
     order: {
       price: 0,
-      fee: 200,
+      fee: 0,
       total: 0
     }
   }),
