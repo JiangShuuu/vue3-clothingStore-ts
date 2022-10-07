@@ -24,5 +24,11 @@ export default {
   },
   deleteCategory (id:number) {
     return apiHelper.delete(`/admin/categories/${id}`)
+  },
+  getOrders () {
+    return apiHelper.get('/admin/orders')
+  },
+  deleteOrder (id:number) {
+    return apiHelper.delete(`/admin/orders/${id}`)
   }
 }
