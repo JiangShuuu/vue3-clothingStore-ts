@@ -24,7 +24,11 @@
       </template>
     </el-table-column>
     <el-table-column label="ID" prop="id" width="50" />
-    <el-table-column label="訂購日期" prop="createdAt"  width="150"/>
+    <el-table-column label="訂購日期" prop="createdAt"  width="150">
+      <template #default="scope">
+        <p>{{dateFormat(scope.row.createdAt)}}</p>
+      </template>
+    </el-table-column>
     <el-table-column label="收件人名稱" prop="name" width="150"/>
     <el-table-column label="電話" prop="phone" width="150"/>
     <el-table-column label="地址" prop="address" />
@@ -51,6 +55,21 @@ const toast = useToast()
 onMounted(() => {
   getOrders()
 })
+
+const dateFormat = (dateStr: string): string => {
+  const date = dateStr.replace(/ /g, 'T')
+  const dateObj = new Date(date)
+
+  if (dateObj.toString() === 'Invalid Date') {
+    return ''
+  }
+
+  return dateObj.toLocaleDateString('zh-TW', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  }).replace(/\//g, '-')
+}
 
 const getOrders = async () => {
   try {
