@@ -55,6 +55,8 @@
         </ul>
       </div>
     </div>
+    <!-- <div v-html="paymentHtml"></div>
+    <button @click="submitForm">確定支付</button> -->
   </div>
 </template>
 
@@ -66,6 +68,7 @@ import paymentAPI from '~/apis/payment'
 const isOpen = ref(false)
 const user = useUserStore()
 const avatar = ref()
+const paymentHtml = ref('') as any
 
 watch(user, (curVal, preVal) => {
   const userInfo = user.currentUser as CurrentUser['userData']
@@ -82,7 +85,16 @@ const getMoney = async () => {
     id: 123,
     name: 'John'
   }
-  const { data } = await paymentAPI.payment(info)
+  paymentHtml.value = await paymentAPI.payment(info).then((response) => {
+    return response.data
+  })
+}
+
+const submitForm = () => {
+  const form = document.createElement('form')
+  form.innerHTML = paymentHtml
+  document.body.appendChild(form)
+  form.submit()
 }
 
 </script>
