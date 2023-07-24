@@ -13,6 +13,7 @@
           <div class="content_list">
             <div class="content_list_background" @click="checkClose"></div>
             <ul class="flex flex-col content_list_items">
+
               <router-link to="/" class="content_list_item font-extralight">首頁</router-link>
               <router-link to="/products" class="content_list_item font-extralight">所有商品</router-link>
               <router-link to="/pending" class="content_list_item font-extralight">關於我們</router-link>
@@ -23,6 +24,7 @@
         </div>
         <div class="hidden w-full md:block">
           <ul class="flex-col mb-2 space-x-8">
+            <button class="item" @click="getMoney">按我</button>
             <router-link to="/" class="item">首頁</router-link>
             <router-link to="/products" class="item">所有商品</router-link>
             <router-link to="/pending" class="item">關於我們</router-link>
@@ -60,7 +62,7 @@
 import { ref, watch } from 'vue'
 import { useUserStore } from '~/stores/user'
 import { CurrentUser, User } from '~/plugins/type'
-
+import paymentAPI from '~/apis/payment'
 const isOpen = ref(false)
 const user = useUserStore()
 const avatar = ref()
@@ -72,6 +74,15 @@ watch(user, (curVal, preVal) => {
 
 function checkClose () {
   isOpen.value = !isOpen.value
+}
+
+const getMoney = async () => {
+  console.log('get')
+  const info = {
+    id: 123,
+    name: 'John'
+  }
+  const { data } = await paymentAPI.payment(info)
 }
 
 </script>
