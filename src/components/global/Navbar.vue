@@ -24,7 +24,6 @@
         </div>
         <div class="hidden w-full md:block">
           <ul class="flex-col mb-2 space-x-8">
-            <button class="item" @click="getMoney">按我</button>
             <router-link to="/" class="item">首頁</router-link>
             <router-link to="/products" class="item">所有商品</router-link>
             <router-link to="/pending" class="item">關於我們</router-link>
@@ -77,24 +76,6 @@ watch(user, (curVal, preVal) => {
 
 function checkClose () {
   isOpen.value = !isOpen.value
-}
-
-const getMoney = async () => {
-  console.log('get')
-  const info = {
-    id: 123,
-    name: 'John'
-  }
-  paymentHtml.value = await paymentAPI.payment(info).then((response) => {
-    return response.data
-  })
-}
-
-const submitForm = () => {
-  const form = document.createElement('form')
-  form.innerHTML = paymentHtml
-  document.body.appendChild(form)
-  form.submit()
 }
 
 </script>

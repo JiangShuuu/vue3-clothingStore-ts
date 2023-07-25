@@ -120,6 +120,15 @@
       </div>
     </Form>
   </section>
+  <!-- 其他 Vue 元件 -->
+  <iframe
+      v-show="paymentIframe"
+      ref="paymentIframe"
+      id="paymentIframe"
+      frameborder="0"
+      width="100%"
+      height="600"
+  ></iframe>
 </template>
 
 <script setup lang="ts">
@@ -129,6 +138,7 @@ import { useUserStore } from '~/stores/user'
 import { useRouter } from 'vue-router'
 import { onMounted, ref, reactive } from 'vue'
 import userAPI from '~/apis/user'
+import paymentAPI from '~/apis/payment'
 import { Field, Form, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
 import lang from '~/plugins/yup/zhTW.json'
@@ -169,6 +179,8 @@ function checkInfo () {
   }
 }
 
+const paymentIframe = ref()
+
 const simpleSchema = yup.object().shape({
   name: yup.string().required().label('名字'),
   email: yup.string().required().email().label('信箱'),
@@ -181,9 +193,19 @@ const simpleSchema = yup.object().shape({
 async function handleSubmit () {
   try {
     customInfo()
-    const { data } = await userAPI.addOrder(custom.value)
+    // const { data } = await userAPI.addOrder(custom.value)
     mainUser.carts = []
-    router.push('/cart/confirm')
+
+    await paymentAPI.payment(custom.value).then((res) => {
+      const paymentFormHtml = res.data
+      paymentIframe.value.contentDocument.open()
+      paymentIframe.value.contentDocument.write(paymentFormHtml)
+      paymentIframe.value.contentDocument.close()
+    }).catch(err => {
+      console.log('err', err)
+    })
+
+    // router.push('/cart/confirm')
   } catch (err) {
     console.log(err)
   }
