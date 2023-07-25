@@ -198,9 +198,6 @@ async function handleSubmit () {
     console.log('gggg', custom.value, orderCarts)
     await paymentAPI.payment(custom.value).then((res) => {
       const paymentFormHtml = res.data
-      // paymentIframe.value.contentDocument.open()
-      // paymentIframe.value.contentDocument.write(paymentFormHtml)
-      // paymentIframe.value.contentDocument.close()
       // 將 HTML 表單插入到一個新的頁面中
       const newWindow = window.open('', '_self')
       if (newWindow) {
