@@ -63,11 +63,9 @@
 import { ref, watch } from 'vue'
 import { useUserStore } from '~/stores/user'
 import { CurrentUser, User } from '~/plugins/type'
-import paymentAPI from '~/apis/payment'
 const isOpen = ref(false)
 const user = useUserStore()
 const avatar = ref()
-const paymentHtml = ref('') as any
 
 watch(user, (curVal, preVal) => {
   const userInfo = user.currentUser as CurrentUser['userData']
