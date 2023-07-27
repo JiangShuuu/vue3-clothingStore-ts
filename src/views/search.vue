@@ -18,6 +18,8 @@
       <input type="text" v-model="keyword" placeholder="輸入關鍵字..." class="p-2 border rounded-lg">
       <button class="p-2 ml-5 text-white border rounded-lg bg-primary" type="submit" >Search</button>
     </form>
+    <button class="p-2 ml-5 text-white border rounded-lg bg-primary" @click="print" >Print</button>
+    <button class="p-2 ml-5 text-white border rounded-lg bg-primary" @click="getmap" >獲取店家</button>
     <section class="w-full h-full flex-center">
       <div v-if="!products" class="h-[500px] flex-center">
         <h1 class="text-3xl">查不到此商品，請輸入其他關鍵字！</h1>
@@ -52,6 +54,7 @@ import { ref, onMounted } from 'vue'
 import { useCounterStore } from '~/stores/counter'
 import { SearchProducts } from '~/plugins/type'
 import productAPI from '~/apis/product'
+import paymentAPI from '~/apis/payment'
 import { Head } from '@vueuse/head'
 
 const url = `${import.meta.env.VITE_URL}/search`
@@ -75,6 +78,42 @@ async function get () {
     products.value = data.data.products as SearchProducts
 
     mainCount.searchText = keyword.value
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function print () {
+  try {
+    await paymentAPI.print({ name: 'John' }).then((res) => {
+      const paymentFormHtml = res.data
+      // 將 HTML 表單插入到一個新的頁面中
+      const newWindow = window.open('', '_blank')
+      if (newWindow) {
+        newWindow.document.write(paymentFormHtml)
+        newWindow.document.close()
+      }
+    }).catch(err => {
+      console.log('err', err)
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function getmap () {
+  try {
+    await paymentAPI.getmap({ name: 'John' }).then((res) => {
+      const paymentFormHtml = res.data
+      // 將 HTML 表單插入到一個新的頁面中
+      const newWindow = window.open('', '_blank')
+      if (newWindow) {
+        newWindow.document.write(paymentFormHtml)
+        newWindow.document.close()
+      }
+    }).catch(err => {
+      console.log('err', err)
+    })
   } catch (err) {
     console.log(err)
   }
